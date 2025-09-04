@@ -1,0 +1,47 @@
+# Netlify headers configuration
+
+# JavaScript modules
+/*.js
+  Content-Type: application/javascript
+
+# CSS files
+/*.css
+  Content-Type: text/css
+
+# Web manifest
+/site.webmanifest
+  Content-Type: application/manifest+json
+
+# Images
+/*.png
+  Content-Type: image/png
+
+/*.jpg
+  Content-Type: image/jpeg
+
+/*.jpeg
+  Content-Type: image/jpeg
+
+/*.gif
+  Content-Type: image/gif
+
+/*.svg
+  Content-Type: image/svg+xml
+
+# Videos
+/*.mp4
+  Content-Type: video/mp4
+
+# Fonts
+/*.woff
+  Content-Type: font/woff
+
+/*.woff2
+  Content-Type: font/woff2
+
+# Security headers
+/*
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

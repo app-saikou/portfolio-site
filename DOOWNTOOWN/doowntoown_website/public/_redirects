@@ -1,0 +1,5 @@
+# Netlify redirects for SPA
+/*    /index.html   200
+
+# Blog redirects (if needed)
+/blog/*    /index.html   200

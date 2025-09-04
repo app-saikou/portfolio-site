@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Allow: /blog
+Allow: /blog/*
+
+# サイトマップのURLを相対パスに変更
+Sitemap: /sitemap.xml
