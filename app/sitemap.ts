@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://moedora.dev";
+  const baseUrl = "https://moedora.netlify.app";
 
   // Static pages
   const staticPages = [
