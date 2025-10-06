@@ -16,6 +16,28 @@ export const metadata: Metadata = {
     default: "燃えドラ - 個人開発者のポートフォリオ",
     template: "%s | 燃えドラ",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    other: [
+      {
+        url: "/android-chrome-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        url: "/android-chrome-512x512.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
+    ],
+  },
   description:
     "個人開発者燃えドラのアプリケーション・ブログ・プロジェクトのポートフォリオサイトです。シンプルで実用的なアプリを開発し、ユーザーファーストな設計を心がけています。",
   keywords: [

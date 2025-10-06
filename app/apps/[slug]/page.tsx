@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowLeft, ExternalLink, Github, Download, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TwitterIcon } from "@/components/TwitterIcon";
+import { NoteIcon } from "@/components/NoteIcon";
 
 // Generate static params for static export
 export async function generateStaticParams() {
@@ -187,7 +188,19 @@ export default function AppDetail({ params }: { params: { slug: string } }) {
             </p>
             {app.status === "開発中" && (
               <div className="mt-3 text-sm text-blue-700 bg-blue-100 px-3 py-2 rounded-md">
-                📱 開発進捗や最新情報は各SNSでご確認ください
+                <div className="flex items-center">
+                  <span>📱 開発進捗や最新情報は</span>
+                  <a
+                    href="https://x.com/app_saikou"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mx-1 text-blue-600 hover:text-blue-800 underline transition-colors font-bold text-xl"
+                    title="X（旧Twitter）で開発進捗を確認"
+                  >
+                    X
+                  </a>
+                  <span>でご確認ください</span>
+                </div>
               </div>
             )}
           </div>
@@ -526,7 +539,7 @@ export default function AppDetail({ params }: { params: { slug: string } }) {
           フィードバックをお聞かせください
         </h2>
         <p className="text-gray-600 mb-4">
-          ご意見・ご要望は X の DM でお気軽にお送りください。
+          ご意見・ご要望があれば X の DM でお気軽にお送りください！
         </p>
         <Button
           className="bg-yellow-500 hover:bg-yellow-600 text-black"

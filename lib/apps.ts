@@ -11,7 +11,7 @@ export interface App {
 export const apps: App[] = [
   {
     id: "tanao",
-    name: "Tanao - your asset tracker",
+    name: "Tanao - あなたの資産管理トラッカー",
     description: "月イチで棚卸しする新しい資産管理アプリ",
     iconUrl: "/app-icons/tanao.png", // ← ここを変更
     slug: "tanao",

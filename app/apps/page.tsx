@@ -15,7 +15,7 @@ export default function Apps() {
           </span>
         </h1>
         <p className="text-xl text-gray-600">
-          個人開発で作成したアプリケーションの一覧です。シンプルで実用的なアプリを心がけて開発しています。
+          個人開発したアプリの一覧です。まずは自分がユーザーになれるアプリを心がけて開発しています。
         </p>
       </div>
 
@@ -41,7 +41,7 @@ export default function Apps() {
                       ? "bg-green-100 text-green-800"
                       : app.status === "開発中"
                       ? "bg-blue-100 text-blue-800"
-                      : app.status === "ベータ版"
+                      : app.status === "アイデア段階"
                       ? "bg-yellow-100 text-yellow-800"
                       : "bg-gray-100 text-gray-800"
                   }`}

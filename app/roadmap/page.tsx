@@ -3,6 +3,7 @@ import {
   Circle,
   Clock,
   Lightbulb,
+  Calendar,
 } from "lucide-react";
 
 const roadmapItems = {
@@ -189,9 +190,14 @@ export default function Roadmap() {
             開発ロードマップ
           </span>
         </h1>
-        <p className="text-xl text-gray-600">
-          現在の開発状況と今後の予定をご紹介します。17個の新しいアプリアイデアを含む包括的なロードマップを公開しています。進捗状況は随時更新されます。
+        <p className="text-xl text-gray-600 mb-4">
+          現在の開発状況と今後の予定を特別にご紹介します。アプリアイデアを含む開発ロードマップを公開しています。進捗状況は随時更新予定です！
         </p>
+        <div className="flex items-center space-x-2 text-sm text-gray-500 bg-gray-50 px-3 py-2 rounded-lg inline-flex">
+          <Calendar size={16} className="text-gray-400" />
+          <span>最終更新日</span>
+          <span className="font-medium text-gray-700">2025年10月6日</span>
+        </div>
       </div>
 
       {/* Now Section */}

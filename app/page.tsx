@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight, ExternalLink, Quote } from "lucide-react";
 import { StructuredData } from "@/components/StructuredData";
 import { TwitterIcon } from "@/components/TwitterIcon";
 import { NoteIcon } from "@/components/NoteIcon";
@@ -73,16 +73,35 @@ export default function Home() {
                 <NoteIcon size={52} />
               </a>
             </div>
-            <blockquote className="text-lg text-gray-600 italic border-l-4 border-yellow-400 pl-6 py-4 bg-yellow-50 rounded-r-lg">
-              "個人開発者として、シンプルで実用的なアプリケーションを作っています。
-              <br />
-              ユーザーファーストな設計で、日常を少し便利にするツールを開発中。
-              <br />
-              <span className="text-yellow-600 font-semibold">
-                開発の過程や学びを共有し、個人開発界隈に貢献していきます。
-              </span>
-              "
-            </blockquote>
+            <div className="relative">
+              <blockquote className="text-lg text-gray-600 italic py-8 px-12 relative">
+                <div className="absolute top-4 left-4 opacity-40">
+                  <Quote
+                    size={48}
+                    fill="#fbbf24"
+                    stroke="#f59e0b"
+                    strokeWidth={1.5}
+                  />
+                </div>
+                <div className="absolute bottom-4 right-4 opacity-40 transform rotate-180">
+                  <Quote
+                    size={48}
+                    fill="#fbbf24"
+                    stroke="#f59e0b"
+                    strokeWidth={1.5}
+                  />
+                </div>
+                <div className="relative z-10">
+                  個人開発者として、主にiOSアプリを作っています。
+                  <br />
+                  自分自身が欲しいと思えるアプリを開発中。
+                  <br />
+                  <span className="text-yellow-600 font-semibold">
+                    あなたにも気に入ってもらえれば最高です！
+                  </span>
+                </div>
+              </blockquote>
+            </div>
           </div>
         </section>
 
@@ -92,7 +111,7 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-gray-900">
               Apps
               <span className="block text-sm font-normal text-gray-600 mt-1">
-                開発したアプリ
+                開発アプリ一覧
               </span>
             </h2>
             <Link
@@ -141,7 +160,7 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-gray-900">
               Blog
               <span className="block text-sm font-normal text-gray-600 mt-1">
-                最新の記事
+                ブログ記事一覧
               </span>
             </h2>
             <Link

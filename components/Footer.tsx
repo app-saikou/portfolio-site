@@ -15,7 +15,7 @@ export function Footer() {
               燃えドラ
             </Link>
             <p className="mt-2 text-gray-600 text-sm">
-              個人開発者のポートフォリオサイト
+              - 個人開発者のポートフォリオサイト -
             </p>
           </div>
 
