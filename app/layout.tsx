@@ -83,8 +83,8 @@ export const metadata: Metadata = {
     title: "燃えドラ - 個人開発者のポートフォリオ",
     description:
       "個人開発者燃えドラのアプリケーション・ブログ・プロジェクトのポートフォリオサイトです。",
-    images: ["/og-image.png"],
-    creator: "@moedora",
+    images: ["/og-image.png"], // Twitter専用画像がある場合は "/twitter-image.png" に変更
+    creator: "@app_saikou", // 正しいTwitterハンドルに修正
   },
   robots: {
     index: true,
