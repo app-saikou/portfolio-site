@@ -14,7 +14,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
           "@type": "Person",
           name: "燃えドラ",
           description: "個人開発者",
-          url: "https://moedora.dev",
+          url: "https://app-saikou.netlify.app",
           sameAs: ["https://x.com/app_saikou", "https://note.com/app_saikou"],
           ...data,
         };
@@ -25,7 +25,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
           "@type": "WebSite",
           name: "燃えドラ Portfolio",
           description: "個人開発者燃えドラのポートフォリオサイト",
-          url: "https://moedora.dev",
+          url: "https://app-saikou.netlify.app",
           author: {
             "@type": "Person",
             name: "燃えドラ",
@@ -55,7 +55,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
             name: "燃えドラ",
             logo: {
               "@type": "ImageObject",
-              url: "https://moedora.dev/logo.png",
+              url: "https://app-saikou.netlify.app/logo.png",
             },
           },
           ...data,

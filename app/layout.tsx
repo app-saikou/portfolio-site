@@ -57,14 +57,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://moedora.dev"),
+  metadataBase: new URL("https://app-saikou.netlify.app"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "ja_JP",
-    url: "https://moedora.dev",
+    url: "https://app-saikou.netlify.app",
     title: "燃えドラ - 個人開発者のポートフォリオ",
     description:
       "個人開発者燃えドラのアプリケーション・ブログ・プロジェクトのポートフォリオサイトです。シンプルで実用的なアプリを開発し、ユーザーファーストな設計を心がけています。",

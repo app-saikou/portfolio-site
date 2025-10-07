@@ -18,7 +18,7 @@ export default function Home() {
         data={{
           name: "燃えドラ",
           description: "個人開発者",
-          url: "https://moedora.dev",
+          url: "https://app-saikou.netlify.app",
           sameAs: ["https://x.com/app_saikou", "https://note.com/app_saikou"],
         }}
       />
@@ -27,10 +27,11 @@ export default function Home() {
         data={{
           name: "燃えドラ Portfolio",
           description: "個人開発者燃えドラのポートフォリオサイト",
-          url: "https://moedora.dev",
+          url: "https://app-saikou.netlify.app",
           potentialAction: {
             "@type": "SearchAction",
-            target: "https://moedora.dev/search?q={search_term_string}",
+            target:
+              "https://app-saikou.netlify.app/search?q={search_term_string}",
             "query-input": "required name=search_term_string",
           },
         }}

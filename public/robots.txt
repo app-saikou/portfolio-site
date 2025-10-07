@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://moedora.netlify.app/sitemap.xml
+Sitemap: https://app-saikou.netlify.app/sitemap.xml
 
 # Block access to Next.js internal files
 Disallow: /_next/

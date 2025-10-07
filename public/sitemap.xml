@@ -3,27 +3,27 @@
 
 <!--  created with free sitemap generation system www.sitemapxml.jp  --> 
 <url>
-  <loc>https://moedora.netlify.app/</loc>
+  <loc>https://app-saikou.netlify.app/</loc>
   <priority>1.0</priority>
 </url>
 <url>
-  <loc>https://moedora.netlify.app/apps</loc>
+  <loc>https://app-saikou.netlify.app/apps</loc>
   <priority>0.8</priority>
 </url>
 <url>
-  <loc>https://moedora.netlify.app/blog</loc>
+  <loc>https://app-saikou.netlify.app/blog</loc>
   <priority>0.8</priority>
 </url>
 <url>
-  <loc>https://moedora.netlify.app/roadmap</loc>
+  <loc>https://app-saikou.netlify.app/roadmap</loc>
   <priority>0.8</priority>
 </url>
 <url>
-  <loc>https://moedora.netlify.app/sponsor</loc>
+  <loc>https://app-saikou.netlify.app/sponsor</loc>
   <priority>0.8</priority>
 </url>
 <url>
-  <loc>https://moedora.netlify.app/apps/tanao</loc>
+  <loc>https://app-saikou.netlify.app/apps/tanao</loc>
   <priority>0.8</priority>
 </url>
 
