@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL("https://app-saikou.netlify.app"),
   alternates: {
-    canonical: "/",
+    canonical: "https://app-saikou.netlify.app",
   },
   openGraph: {
     type: "website",
