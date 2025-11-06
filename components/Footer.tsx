@@ -1,8 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import { TwitterIcon } from "@/components/TwitterIcon";
 import { NoteIcon } from "@/components/NoteIcon";
+import { useLanguage } from "@/context/LanguageContext";
+import { getTranslation } from "@/lib/i18n";
 
 export function Footer() {
+  const { language } = useLanguage();
+  const t = getTranslation(language);
   return (
     <footer className="bg-gray-50 border-t border-gray-200 mt-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -12,22 +18,22 @@ export function Footer() {
               href="/"
               className="logo-font text-xl font-bold text-gray-900"
             >
-              燃えドラ
+              {t.home.title}
             </Link>
-            <p className="mt-2 text-gray-600 text-sm">
-              - 個人開発者のポートフォリオサイト -
-            </p>
+            <p className="mt-2 text-gray-600 text-sm">{t.footer.description}</p>
           </div>
 
           <div>
-            <h3 className="font-semibold text-gray-900 mb-4">ページ</h3>
+            <h3 className="font-semibold text-gray-900 mb-4">
+              {t.footer.pages}
+            </h3>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="/"
                   className="text-gray-600 hover:text-yellow-600 transition-colors text-sm"
                 >
-                  ホーム
+                  {t.footer.home}
                 </Link>
               </li>
               <li>
@@ -35,7 +41,7 @@ export function Footer() {
                   href="/apps"
                   className="text-gray-600 hover:text-yellow-600 transition-colors text-sm"
                 >
-                  アプリ
+                  {t.footer.apps}
                 </Link>
               </li>
               <li>
@@ -43,7 +49,7 @@ export function Footer() {
                   href="/blog"
                   className="text-gray-600 hover:text-yellow-600 transition-colors text-sm"
                 >
-                  ブログ
+                  {t.footer.blog}
                 </Link>
               </li>
               <li>
@@ -51,7 +57,7 @@ export function Footer() {
                   href="/roadmap"
                   className="text-gray-600 hover:text-yellow-600 transition-colors text-sm"
                 >
-                  ロードマップ
+                  {t.footer.roadmap}
                 </Link>
               </li>
               <li>
@@ -59,14 +65,14 @@ export function Footer() {
                   href="/sponsor"
                   className="text-gray-600 hover:text-yellow-600 transition-colors text-sm"
                 >
-                  スポンサー
+                  {t.footer.sponsor}
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold text-gray-900 mb-4">SNS</h3>
+            <h3 className="font-semibold text-gray-900 mb-4">{t.footer.sns}</h3>
             <div className="flex items-center space-x-4">
               <a
                 href="https://x.com/app_saikou"
@@ -89,7 +95,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-gray-200 text-center text-sm text-gray-500">
-          <p>&copy; 2025 app_saikou All rights reserved.</p>
+          <p>{t.footer.copyright}</p>
         </div>
       </div>
     </footer>

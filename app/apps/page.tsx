@@ -1,22 +1,37 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import { getAppsPageData } from "@/lib/apps";
+import { useLanguage } from "@/context/LanguageContext";
+import { getTranslation } from "@/lib/i18n";
 
 const apps = getAppsPageData();
 
 export default function Apps() {
+  const { language } = useLanguage();
+  const t = getTranslation(language);
+
+  // ステータスの翻訳マッピング
+  const getStatusTranslation = (status: string | undefined) => {
+    if (!status) return "";
+    const statusMap: Record<string, string> = {
+      リリース済み: t.apps.status.released,
+      開発中: t.apps.status.developing,
+      アイデア段階: t.apps.status.idea,
+    };
+    return statusMap[status] || status;
+  };
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="mb-12">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          Apps
+          {t.apps.title}
           <span className="block text-lg font-normal text-gray-600 mt-2">
-            開発アプリ一覧
+            {t.apps.subtitle}
           </span>
         </h1>
-        <p className="text-xl text-gray-600">
-          個人開発したアプリの一覧です。まずは自分がユーザーになれるアプリを心がけて開発しています。
-        </p>
+        <p className="text-xl text-gray-600">{t.apps.description}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -46,7 +61,7 @@ export default function Apps() {
                       : "bg-gray-100 text-gray-800"
                   }`}
                 >
-                  {app.status}
+                  {getStatusTranslation(app.status)}
                 </span>
               </div>
             </div>
@@ -69,7 +84,7 @@ export default function Apps() {
                   href={`/apps/${app.slug}`}
                   className="inline-flex items-center space-x-2 text-yellow-600 hover:text-yellow-700 transition-colors font-medium"
                 >
-                  <span>詳細を見る</span>
+                  <span>{t.apps.viewDetails}</span>
                   <ArrowRight size={16} />
                 </Link>
               </div>

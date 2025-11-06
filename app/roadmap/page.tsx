@@ -1,3 +1,5 @@
+"use client";
+
 import {
   CircleCheck as CheckCircle2,
   Circle,
@@ -5,6 +7,8 @@ import {
   Lightbulb,
   Calendar,
 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { getTranslation } from "@/lib/i18n";
 
 const roadmapItems = {
   now: [
@@ -174,28 +178,48 @@ const priorityColors = {
   low: "bg-green-100 text-green-800",
 };
 
-const priorityLabels = {
-  high: "高",
-  medium: "中",
-  low: "低",
-};
-
 export default function Roadmap() {
+  const { language } = useLanguage();
+  const t = getTranslation(language);
+
+  const priorityLabels = {
+    high: t.roadmap.priority.high,
+    medium: t.roadmap.priority.medium,
+    low: t.roadmap.priority.low,
+  };
+
+  const categoryLabels: Record<string, string> = {
+    アプリ開発: t.roadmap.categories.appDevelopment,
+    新規アプリ: t.roadmap.categories.newApp,
+    サイト開発: t.roadmap.categories.siteDevelopment,
+    "企画・設計": t.roadmap.categories.planning,
+  };
+
+  const getCategoryLabel = (category: string) => {
+    return categoryLabels[category] || category;
+  };
+
+  const getItemTitle = (id: number) => {
+    return t.roadmap.items[id as keyof typeof t.roadmap.items]?.title;
+  };
+
+  const getItemDescription = (id: number) => {
+    return t.roadmap.items[id as keyof typeof t.roadmap.items]?.description;
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="mb-12">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          Roadmap
+          {t.roadmap.title}
           <span className="block text-lg font-normal text-gray-600 mt-2">
-            開発ロードマップ
+            {t.roadmap.subtitle}
           </span>
         </h1>
-        <p className="text-xl text-gray-600 mb-4">
-          現在の開発状況と今後の予定を特別にご紹介します。アプリアイデアを含む開発ロードマップを公開しています。進捗状況は随時更新予定です！
-        </p>
-        <div className="flex items-center space-x-2 text-sm text-gray-500 bg-gray-50 px-3 py-2 rounded-lg inline-flex">
+        <p className="text-xl text-gray-600 mb-4">{t.roadmap.description}</p>
+        <div className="inline-flex items-center space-x-2 text-sm text-gray-500 bg-gray-50 px-3 py-2 rounded-lg">
           <Calendar size={16} className="text-gray-400" />
-          <span>最終更新日</span>
+          <span>{t.roadmap.lastUpdated}</span>
           <span className="font-medium text-gray-700">2025年10月6日</span>
         </div>
       </div>
@@ -204,42 +228,50 @@ export default function Roadmap() {
       <section className="mb-16">
         <div className="flex items-center space-x-3 mb-8">
           <Clock className="text-yellow-500" size={24} />
-          <h2 className="text-2xl font-bold text-gray-900">現在開発中</h2>
+          <h2 className="text-2xl font-bold text-gray-900">
+            {t.roadmap.sections.now}
+          </h2>
         </div>
 
         <div className="space-y-4">
-          {roadmapItems.now.map((item) => (
-            <div
-              key={item.id}
-              className="notion-card border-l-4 border-l-yellow-500"
-            >
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="text-lg font-semibold text-gray-900">
-                  {item.title}
-                </h3>
-                <div className="flex items-center space-x-2">
-                  <span
-                    className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      priorityColors[
-                        item.priority as keyof typeof priorityColors
-                      ]
-                    }`}
-                  >
-                    優先度:{" "}
-                    {
-                      priorityLabels[
-                        item.priority as keyof typeof priorityLabels
-                      ]
-                    }
-                  </span>
-                  <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
-                    {item.category}
-                  </span>
+          {roadmapItems.now.map((item) => {
+            const translatedTitle = getItemTitle(item.id);
+            const translatedDescription = getItemDescription(item.id);
+            return (
+              <div
+                key={item.id}
+                className="notion-card border-l-4 border-l-yellow-500"
+              >
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    {translatedTitle || item.title}
+                  </h3>
+                  <div className="flex items-center space-x-2">
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        priorityColors[
+                          item.priority as keyof typeof priorityColors
+                        ]
+                      }`}
+                    >
+                      {t.roadmap.priority.label}:{" "}
+                      {
+                        priorityLabels[
+                          item.priority as keyof typeof priorityLabels
+                        ]
+                      }
+                    </span>
+                    <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
+                      {getCategoryLabel(item.category)}
+                    </span>
+                  </div>
                 </div>
+                <p className="text-gray-600">
+                  {translatedDescription || item.description}
+                </p>
               </div>
-              <p className="text-gray-600">{item.description}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -247,42 +279,50 @@ export default function Roadmap() {
       <section className="mb-16">
         <div className="flex items-center space-x-3 mb-8">
           <Circle className="text-blue-500" size={24} />
-          <h2 className="text-2xl font-bold text-gray-900">次に予定</h2>
+          <h2 className="text-2xl font-bold text-gray-900">
+            {t.roadmap.sections.next}
+          </h2>
         </div>
 
         <div className="space-y-4">
-          {roadmapItems.next.map((item) => (
-            <div
-              key={item.id}
-              className="notion-card border-l-4 border-l-blue-500"
-            >
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="text-lg font-semibold text-gray-900">
-                  {item.title}
-                </h3>
-                <div className="flex items-center space-x-2">
-                  <span
-                    className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      priorityColors[
-                        item.priority as keyof typeof priorityColors
-                      ]
-                    }`}
-                  >
-                    優先度:{" "}
-                    {
-                      priorityLabels[
-                        item.priority as keyof typeof priorityLabels
-                      ]
-                    }
-                  </span>
-                  <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
-                    {item.category}
-                  </span>
+          {roadmapItems.next.map((item) => {
+            const translatedTitle = getItemTitle(item.id);
+            const translatedDescription = getItemDescription(item.id);
+            return (
+              <div
+                key={item.id}
+                className="notion-card border-l-4 border-l-blue-500"
+              >
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    {translatedTitle || item.title}
+                  </h3>
+                  <div className="flex items-center space-x-2">
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        priorityColors[
+                          item.priority as keyof typeof priorityColors
+                        ]
+                      }`}
+                    >
+                      {t.roadmap.priority.label}:{" "}
+                      {
+                        priorityLabels[
+                          item.priority as keyof typeof priorityLabels
+                        ]
+                      }
+                    </span>
+                    <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
+                      {getCategoryLabel(item.category)}
+                    </span>
+                  </div>
                 </div>
+                <p className="text-gray-600">
+                  {translatedDescription || item.description}
+                </p>
               </div>
-              <p className="text-gray-600">{item.description}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -290,26 +330,34 @@ export default function Roadmap() {
       <section className="mb-16">
         <div className="flex items-center space-x-3 mb-8">
           <Lightbulb className="text-purple-500" size={24} />
-          <h2 className="text-2xl font-bold text-gray-900">将来のアイデア</h2>
+          <h2 className="text-2xl font-bold text-gray-900">
+            {t.roadmap.sections.future}
+          </h2>
         </div>
 
         <div className="space-y-4">
-          {roadmapItems.future.map((item) => (
-            <div
-              key={item.id}
-              className="notion-card border-l-4 border-l-purple-500"
-            >
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="text-lg font-semibold text-gray-900">
-                  {item.title}
-                </h3>
-                <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
-                  {item.category}
-                </span>
+          {roadmapItems.future.map((item) => {
+            const translatedTitle = getItemTitle(item.id);
+            const translatedDescription = getItemDescription(item.id);
+            return (
+              <div
+                key={item.id}
+                className="notion-card border-l-4 border-l-purple-500"
+              >
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    {translatedTitle || item.title}
+                  </h3>
+                  <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
+                    {getCategoryLabel(item.category)}
+                  </span>
+                </div>
+                <p className="text-gray-600">
+                  {translatedDescription || item.description}
+                </p>
               </div>
-              <p className="text-gray-600">{item.description}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -317,45 +365,49 @@ export default function Roadmap() {
       <section className="mb-12">
         <div className="flex items-center space-x-3 mb-8">
           <CheckCircle2 className="text-green-500" size={24} />
-          <h2 className="text-2xl font-bold text-gray-900">完了済み</h2>
+          <h2 className="text-2xl font-bold text-gray-900">
+            {t.roadmap.sections.done}
+          </h2>
         </div>
 
         <div className="space-y-4">
-          {roadmapItems.done.map((item) => (
-            <div
-              key={item.id}
-              className="notion-card border-l-4 border-l-green-500 opacity-75"
-            >
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="text-lg font-semibold text-gray-700">
-                  {item.title}
-                </h3>
-                <div className="flex items-center space-x-2">
-                  <span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">
-                    {item.completedDate}
-                  </span>
-                  <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
-                    {item.category}
-                  </span>
+          {roadmapItems.done.map((item) => {
+            const translatedTitle = getItemTitle(item.id);
+            const translatedDescription = getItemDescription(item.id);
+            return (
+              <div
+                key={item.id}
+                className="notion-card border-l-4 border-l-green-500 opacity-75"
+              >
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-lg font-semibold text-gray-700">
+                    {translatedTitle || item.title}
+                  </h3>
+                  <div className="flex items-center space-x-2">
+                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">
+                      {item.completedDate}
+                    </span>
+                    <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
+                      {getCategoryLabel(item.category)}
+                    </span>
+                  </div>
                 </div>
+                <p className="text-gray-600">
+                  {translatedDescription || item.description}
+                </p>
               </div>
-              <p className="text-gray-600">{item.description}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
       {/* Voting Feature Placeholder */}
       <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 text-center">
         <h3 className="text-lg font-semibold text-gray-900 mb-2">
-          機能リクエスト・投票機能
+          {t.roadmap.voting.title}
         </h3>
-        <p className="text-gray-600 mb-4">
-          今後、フィードバックや機能リクエストの投票機能を追加予定です。
-        </p>
-        <p className="text-sm text-gray-500">
-          現在は X の DM でご要望をお聞かせください。
-        </p>
+        <p className="text-gray-600 mb-4">{t.roadmap.voting.description}</p>
+        <p className="text-sm text-gray-500">{t.roadmap.voting.note}</p>
       </div>
     </div>
   );

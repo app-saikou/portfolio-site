@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ExternalLink, Quote } from "lucide-react";
@@ -5,12 +7,16 @@ import { StructuredData } from "@/components/StructuredData";
 import { TwitterIcon } from "@/components/TwitterIcon";
 import { NoteIcon } from "@/components/NoteIcon";
 import { getHomeApps } from "@/lib/apps";
+import { useLanguage } from "@/context/LanguageContext";
+import { getTranslation } from "@/lib/i18n";
 
 const apps = getHomeApps();
 
 const latestPosts: any[] = [];
 
 export default function Home() {
+  const { language } = useLanguage();
+  const t = getTranslation(language);
   return (
     <>
       <StructuredData
@@ -51,9 +57,9 @@ export default function Home() {
               />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              燃えドラ
+              {t.home.title}
               <span className="block text-lg md:text-xl font-normal text-gray-600 mt-2">
-                個人開発者
+                {t.home.subtitle}
               </span>
             </h1>
             <div className="flex justify-center items-center space-x-6 mb-8">
@@ -93,12 +99,12 @@ export default function Home() {
                   />
                 </div>
                 <div className="relative z-10">
-                  個人開発者として、主にiOSアプリを作っています。
+                  {t.home.quote.line1}
                   <br />
-                  自分自身が欲しいと思えるアプリを開発中。
+                  {t.home.quote.line2}
                   <br />
                   <span className="text-yellow-600 font-semibold">
-                    あなたにも気に入ってもらえれば最高です！
+                    {t.home.quote.line3}
                   </span>
                 </div>
               </blockquote>
@@ -110,16 +116,16 @@ export default function Home() {
         <section className="py-16">
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900">
-              Apps
+              {t.home.apps.title}
               <span className="block text-sm font-normal text-gray-600 mt-1">
-                開発アプリ一覧
+                {t.home.apps.subtitle}
               </span>
             </h2>
             <Link
               href="/apps"
               className="flex items-center space-x-2 text-yellow-600 hover:text-yellow-700 transition-colors font-medium"
             >
-              <span>すべて見る</span>
+              <span>{t.home.apps.viewAll}</span>
               <ArrowRight size={16} />
             </Link>
           </div>
@@ -159,16 +165,16 @@ export default function Home() {
         <section className="py-16">
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900">
-              Blog
+              {t.home.blog.title}
               <span className="block text-sm font-normal text-gray-600 mt-1">
-                ブログ記事一覧
+                {t.home.blog.subtitle}
               </span>
             </h2>
             <Link
               href="/blog"
               className="flex items-center space-x-2 text-yellow-600 hover:text-yellow-700 transition-colors font-medium"
             >
-              <span>すべて見る</span>
+              <span>{t.home.blog.viewAll}</span>
               <ArrowRight size={16} />
             </Link>
           </div>
@@ -176,13 +182,11 @@ export default function Home() {
           <div className="space-y-6">
             {latestPosts.length === 0 ? (
               <div className="text-center py-12">
-                <div className="text-4xl mb-4">📝</div>
+                <div className="text-4xl mb-4">{t.home.blog.empty.icon}</div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  まだ記事がありません
+                  {t.home.blog.empty.title}
                 </h3>
-                <p className="text-gray-600">
-                  個人開発の経験談や技術的な学びについて、今後記事を公開予定です。
-                </p>
+                <p className="text-gray-600">{t.home.blog.empty.description}</p>
               </div>
             ) : (
               latestPosts.map((post) => (

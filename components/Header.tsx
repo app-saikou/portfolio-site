@@ -4,29 +4,34 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/apps", label: "Apps" },
-  { href: "/blog", label: "Blog" },
-  { href: "/roadmap", label: "Roadmap" },
-  { href: "/sponsor", label: "Sponsor" },
-];
+import { useLanguage } from "@/context/LanguageContext";
+import { getTranslation } from "@/lib/i18n";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { language } = useLanguage();
+  const t = getTranslation(language);
+
+  const navLinks = [
+    { href: "/", label: t.nav.home },
+    { href: "/apps", label: t.nav.apps },
+    { href: "/blog", label: t.nav.blog },
+    { href: "/roadmap", label: t.nav.roadmap },
+    { href: "/sponsor", label: t.nav.sponsor },
+  ];
 
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="logo-font text-2xl font-bold hover-accent">
-            燃えドラ
+            {t.home.title}
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -40,15 +45,16 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
+            <LanguageSwitcher />
           </nav>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="flex items-center space-x-2 md:hidden">
+            <LanguageSwitcher />
+            <button className="p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}

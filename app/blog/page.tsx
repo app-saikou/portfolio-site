@@ -1,38 +1,42 @@
+"use client";
+
 import Link from "next/link";
 import { Calendar, ArrowRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { getTranslation } from "@/lib/i18n";
 
 const blogPosts: any[] = [];
 
 export default function Blog() {
+  const { language } = useLanguage();
+  const t = getTranslation(language);
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="mb-12">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          Blog
+          {t.home.blog.title}
           <span className="block text-lg font-normal text-gray-600 mt-2">
-            ブログ
+            {t.home.blog.subtitle}
           </span>
         </h1>
-        <p className="text-xl text-gray-600">
-          個人開発の経験談、技術的な学び、プロダクト開発のプロセスについて書いています。
-        </p>
+        <p className="text-xl text-gray-600">{t.home.blog.description}</p>
       </div>
 
       <div className="space-y-8">
         {blogPosts.length === 0 ? (
           <div className="text-center py-16">
-            <div className="text-6xl mb-4">📝</div>
+            <div className="text-6xl mb-4">{t.home.blog.empty.icon}</div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              まだ記事がありません
+              {t.home.blog.empty.title}
             </h3>
             <p className="text-gray-600 mb-6">
-              個人開発の経験談や技術的な学びについて、今後記事を公開予定です。
+              {t.home.blog.empty.description}
             </p>
             <Link
               href="/"
               className="inline-flex items-center space-x-2 text-yellow-600 hover:text-yellow-700 transition-colors font-medium"
             >
-              <span>ホームに戻る</span>
+              <span>{t.home.blog.empty.backToHome}</span>
               <ArrowRight size={16} />
             </Link>
           </div>
@@ -84,7 +88,9 @@ export default function Blog() {
                   </p>
 
                   <div className="flex items-center space-x-2 text-yellow-600 group-hover:text-yellow-700">
-                    <span className="text-sm font-medium">記事を読む</span>
+                    <span className="text-sm font-medium">
+                      {t.home.blog.readArticle}
+                    </span>
                     <ArrowRight size={14} />
                   </div>
                 </div>
