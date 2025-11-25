@@ -390,8 +390,11 @@ export const translations = {
     magazine: {
       title: "Solo Dev Magazine",
       subtitle: "個人開発特化の雑誌",
-      description: "プロトタイプ版（全12ページ）",
+      description: "個人開発に関する情報をまとめた雑誌です",
+      prototype: "プロトタイプ",
+      issue: "号",
       page: "ページ",
+      comingSoon: "Coming Soon",
       note: "左右の矢印キーまたはボタンでページをめくることができます。",
     },
     footer: {
@@ -808,8 +811,11 @@ export const translations = {
     magazine: {
       title: "Solo Dev Magazine",
       subtitle: "A Magazine for Solo Developers",
-      description: "Prototype Edition (12 pages)",
+      description: "A magazine featuring information about solo development",
+      prototype: "Prototype",
+      issue: "Issue",
       page: "Page",
+      comingSoon: "Coming Soon",
       note: "You can flip pages using the arrow keys or buttons on the sides.",
     },
     footer: {
