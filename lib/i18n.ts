@@ -6,6 +6,7 @@ export const translations = {
       home: "ホーム",
       apps: "アプリ",
       blog: "ブログ",
+      magazine: "雑誌",
       roadmap: "ロードマップ",
       sponsor: "スポンサー",
     },
@@ -386,6 +387,13 @@ export const translations = {
           "個人開発の継続には、挑戦だけでなく、経済的な基盤も重要です。\n皆様のご支援が、より良いアプリケーションの開発につながっていきます。\n支援いただいた方々には心から感謝申し上げます。",
       },
     },
+    magazine: {
+      title: "Solo Dev Magazine",
+      subtitle: "個人開発特化の雑誌",
+      description: "プロトタイプ版（全12ページ）",
+      page: "ページ",
+      note: "左右の矢印キーまたはボタンでページをめくることができます。",
+    },
     footer: {
       description: "- 個人開発者のポートフォリオサイト -",
       pages: "ページ",
@@ -408,6 +416,7 @@ export const translations = {
       home: "Home",
       apps: "Apps",
       blog: "Blog",
+      magazine: "Magazine",
       roadmap: "Roadmap",
       sponsor: "Sponsor",
     },
@@ -795,6 +804,13 @@ export const translations = {
         message:
           "To continue independent development, not only challenges but also an economic foundation is important.\nYour support leads to the development of better applications.\nI sincerely thank all those who support me.",
       },
+    },
+    magazine: {
+      title: "Solo Dev Magazine",
+      subtitle: "A Magazine for Solo Developers",
+      description: "Prototype Edition (12 pages)",
+      page: "Page",
+      note: "You can flip pages using the arrow keys or buttons on the sides.",
     },
     footer: {
       description: "- Independent Developer Portfolio Site -",

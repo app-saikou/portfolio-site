@@ -18,6 +18,7 @@ export function Header() {
     { href: "/", label: t.nav.home },
     { href: "/apps", label: t.nav.apps },
     { href: "/blog", label: t.nav.blog },
+    { href: "/magazine", label: t.nav.magazine },
     { href: "/roadmap", label: t.nav.roadmap },
     { href: "/sponsor", label: t.nav.sponsor },
   ];
