@@ -413,7 +413,7 @@ export default function Magazine() {
                   alt={`Fullscreen - Page ${fullscreenImage.pageNum}`}
                   width={1414}
                   height={2000}
-                  className="max-w-full max-h-full w-auto h-auto object-contain pointer-events-none"
+                  className="max-w-full max-h-full w-auto h-auto object-contain pointer-events-none md:h-screen md:w-auto"
                   sizes="100vw"
                   draggable={false}
                 />
