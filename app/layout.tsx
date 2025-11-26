@@ -14,8 +14,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "燃えドラ - 個人開発者のポートフォリオ",
-    template: "%s | 燃えドラ",
+    default: "Moedora - 個人開発者のポートフォリオ",
+    template: "%s | Moedora",
   },
   icons: {
     icon: [
@@ -40,19 +40,19 @@ export const metadata: Metadata = {
     ],
   },
   description:
-    "個人開発者燃えドラのアプリケーション・ブログ・プロジェクトのポートフォリオサイトです。シンプルで実用的なアプリを開発し、ユーザーファーストな設計を心がけています。",
+    "個人開発者Moedoraのアプリケーション・ブログ・プロジェクトのポートフォリオサイトです。シンプルで実用的なアプリを開発し、ユーザーファーストな設計を心がけています。",
   keywords: [
     "個人開発",
     "ポートフォリオ",
     "アプリ開発",
-    "燃えドラ",
+    "Moedora",
     "タスク管理",
     "ノートアプリ",
     "習慣トラッカー",
   ],
-  authors: [{ name: "燃えドラ" }],
-  creator: "燃えドラ",
-  publisher: "燃えドラ",
+  authors: [{ name: "Moedora" }],
+  creator: "Moedora",
+  publisher: "Moedora",
   formatDetection: {
     email: false,
     address: false,
@@ -66,24 +66,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ja_JP",
     url: "https://app-saikou.netlify.app",
-    title: "燃えドラ - 個人開発者のポートフォリオ",
+    title: "Moedora - 個人開発者のポートフォリオ",
     description:
-      "個人開発者燃えドラのアプリケーション・ブログ・プロジェクトのポートフォリオサイトです。シンプルで実用的なアプリを開発し、ユーザーファーストな設計を心がけています。",
-    siteName: "燃えドラ Portfolio",
+      "個人開発者Moedoraのアプリケーション・ブログ・プロジェクトのポートフォリオサイトです。シンプルで実用的なアプリを開発し、ユーザーファーストな設計を心がけています。",
+    siteName: "Moedora Portfolio",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "燃えドラ - 個人開発者のポートフォリオ",
+        alt: "Moedora - 個人開発者のポートフォリオ",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "燃えドラ - 個人開発者のポートフォリオ",
+    title: "Moedora - 個人開発者のポートフォリオ",
     description:
-      "個人開発者燃えドラのアプリケーション・ブログ・プロジェクトのポートフォリオサイトです。",
+      "個人開発者Moedoraのアプリケーション・ブログ・プロジェクトのポートフォリオサイトです。",
     images: ["/og-image.png"], // Twitter専用画像がある場合は "/twitter-image.png" に変更
     creator: "@app_saikou", // 正しいTwitterハンドルに修正
   },
