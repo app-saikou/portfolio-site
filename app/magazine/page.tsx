@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 import { getTranslation } from "@/lib/i18n";
 import {
@@ -112,7 +113,10 @@ function IssueCarousel({
 export default function Magazine() {
   const { language } = useLanguage();
   const t = getTranslation(language);
-  const [activeTab, setActiveTab] = useState(defaultIssueId);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const issueIdFromUrl = searchParams.get("issue");
+  const [activeTab, setActiveTab] = useState(issueIdFromUrl || defaultIssueId);
   const [tabCarouselApi, setTabCarouselApi] = useState<CarouselApi>();
   const [fullscreenImage, setFullscreenImage] = useState<{
     issueId: string;
@@ -151,6 +155,22 @@ export default function Magazine() {
     return 0;
   });
 
+  // URLパラメータからタブを設定
+  useEffect(() => {
+    const issueIdFromUrl = searchParams.get("issue");
+    if (issueIdFromUrl && issueIdFromUrl !== activeTab) {
+      const issueExists = sortedIssues.some(
+        (issue) => issue.id === issueIdFromUrl
+      );
+      if (issueExists) {
+        setActiveTab(issueIdFromUrl);
+      }
+    } else if (!issueIdFromUrl && activeTab !== defaultIssueId) {
+      // URLパラメータがない場合はデフォルトに戻す
+      setActiveTab(defaultIssueId);
+    }
+  }, [searchParams, activeTab, sortedIssues]);
+
   // アクティブなタブが変更されたら、タブカロセルをその位置にスクロール
   useEffect(() => {
     if (!tabCarouselApi) return;
@@ -161,6 +181,21 @@ export default function Magazine() {
       tabCarouselApi.scrollTo(activeIndex);
     }
   }, [activeTab, tabCarouselApi, sortedIssues]);
+
+  // タブ変更時にURLを更新
+  const handleTabChange = (issueId: string) => {
+    setActiveTab(issueId);
+    const params = new URLSearchParams(searchParams.toString());
+    if (issueId === defaultIssueId) {
+      params.delete("issue");
+    } else {
+      params.set("issue", issueId);
+    }
+    const newUrl = params.toString()
+      ? `/magazine?${params.toString()}`
+      : "/magazine";
+    router.push(newUrl, { scroll: false });
+  };
 
   const activeIssue = sortedIssues.find((issue) => issue.id === activeTab);
 
@@ -329,7 +364,7 @@ export default function Magazine() {
             {sortedIssues.map((issue) => (
               <CarouselItem key={issue.id} className="pl-2 md:pl-4 basis-auto">
                 <button
-                  onClick={() => setActiveTab(issue.id)}
+                  onClick={() => handleTabChange(issue.id)}
                   className={`px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-all ${
                     activeTab === issue.id
                       ? "bg-yellow-600 text-white shadow-md"
@@ -359,9 +394,9 @@ export default function Magazine() {
         open={!!fullscreenImage}
         onOpenChange={(open) => !open && setFullscreenImage(null)}
       >
-        <DialogContent className="max-w-[95vw] max-h-[95vh] w-auto h-auto p-0 bg-black/95 border-none translate-x-[-50%] translate-y-[-50%] left-[50%] top-[50%] [&>button]:hidden">
+        <DialogContent className="max-w-[100vw] max-h-[100vh] w-full h-full p-0 bg-black/95 border-none [&>button]:hidden">
           <div
-            className="relative w-full h-full flex items-center justify-center min-h-[50vh] cursor-pointer select-none"
+            className="relative w-full h-full flex items-center justify-center cursor-pointer select-none"
             onClick={() => !isDragging && setShowControls(!showControls)}
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
@@ -376,10 +411,10 @@ export default function Magazine() {
                 <Image
                   src={`${fullscreenIssue.imagePath}page-${fullscreenImage.pageNum}.png`}
                   alt={`Fullscreen - Page ${fullscreenImage.pageNum}`}
-                  width={1200}
-                  height={1600}
-                  className="max-w-full max-h-[95vh] w-auto h-auto object-contain pointer-events-none"
-                  sizes="95vw"
+                  width={1414}
+                  height={2000}
+                  className="max-w-full max-h-full w-auto h-auto object-contain pointer-events-none"
+                  sizes="100vw"
                   draggable={false}
                 />
                 {/* ページ数表示 */}
