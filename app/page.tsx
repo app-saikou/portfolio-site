@@ -22,7 +22,7 @@ export default function Home() {
       <StructuredData
         type="Person"
         data={{
-          name: "燃えドラ",
+          name: "Moedora",
           description: "個人開発者",
           url: "https://app-saikou.netlify.app",
           sameAs: ["https://x.com/app_saikou", "https://note.com/app_saikou"],
@@ -31,8 +31,8 @@ export default function Home() {
       <StructuredData
         type="WebSite"
         data={{
-          name: "燃えドラ Portfolio",
-          description: "個人開発者燃えドラのポートフォリオサイト",
+          name: "Moedora Portfolio",
+          description: "個人開発者Moedoraのポートフォリオサイト",
           url: "https://app-saikou.netlify.app",
           potentialAction: {
             "@type": "SearchAction",
@@ -49,7 +49,7 @@ export default function Home() {
             <div className="w-48 h-48 rounded-full mb-8 mx-auto overflow-hidden shadow-lg">
               <Image
                 src="/profile-image.png"
-                alt="燃えドラのプロフィール画像"
+                alt="Moedoraのプロフィール画像"
                 width={192}
                 height={192}
                 className="w-full h-full object-cover"

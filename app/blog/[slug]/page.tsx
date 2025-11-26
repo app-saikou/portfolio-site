@@ -344,7 +344,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             👨‍💻
           </div>
           <div>
-            <h4 className="font-semibold text-gray-900">燃えドラ</h4>
+            <h4 className="font-semibold text-gray-900">Moedora</h4>
             <p className="text-gray-600 text-sm">
               個人開発者・アプリクリエイター
             </p>

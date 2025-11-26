@@ -54,6 +54,14 @@ export function Footer() {
               </li>
               <li>
                 <Link
+                  href="/magazine"
+                  className="text-gray-600 hover:text-yellow-600 transition-colors text-sm"
+                >
+                  {t.footer.magazine}
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/roadmap"
                   className="text-gray-600 hover:text-yellow-600 transition-colors text-sm"
                 >

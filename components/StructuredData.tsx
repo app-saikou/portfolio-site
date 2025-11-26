@@ -12,7 +12,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
         return {
           "@context": "https://schema.org",
           "@type": "Person",
-          name: "燃えドラ",
+          name: "Moedora",
           description: "個人開発者",
           url: "https://app-saikou.netlify.app",
           sameAs: ["https://x.com/app_saikou", "https://note.com/app_saikou"],
@@ -23,12 +23,12 @@ export function StructuredData({ type, data }: StructuredDataProps) {
         return {
           "@context": "https://schema.org",
           "@type": "WebSite",
-          name: "燃えドラ Portfolio",
-          description: "個人開発者燃えドラのポートフォリオサイト",
+          name: "Moedora Portfolio",
+          description: "個人開発者Moedoraのポートフォリオサイト",
           url: "https://app-saikou.netlify.app",
           author: {
             "@type": "Person",
-            name: "燃えドラ",
+            name: "Moedora",
           },
           ...data,
         };
@@ -48,11 +48,11 @@ export function StructuredData({ type, data }: StructuredDataProps) {
           "@type": "BlogPosting",
           author: {
             "@type": "Person",
-            name: "燃えドラ",
+            name: "Moedora",
           },
           publisher: {
             "@type": "Organization",
-            name: "燃えドラ",
+            name: "Moedora",
             logo: {
               "@type": "ImageObject",
               url: "https://app-saikou.netlify.app/logo.png",

@@ -18,7 +18,7 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X } from "lucide-react";
 
 // 号ごとのカロセルコンポーネント
 function IssueCarousel({
@@ -119,6 +119,10 @@ export default function Magazine() {
     pageNum: number;
   } | null>(null);
   const [showControls, setShowControls] = useState(true);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [mouseStart, setMouseStart] = useState<number | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
 
   // 表示名を生成
   const getDisplayName = (issue: MagazineIssue) => {
@@ -183,6 +187,68 @@ export default function Magazine() {
         pageNum: fullscreenImage.pageNum + 1,
       });
     }
+  };
+
+  // スワイプの最小距離
+  const minSwipeDistance = 50;
+
+  // タッチイベントハンドラー
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd || !fullscreenImage || !fullscreenIssue)
+      return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && fullscreenImage.pageNum < fullscreenIssue.pageCount) {
+      handleNextPage();
+    }
+    if (isRightSwipe && fullscreenImage.pageNum > 1) {
+      handlePreviousPage();
+    }
+  };
+
+  // マウスドラッグイベントハンドラー
+  const onMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    setMouseStart(e.clientX);
+  };
+
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) {
+      setShowControls(true);
+      return;
+    }
+  };
+
+  const onMouseUp = (e: React.MouseEvent) => {
+    if (!isDragging || !mouseStart || !fullscreenImage || !fullscreenIssue) {
+      setIsDragging(false);
+      return;
+    }
+
+    const distance = mouseStart - e.clientX;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && fullscreenImage.pageNum < fullscreenIssue.pageCount) {
+      handleNextPage();
+    }
+    if (isRightSwipe && fullscreenImage.pageNum > 1) {
+      handlePreviousPage();
+    }
+
+    setIsDragging(false);
+    setMouseStart(null);
   };
 
   // コントロールの表示/非表示を管理
@@ -295,9 +361,15 @@ export default function Magazine() {
       >
         <DialogContent className="max-w-[95vw] max-h-[95vh] w-auto h-auto p-0 bg-black/95 border-none translate-x-[-50%] translate-y-[-50%] left-[50%] top-[50%] [&>button]:hidden">
           <div
-            className="relative w-full h-full flex items-center justify-center min-h-[50vh] cursor-pointer"
-            onClick={() => setShowControls(!showControls)}
-            onMouseMove={() => setShowControls(true)}
+            className="relative w-full h-full flex items-center justify-center min-h-[50vh] cursor-pointer select-none"
+            onClick={() => !isDragging && setShowControls(!showControls)}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+            onMouseDown={onMouseDown}
+            onMouseMove={onMouseMove}
+            onMouseUp={onMouseUp}
+            onMouseLeave={() => setIsDragging(false)}
           >
             {fullscreenImage && fullscreenIssue && (
               <>
@@ -308,41 +380,8 @@ export default function Magazine() {
                   height={1600}
                   className="max-w-full max-h-[95vh] w-auto h-auto object-contain pointer-events-none"
                   sizes="95vw"
+                  draggable={false}
                 />
-                {/* 前のページボタン */}
-                {fullscreenImage.pageNum > 1 && (
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handlePreviousPage();
-                    }}
-                    className={`absolute left-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full transition-all z-10 ${
-                      showControls
-                        ? "opacity-100"
-                        : "opacity-0 pointer-events-none"
-                    }`}
-                    aria-label="Previous page"
-                  >
-                    <ChevronLeft className="h-6 w-6" />
-                  </button>
-                )}
-                {/* 次のページボタン */}
-                {fullscreenImage.pageNum < fullscreenIssue.pageCount && (
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleNextPage();
-                    }}
-                    className={`absolute right-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full transition-all z-10 ${
-                      showControls
-                        ? "opacity-100"
-                        : "opacity-0 pointer-events-none"
-                    }`}
-                    aria-label="Next page"
-                  >
-                    <ChevronRight className="h-6 w-6" />
-                  </button>
-                )}
                 {/* ページ数表示 */}
                 <div
                   className={`absolute top-4 left-1/2 -translate-x-1/2 bg-black/60 text-white px-4 py-2 rounded-md text-sm font-medium backdrop-blur-sm z-10 transition-all ${
