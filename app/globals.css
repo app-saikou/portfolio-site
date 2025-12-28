@@ -55,11 +55,11 @@
   }
 
   .hover-accent {
-    @apply transition-colors duration-200 hover:text-yellow-500;
+    @apply transition-colors duration-200 hover:text-gray-900;
   }
 
   .hover-accent-bg {
-    @apply transition-all duration-200 hover:bg-yellow-50 hover:border-yellow-200;
+    @apply transition-all duration-200 hover:bg-gray-50 hover:border-gray-300;
   }
 
   .notion-card {
@@ -67,7 +67,7 @@
   }
 
   .accent-underline {
-    @apply relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-yellow-500 hover:after:w-full after:transition-all after:duration-300;
+    @apply relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gray-900 hover:after:w-full after:transition-all after:duration-300;
   }
 
   /* Icon styling */
@@ -79,5 +79,15 @@
     @apply object-contain;
     max-width: 100%;
     max-height: 100%;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
   }
 }

@@ -34,7 +34,7 @@ export default function Blog() {
             </p>
             <Link
               href="/"
-              className="inline-flex items-center space-x-2 text-yellow-600 hover:text-yellow-700 transition-colors font-medium"
+              className="inline-flex items-center space-x-2 text-gray-900 hover:text-gray-700 transition-colors font-medium"
             >
               <span>{t.home.blog.empty.backToHome}</span>
               <ArrowRight size={16} />
@@ -76,7 +76,7 @@ export default function Blog() {
                   </div>
 
                   <h2
-                    className={`font-semibold text-gray-900 mb-3 group-hover:text-yellow-600 transition-colors ${
+                    className={`font-semibold text-gray-900 mb-3 group-hover:text-gray-900 transition-colors ${
                       index === 0 ? "text-2xl" : "text-xl"
                     }`}
                   >
@@ -87,7 +87,7 @@ export default function Blog() {
                     {post.excerpt}
                   </p>
 
-                  <div className="flex items-center space-x-2 text-yellow-600 group-hover:text-yellow-700">
+                  <div className="flex items-center space-x-2 text-gray-900 group-hover:text-gray-700">
                     <span className="text-sm font-medium">
                       {t.home.blog.readArticle}
                     </span>
@@ -103,7 +103,7 @@ export default function Blog() {
       {/* Pagination placeholder */}
       <div className="mt-12 flex justify-center">
         <div className="flex space-x-2">
-          <button className="px-3 py-2 text-sm bg-yellow-500 text-black rounded-md">
+          <button className="px-3 py-2 text-sm bg-gray-900 text-white rounded-md">
             1
           </button>
           <button className="px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md">

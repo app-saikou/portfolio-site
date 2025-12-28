@@ -15,28 +15,29 @@ export async function generateStaticParams() {
 const getAppData = (slug: string) => {
   const apps: Record<string, any> = {
     tanao: {
-      name: "Tanao - あなたの資産管理トラッカー",
+      name: "Tanao - 家計簿いらずの資産トラッカー",
       tagline: "月イチで棚卸しする新しい資産管理アプリ",
-      icon: "📦",
-      status: "開発中",
-      version: "v1.0",
+      iconUrl: "/app-icons/tanao.png",
+      status: "リリース済み",
+      version: "v1.1.0",
       slug: "tanao",
       description:
-        "Tanaoは、個人や小規模チーム向けの資産管理アプリです。月1回の棚卸しを前提としたシンプルな設計で、資産の管理を効率化します。",
+        "Tanaoは、個人向けの資産管理アプリです。月1回の棚卸しを前提としたシンプルな設計で、資産の管理を効率化します。",
       screenshots: [
         "/screenshots/tanao/1.png",
         "/screenshots/tanao/2.png",
         "/screenshots/tanao/3.png",
+        "/screenshots/tanao/4.png",
+        "/screenshots/tanao/5.png",
       ],
-      features: ["資産棚卸し機能", "複数資産の見える化", "10年後の資産予測"],
+      features: ["資産棚卸し機能", "複数資産の見える化", "100歳までの資産予測"],
       technologies: ["React Native", "TypeScript", "Supabase", "Expo"],
-      downloadUrl: "#",
-      githubUrl: "https://github.com/app-saikou/asset-management-app",
+      downloadUrl:
+        "https://apps.apple.com/jp/app/tanao-%E5%AE%B6%E8%A8%88%E7%B0%BF%E3%81%84%E3%82%89%E3%81%9A%E3%81%AE%E8%B3%87%E7%94%A3%E3%83%88%E3%83%A9%E3%83%83%E3%82%AB%E3%83%BC/id6753191685",
     },
     "taskflow-pro": {
       name: "TaskFlow Pro",
       tagline: "生産性を向上させるシンプルなタスク管理アプリ",
-      icon: "📋",
       status: "リリース済み",
       version: "v1.2.0",
       description:
@@ -56,12 +57,10 @@ const getAppData = (slug: string) => {
       ],
       technologies: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS"],
       downloadUrl: "#",
-      githubUrl: "#",
     },
     quicknote: {
       name: "QuickNote",
       tagline: "Markdown対応の高速ノートアプリ",
-      icon: "📝",
       status: "開発中",
       version: "v0.8.0 (Beta)",
       description:
@@ -81,7 +80,6 @@ const getAppData = (slug: string) => {
       ],
       technologies: ["React", "Electron", "Node.js", "SQLite"],
       downloadUrl: "#",
-      githubUrl: "#",
     },
   };
 
@@ -100,7 +98,7 @@ export default function AppDetail({ params }: { params: { slug: string } }) {
           </h1>
           <Link
             href="/apps"
-            className="text-yellow-600 hover:text-yellow-700 mt-4 inline-block"
+            className="text-gray-900 hover:text-gray-700 mt-4 inline-block"
           >
             アプリ一覧に戻る
           </Link>

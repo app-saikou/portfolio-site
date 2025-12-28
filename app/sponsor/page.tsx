@@ -31,8 +31,8 @@ export default function Sponsor() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="mb-12 text-center">
         <div className="flex justify-center mb-6">
-          <div className="p-4 bg-yellow-100 rounded-full">
-            <Heart className="text-yellow-600" size={32} />
+          <div className="p-4 bg-gray-100 rounded-full">
+            <Heart className="text-gray-900" size={32} />
           </div>
         </div>
         <h1 className="text-4xl font-bold text-gray-900 mb-4">
@@ -56,7 +56,7 @@ export default function Sponsor() {
           <ul className="space-y-2 text-gray-700">
             {t.sponsor.about.uses.map((use, index) => (
               <li key={index} className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-gray-900 rounded-full"></div>
                 <span>{use}</span>
               </li>
             ))}
@@ -77,7 +77,7 @@ export default function Sponsor() {
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
                   {plan.type}
                 </h3>
-                <div className="text-2xl font-bold text-yellow-600">
+                <div className="text-2xl font-bold text-gray-900">
                   {plan.amount}
                 </div>
               </div>
@@ -92,7 +92,7 @@ export default function Sponsor() {
                     className="flex items-start space-x-2"
                   >
                     <Star
-                      className="text-yellow-500 mt-0.5 flex-shrink-0"
+                      className="text-gray-900 mt-0.5 flex-shrink-0"
                       size={16}
                     />
                     <span className="text-gray-700 text-sm">{benefit}</span>
@@ -155,7 +155,7 @@ export default function Sponsor() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
-              className="bg-yellow-500 hover:bg-yellow-600 text-black"
+              className="bg-gray-900 hover:bg-gray-800 text-white"
               onClick={() => window.open("https://x.com/app_saikou", "_blank")}
             >
               <TwitterIcon size={16} className="mr-2" />
@@ -170,7 +170,7 @@ export default function Sponsor() {
       </section>
 
       {/* Thank You Message */}
-      <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-lg p-8 text-center">
+      <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-8 text-center">
         <h3 className="text-xl font-semibold text-gray-900 mb-3">
           {t.sponsor.thankYou.title}
         </h3>

@@ -31,7 +31,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/"
-                  className="text-gray-600 hover:text-yellow-600 transition-colors text-sm"
+                  className="text-gray-600 hover:text-gray-900 transition-colors text-sm"
                 >
                   {t.footer.home}
                 </Link>
@@ -39,7 +39,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/apps"
-                  className="text-gray-600 hover:text-yellow-600 transition-colors text-sm"
+                  className="text-gray-600 hover:text-gray-900 transition-colors text-sm"
                 >
                   {t.footer.apps}
                 </Link>
@@ -47,7 +47,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/blog"
-                  className="text-gray-600 hover:text-yellow-600 transition-colors text-sm"
+                  className="text-gray-600 hover:text-gray-900 transition-colors text-sm"
                 >
                   {t.footer.blog}
                 </Link>
@@ -55,7 +55,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/magazine"
-                  className="text-gray-600 hover:text-yellow-600 transition-colors text-sm"
+                  className="text-gray-600 hover:text-gray-900 transition-colors text-sm"
                 >
                   {t.footer.magazine}
                 </Link>
@@ -63,7 +63,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/roadmap"
-                  className="text-gray-600 hover:text-yellow-600 transition-colors text-sm"
+                  className="text-gray-600 hover:text-gray-900 transition-colors text-sm"
                 >
                   {t.footer.roadmap}
                 </Link>
@@ -71,7 +71,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/sponsor"
-                  className="text-gray-600 hover:text-yellow-600 transition-colors text-sm"
+                  className="text-gray-600 hover:text-gray-900 transition-colors text-sm"
                 >
                   {t.footer.sponsor}
                 </Link>
@@ -86,7 +86,7 @@ export function Footer() {
                 href="https://x.com/app_saikou"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center text-gray-600 hover:text-yellow-600 transition-colors"
+                className="flex items-center justify-center text-gray-600 hover:text-gray-900 transition-colors"
               >
                 <TwitterIcon size={20} />
               </a>
@@ -94,7 +94,7 @@ export function Footer() {
                 href="https://note.com/app_saikou"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-start justify-center text-gray-600 hover:text-yellow-600 transition-colors"
+                className="flex items-start justify-center text-gray-600 hover:text-gray-900 transition-colors"
               >
                 <NoteIcon size={52} />
               </a>

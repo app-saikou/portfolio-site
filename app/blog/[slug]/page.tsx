@@ -218,7 +218,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           </p>
           <Link
             href="/blog"
-            className="inline-flex items-center space-x-2 text-yellow-600 hover:text-yellow-700 transition-colors font-medium"
+            className="inline-flex items-center space-x-2 text-gray-900 hover:text-gray-700 transition-colors font-medium"
           >
             <span>ブログ一覧に戻る</span>
             <ArrowRight size={16} />
@@ -234,7 +234,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
       <div className="mb-8">
         <Link
           href="/blog"
-          className="flex items-center space-x-2 text-gray-600 hover:text-yellow-600 transition-colors mb-8"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors mb-8"
         >
           <ArrowLeft size={16} />
           <span>ブログ一覧に戻る</span>
@@ -320,12 +320,12 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                   <Link key={relatedPost.id} href={`/blog/${relatedPost.slug}`}>
                     <div className="notion-card hover-accent-bg group">
                       <div className="flex justify-between items-center">
-                        <h4 className="text-lg font-semibold text-gray-900 group-hover:text-yellow-600 transition-colors">
+                        <h4 className="text-lg font-semibold text-gray-900 group-hover:text-gray-900 transition-colors">
                           {relatedPost.title}
                         </h4>
                         <ArrowLeft
                           size={16}
-                          className="text-gray-400 group-hover:text-yellow-600 transition-colors transform rotate-180"
+                          className="text-gray-400 group-hover:text-gray-900 transition-colors transform rotate-180"
                         />
                       </div>
                     </div>
@@ -340,7 +340,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
       {/* Author Profile */}
       <div className="border-t border-gray-200 pt-8 mt-12">
         <div className="flex items-center space-x-4">
-          <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-2xl">
+          <div className="w-16 h-16 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full flex items-center justify-center text-2xl">
             👨‍💻
           </div>
           <div>
@@ -353,7 +353,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                 href="https://x.com/app_saikou"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-yellow-600 transition-colors"
+                className="text-gray-500 hover:text-gray-900 transition-colors"
               >
                 <TwitterIcon size={16} />
               </a>
@@ -361,7 +361,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                 href="https://note.com/app_saikou"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-yellow-600 transition-colors text-sm font-medium"
+                className="text-gray-500 hover:text-gray-900 transition-colors text-sm font-medium"
               >
                 <NoteIcon size={16} />
               </a>

@@ -12,7 +12,7 @@ export const translations = {
     },
     home: {
       title: "Moedora",
-      subtitle: "個人開発者",
+      subtitle: "Vibe Coder",
       quote: {
         line1: "個人開発者として、主にiOSアプリを作っています。",
         line2: "自分自身が欲しいと思えるアプリを開発中。",
@@ -37,6 +37,27 @@ export const translations = {
           backToHome: "ホームに戻る",
         },
         readArticle: "記事を読む",
+      },
+      magazine: {
+        title: "Magazine",
+        subtitle: "個人開発特化マガジン",
+        viewAll: "すべて見る",
+        description:
+          "個人開発者のための雑誌「Solo Dev」。開発の舞台裏、技術、マインドセットをシェアします。",
+      },
+      roadmap: {
+        title: "Roadmap",
+        subtitle: "開発ロードマップ",
+        viewAll: "すべて見る",
+        description:
+          "現在開発中のプロジェクトや今後の予定を公開しています。開発の透明性を大切にしています。",
+      },
+      sponsor: {
+        title: "Sponsor",
+        subtitle: "開発をサポート",
+        viewAll: "詳細を見る",
+        description:
+          "個人開発を応援してくださる方を募集しています。ご支援は開発の継続に使わせていただきます。",
       },
     },
     apps: {
@@ -83,11 +104,11 @@ export const translations = {
         appData: {
           tanao: {
             description:
-              "Tanaoは、個人や小規模チーム向けの資産管理アプリです。月1回の棚卸しを前提としたシンプルな設計で、資産の管理を効率化します。",
+              "Tanaoは、個人向けの資産管理アプリです。月1回の棚卸しを前提としたシンプルな設計で、資産の管理を効率化します。",
             features: [
               "資産棚卸し機能",
               "複数資産の見える化",
-              "10年後の資産予測",
+              "100歳までの資産予測",
             ],
             faq: [
               {
@@ -238,7 +259,7 @@ export const translations = {
         1: {
           title: "Tanao v1.0 リリース準備",
           description:
-            "資産棚卸しアプリのベータテストを経て、App Storeでの正式リリースを準備中。",
+            "資産棚卸しアプリのベータテストを経て、App Storeで正式リリースしました。",
         },
         2: {
           title: "ThinkMagic プロトタイプ開発",
@@ -426,7 +447,7 @@ export const translations = {
     },
     home: {
       title: "Moedora",
-      subtitle: "Independent Developer",
+      subtitle: "Vibe Coder",
       quote: {
         line1: "As an independent developer, I mainly create iOS apps.",
         line2: "I'm developing apps that I would want to use myself.",
@@ -451,6 +472,27 @@ export const translations = {
           backToHome: "Back to Home",
         },
         readArticle: "Read Article",
+      },
+      magazine: {
+        title: "Magazine",
+        subtitle: "Indie Dev Magazine",
+        viewAll: "View All",
+        description:
+          "Solo Dev magazine for independent developers. Sharing behind-the-scenes, technology, and mindsets.",
+      },
+      roadmap: {
+        title: "Roadmap",
+        subtitle: "Development Roadmap",
+        viewAll: "View All",
+        description:
+          "Public roadmap of current projects and future plans. Transparency is important to me.",
+      },
+      sponsor: {
+        title: "Sponsor",
+        subtitle: "Support Development",
+        viewAll: "Learn More",
+        description:
+          "Looking for supporters to help independent development. Your support helps me continue creating.",
       },
     },
     apps: {
@@ -654,7 +696,7 @@ export const translations = {
         1: {
           title: "Tanao v1.0 Release Preparation",
           description:
-            "After beta testing the asset inventory app, preparing for official release on the App Store.",
+            "After beta testing the asset inventory app, officially released on the App Store.",
         },
         2: {
           title: "ThinkMagic Prototype Development",

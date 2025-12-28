@@ -11,11 +11,11 @@ export interface App {
 export const apps: App[] = [
   {
     id: "tanao",
-    name: "Tanao - あなたの資産管理トラッカー",
+    name: "Tanao - 家計簿いらずの資産トラッカー",
     description: "月イチで棚卸しする新しい資産管理アプリ",
     iconUrl: "/app-icons/tanao.png", // ← ここを変更
     slug: "tanao",
-    status: "開発中",
+    status: "リリース済み",
     technologies: ["React Native", "TypeScript", "Supabase"],
   },
 ];

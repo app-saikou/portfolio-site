@@ -367,7 +367,7 @@ export default function Magazine() {
                   onClick={() => handleTabChange(issue.id)}
                   className={`px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-all ${
                     activeTab === issue.id
-                      ? "bg-yellow-600 text-white shadow-md"
+                      ? "bg-gray-900 text-white shadow-md"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                 >

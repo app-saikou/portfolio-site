@@ -15,7 +15,7 @@ export function LanguageSwitcher() {
   return (
     <button
       onClick={toggleLanguage}
-      className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-yellow-600 transition-colors duration-200 rounded-md hover:bg-gray-50"
+      className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200 rounded-md hover:bg-gray-50"
       aria-label="Switch language"
       title={language === "ja" ? "Switch to English" : "日本語に切り替え"}
     >

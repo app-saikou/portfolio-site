@@ -39,8 +39,8 @@ export function Header() {
                 href={link.href}
                 className={`text-sm font-medium transition-colors duration-200 accent-underline ${
                   pathname === link.href
-                    ? "text-yellow-600"
-                    : "text-gray-700 hover:text-yellow-600"
+                    ? "text-gray-900"
+                    : "text-gray-700 hover:text-gray-900"
                 }`}
               >
                 {link.label}
@@ -67,8 +67,8 @@ export function Header() {
                 href={link.href}
                 className={`block py-2 text-sm font-medium transition-colors duration-200 ${
                   pathname === link.href
-                    ? "text-yellow-600"
-                    : "text-gray-700 hover:text-yellow-600"
+                    ? "text-gray-900"
+                    : "text-gray-700 hover:text-gray-900"
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
