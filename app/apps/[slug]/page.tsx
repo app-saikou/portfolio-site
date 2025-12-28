@@ -1,5 +1,8 @@
 import Link from "next/link";
+import { Metadata } from "next";
 import { AppDetailClient } from "./AppDetailClient";
+
+const siteUrl = "https://app-saikou.netlify.app";
 
 // Generate static params for static export
 export async function generateStaticParams() {
@@ -85,6 +88,50 @@ const getAppData = (slug: string) => {
 
   return apps[slug] || null;
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const app = getAppData(params.slug);
+
+  if (!app) {
+    return {
+      title: "アプリが見つかりません",
+    };
+  }
+
+  // OG画像: アイコンがあればそれを使用、なければ最初のスクリーンショットを使用
+  const ogImage = app.iconUrl || app.screenshots?.[0] || "/og-image.png";
+  const ogImageUrl = `${siteUrl}${ogImage}`;
+
+  return {
+    title: app.name,
+    description: app.description || app.tagline,
+    openGraph: {
+      title: app.name,
+      description: app.description || app.tagline,
+      type: "website",
+      url: `${siteUrl}/apps/${params.slug}`,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: app.name,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: app.name,
+      description: app.description || app.tagline,
+      images: [ogImageUrl],
+      creator: "@app_saikou",
+    },
+  };
+}
 
 export default function AppDetail({ params }: { params: { slug: string } }) {
   const app = getAppData(params.slug);
