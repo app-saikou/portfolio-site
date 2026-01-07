@@ -1090,9 +1090,6 @@
 
 【${r.fortune}】${r.title}
 ${r.text}
-今年の一手: ${r.action}
-禁忌: ${r.avoid}
-Lucky: ${r.lucky}
 
 あなたもひいてみる？
 ${url}
@@ -1106,73 +1103,73 @@ ${url}
             '<i class="fab fa-x-twitter text-white"></i> 生成中...';
 
           try {
-            // 画像を生成
+            // テキストのみでポスト（画像の自動保存は行わない）
             if (document.fonts && document.fonts.ready) {
               await document.fonts.ready;
             }
-            await new Promise((res) => setTimeout(res, 200));
+            await new Promise((res) => setTimeout(res, 100));
 
-            const card = document.getElementById("result-card");
-
-            // html2canvasで画像生成（最適化設定）
-            const canvas = await html2canvas(card, {
-              scale: 2, // 3から2に下げてパフォーマンス改善
-              backgroundColor: null, // nullにしてCSS背景を使用
-              useCORS: true,
-              allowTaint: true, // trueに変更して外部リソースを許可
-              foreignObjectRendering: false, // falseにして互換性向上
-              logging: false,
-              removeContainer: false,
-              imageTimeout: 0, // タイムアウトを無効化
-              onclone: (clonedDoc) => {
-                // アニメーション・トランジションを無効化
-                const clonedCard = clonedDoc.getElementById("result-card");
-                if (clonedCard) {
-                  const disableAnim = (el) => {
-                    el.classList.remove("pop-in", "fade-in");
-                    el.style.animation = "none";
-                    el.style.transition = "none";
-                    el.style.transform = "none";
-                  };
-                  disableAnim(clonedCard);
-                  clonedCard.querySelectorAll("*").forEach(disableAnim);
-
-                  // スタイルを直接適用（グラデーション対応）
-                  const computedStyle = window.getComputedStyle(card);
-                  clonedCard.style.background = computedStyle.background;
-                  clonedCard.style.backgroundColor =
-                    computedStyle.backgroundColor;
-                  clonedCard.style.backgroundImage =
-                    computedStyle.backgroundImage;
-
-                  // フォントを確実に読み込む
-                  const fontLink = clonedDoc.createElement("link");
-                  fontLink.href =
-                    "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap";
-                  fontLink.rel = "stylesheet";
-                  clonedDoc.head.appendChild(fontLink);
-                }
-              },
-            });
-
-            // 画像をダウンロード
-            const linkDl = document.createElement("a");
-            linkDl.download = `dev_fortune_${Date.now()}.png`;
-            linkDl.href = canvas.toDataURL("image/png", 1.0);
-            linkDl.click();
-
-            // Xの投稿画面を開く
-            const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-              text
+            // Xアプリを優先して開く（失敗時はWeb Intentにフォールバック）
+            const message = text; // URL含むポスト本文
+            const nativeUrl = `twitter://post?message=${encodeURIComponent(
+              message
             )}`;
-            window.open(intent, "_blank");
+            const webIntent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+              message
+            )}`;
+
+            const ua = navigator.userAgent || "";
+            const isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+            // フォールバック: 一定時間でWeb Intentを開く（アプリに遷移した場合はキャンセル）
+            const onVisibility = () => {
+              if (document.hidden) {
+                clearTimeout(fallbackTimer);
+                document.removeEventListener("visibilitychange", onVisibility);
+                window.removeEventListener("blur", onBlur);
+                window.removeEventListener("pagehide", onBlur);
+              }
+            };
+            const onBlur = () => {
+              clearTimeout(fallbackTimer);
+              window.removeEventListener("blur", onBlur);
+              window.removeEventListener("pagehide", onBlur);
+              document.removeEventListener("visibilitychange", onVisibility);
+            };
+            const fallbackDelay = isIOS ? 1800 : 1500; // Allow more time for app switch
+            const fallbackTimer = setTimeout(() => {
+              window.open(webIntent, "_blank");
+              document.removeEventListener("visibilitychange", onVisibility);
+              window.removeEventListener("blur", onBlur);
+              window.removeEventListener("pagehide", onBlur);
+            }, fallbackDelay);
+            document.addEventListener("visibilitychange", onVisibility);
+            window.addEventListener("blur", onBlur);
+            window.addEventListener("pagehide", onBlur);
+
+            if (isIOS) {
+              // iOSはhidden iframeでのスキーム遷移が安定
+              const iframe = document.createElement("iframe");
+              iframe.style.display = "none";
+              iframe.src = nativeUrl;
+              document.body.appendChild(iframe);
+              setTimeout(() => {
+                if (iframe && iframe.parentNode) {
+                  iframe.parentNode.removeChild(iframe);
+                }
+              }, 1500);
+            } else {
+              // Android/その他はlocation遷移を試す
+              window.location.href = nativeUrl;
+            }
           } catch (e) {
             console.error("share failed", e);
             // エラー時もXの投稿画面を開く
-            const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-              text
+            const message = `#個人開発おみくじ をひいたよ！\n\n【${this.state.result?.fortune}】${this.state.result?.title}\n${this.state.result?.text}\n\nあなたもひいてみる？\nhttps://app-saikou.netlify.app/omikuji\n\n@app_saikou`;
+            const webIntent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+              message
             )}`;
-            window.open(intent, "_blank");
+            window.open(webIntent, "_blank");
           } finally {
             // ボタンのテキストを元に戻す
             btn.innerHTML = originalText;
