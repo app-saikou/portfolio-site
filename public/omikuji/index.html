@@ -372,13 +372,13 @@
       <!-- VIEW 3: RESULT -->
       <section
         id="view-result"
-        class="hidden flex-1 flex flex-col items-center justify-start pt-4 pb-8 overflow-y-auto w-full"
+        class="hidden flex-1 flex flex-col items-center justify-center min-h-screen py-0 w-full"
       >
         <!-- Result Card Container (Target for Screenshot) -->
-        <div id="card-container" class="w-full px-4 mb-6 pop-in">
+        <div id="card-container" class="w-full max-w-lg px-4 mb-40 pop-in">
           <div
             id="result-card"
-            class="result-card relative w-full aspect-[3/4.5] rounded-2xl p-6 flex flex-col items-center text-center justify-between overflow-hidden"
+            class="result-card relative w-full aspect-[3/4.5] rounded-2xl p-6 md:p-8 flex flex-col items-center text-center justify-between overflow-hidden shadow-2xl"
           >
             <!-- Decorative Elements -->
             <div
@@ -390,8 +390,17 @@
               <i class="fas fa-code text-6xl"></i>
             </div>
 
+            <!-- 中央上のタイトル -->
+            <div class="absolute top-3 left-1/2 -translate-x-1/2 z-10">
+              <span
+                class="text-sm md:text-base font-extrabold text-gray-700 tracking-wider"
+              >
+                個人開発おみくじ
+              </span>
+            </div>
+
             <!-- Header -->
-            <div class="w-full flex justify-between items-start mb-2">
+            <div class="w-full flex justify-between items-start mb-2 mt-6">
               <span id="res-date" class="text-[10px] text-gray-400 font-mono"
                 >2026.01.07</span
               >
@@ -442,7 +451,7 @@
             >
               <div class="flex gap-2">
                 <span class="font-bold text-cyan-600 whitespace-nowrap"
-                  >今日の一手</span
+                  >今年の一手</span
                 >
                 <span id="res-action" class="text-gray-700"
                   >LPのFVを修正する</span
@@ -470,28 +479,33 @@
             >
               #個人開発者おみくじ
             </div>
+
+            <!-- Watermark -->
+            <div
+              class="absolute bottom-2 left-1/2 -translate-x-1/2 text-[10px] text-gray-400/70 font-mono pointer-events-none z-10"
+            >
+              @app_saikou
+            </div>
           </div>
         </div>
 
         <!-- Action Buttons -->
-        <div class="w-full px-4 flex flex-col gap-3">
-          <div class="grid grid-cols-2 gap-3">
-            <button
-              onclick="app.shareImage()"
-              class="glass-panel p-3 rounded-lg flex items-center justify-center gap-2 font-bold text-sm hover:bg-white/10 active:scale-95 transition"
-            >
-              <i class="fas fa-camera text-cyan-400"></i> 画像保存
-            </button>
-            <button
-              onclick="app.shareText()"
-              class="glass-panel p-3 rounded-lg flex items-center justify-center gap-2 font-bold text-sm hover:bg-white/10 active:scale-95 transition"
-            >
-              <i class="fab fa-x-twitter text-white"></i> ポスト
-            </button>
-          </div>
+        <div
+          class="fixed bottom-2 left-0 right-0 px-4 flex flex-col gap-3 items-center z-20"
+        >
+          <p class="text-sm text-gray-300 text-center mb-1">
+            スクショを撮ってからポストしよう 📸
+          </p>
+          <button
+            onclick="app.shareText()"
+            class="glass-panel p-4 rounded-xl flex items-center justify-center gap-3 font-bold text-base hover:bg-white/20 active:scale-95 transition w-full max-w-lg shadow-lg"
+          >
+            <i class="fab fa-x-twitter text-white text-xl"></i>
+            <span>Xでポスト</span>
+          </button>
           <button
             onclick="app.resetGame()"
-            class="py-3 text-sm text-gray-400 underline hover:text-white transition"
+            class="py-2 text-sm text-gray-400 underline hover:text-white transition text-center"
           >
             もう一度引く
           </button>
@@ -533,28 +547,93 @@
           "APIの魔術師",
           "ログ監視員",
           "技術記事職人",
+          "デプロイの達人",
+          "コードレビューの神",
+          "パフォーマンス改善王",
+          "UI/UXデザイナー",
+          "データベース管理者",
+          "セキュリティの守護者",
+          "テストカバレッジ100%",
+          "ドキュメント職人",
+          "オープンソース貢献者",
+          "技術ブロガー",
+          "メンター",
+          "スタートアップ創設者",
+          "サイドプロジェクトマスター",
+          "プロダクト整備士",
+          "UXの錬金術師",
+          "スケーラビリティ番長",
+          "クラウド航海士",
+          "API門番",
+          "エラーハンドリング賢者",
+          "タスク分解職人",
+          "モジュール化伝道師",
+          "型安全伝道師",
+          "デバッグ忍者",
+          "CI/CD設計士",
+          "ドメイン駆動の探求者",
+          "イベント駆動の達人",
+          "キャッシュ使い",
+          "設計思想家",
+          "テスタビリティ王",
         ],
         oneLiners: {
           good: [
-            "書いたコードがそのまま仕様になる日。",
-            "予期せぬバズがあなたのサービスを襲う。",
-            "長年放置していたIssueが自然消滅する。",
-            "神ライブラリとの運命的な出会いがある。",
-            "デプロイ一発成功。CIもオールグリーン。",
+            "書いたコードがそのまま仕様になる年。技術的な直感が冴え渡り、一発で完璧な実装ができる。周囲からも絶賛されるが吉。",
+            "予期せぬバズがあなたのサービスを襲う。SNSで拡散され、ユーザーが殺到する。ただし、サーバーだけは落とすな。",
+            "長年放置していたIssueが自然消滅する。実は既に解決されていたり、誰かが勝手に直してくれる。感謝の気持ちを忘れずに。",
+            "神ライブラリとの運命的な出会いがある。まさに求めていた機能が完璧に実装されている。開発速度が3倍になる。",
+            "デプロイ一発成功。CIもオールグリーン。バグもなく、パフォーマンスも良好。この調子で進めば完璧な一年。",
+            "GitHubのスターが1000を超える日が来る。オープンソースへの貢献が評価され、コミュニティから注目を集める。",
+            "技術書の著者としてデビューするチャンス。出版社からのオファーが舞い込む。知識を体系化する絶好の機会。",
+            "カンファレンスで登壇のオファーが舞い込む。経験を共有することで、自分自身も成長できる。準備を怠るな。",
+            "オープンソースプロジェクトがトレンド入り。多くの開発者が使ってくれる。メンテナンスは大変だが、やりがいがある。",
+            "副業収入が本業を超える転機が訪れる。個人開発が評価され、安定した収益源になる。ただし、本業も疎かにするな。",
+            "バグゼロのリリースを達成する。テストを徹底した成果が実る。この経験を次にも活かせ。",
+            "ユーザーから感謝のメッセージが届く。あなたのアプリが誰かの人生を変えた瞬間。開発者冥利に尽きる。",
+            "技術的な壁を突破する閃きが訪れる。長年悩んでいた問題が一瞬で解決する。メモを取っておくが吉。",
+            "根気強く積み上げた日々が実を結ぶ。思いがけない相手から称賛の声が届く。謙虚に受け止め次へ進め。",
+            "小さき改善が連なりて、大いなる成果となる。使い手の笑顔こそ、最良のKPIなり。迷わず磨け。",
+            "新しき道具との出会いあり。操作は軽やか、発想は自由に。手に馴染むまで焦らず扱うが吉。",
+            "周囲の助力、自然と集まる兆し。感謝を言葉にすれば、縁さらに強し。輪を広げよ。",
           ],
           normal: [
-            "進捗は地味だが、着実に積み上がる。",
-            "リファクタリングには最適な一日。",
-            "ドキュメント整備が未来の自分を救う。",
-            "競合調査をしてモチベを上げるが吉。",
-            "今日はコーディングより設計に時間を使おう。",
+            "進捗は地味だが、着実に積み上がる。小さな改善の積み重ねが、やがて大きな成果となる。焦らず続けるが吉。",
+            "リファクタリングには最適な一年。コードの品質を上げることで、将来の開発速度が上がる。時間をかけて丁寧に。",
+            "ドキュメント整備が未来の自分を救う。3ヶ月後の自分が感謝する。今のうちに書いておくが良い。",
+            "競合調査をしてモチベを上げるが吉。他社の良い点を学び、自分のプロダクトに活かせる。ただし、比較しすぎるな。",
+            "今年はコーディングより設計に時間を使おう。良い設計が良いコードを生む。急がば回れ。",
+            "新しい技術を学ぶのに最適な時期。スキルアップのチャンス。ただし、浅く広くにならないよう注意。",
+            "コミュニティに参加して交流を深めよう。同じ志を持つ仲間との出会いがある。情報交換が開発を加速させる。",
+            "コードレビューを積極的に行うが吉。他人のコードから学べることが多い。自分のコードも見直すきっかけになる。",
+            "パフォーマンス改善に取り組む好機。ユーザー体験が劇的に向上する。計測してから改善するが良い。",
+            "セキュリティ対策を見直すタイミング。脆弱性を発見する前に、予防策を講じる。後悔先に立たず。",
+            "テストコードを書く習慣を身につけよう。最初は面倒だが、長期的には開発速度が上がる。継続が力となる。",
+            "技術的な負債を少しずつ返済する年。完璧を目指さず、着実に改善する。小さな一歩が大きな変化を生む。",
+            "メンターを見つけて成長を加速させよう。経験豊富な人から学ぶことで、遠回りを避けられる。素直に聞くが吉。",
+            "仕様は静かに定まり、設計は徐々に澄む。今日は一歩、明日は二歩。足元を固めよ。",
+            "レビューは厳しくとも温かい。耳を澄ませば、次の改善は自ずと見える。受け取りしだい、すぐ直すべし。",
+            "負債の返済こそ前進の糧。小分けにして片付けよ。やがて景色は広がる。",
+            "文書を整え、命名を磨けば、未来の自分が助かる。今こそ丁寧のとき。",
           ],
           bad: [
-            "npm install で謎のエラーにハマる予感。",
-            "本番環境のみで再現するバグに遭遇する。",
-            "仕様変更の連絡が来る前に寝たほうがいい。",
-            "Wi-Fiの調子が悪い。カフェに行こう。",
-            "git push --force は絶対にするな。",
+            "npm install で謎のエラーにハマる予感。依存関係の地獄に陥る。バージョンを固定するが良い。",
+            "本番環境のみで再現するバグに遭遇する。ローカルでは再現しないため、原因特定に時間がかかる。ログを確認せよ。",
+            "仕様変更の連絡が来る前に寝たほうがいい。深夜の連絡は大抵、緊急でもない。朝まで待つが吉。",
+            "Wi-Fiの調子が悪い。カフェに行こう。環境を変えることで、気分転換にもなる。ただし、コーヒー代に注意。",
+            "git push --force は絶対にするな。チームメンバーを困らせる。必ずpullしてからpushする。",
+            "依存関係のバージョン競合に悩まされる。アップデートのタイミングが悪い。一つずつ解決するしかない。",
+            "データベースのマイグレーションで失敗する。バックアップを取ってから実行する。失敗したらすぐにロールバック。",
+            "APIのレート制限に引っかかる日々。リクエスト数を減らすか、キャッシュを活用する。無理をしないが良い。",
+            "メモリリークを見つけるのに時間がかかる。プロファイラーを使って原因を特定する。根気よく調査せよ。",
+            "クロスブラウザ対応で予想外のバグ発見。IEの呪いが降りかかる。ポリフィルを検討する。",
+            "サーバーがダウンするタイミングでデプロイ。運が悪い。監視を強化して、すぐに気づけるようにする。",
+            "コードレビューで指摘が山積みになる。謙虚に受け止めて改善する。成長のチャンスと捉えよう。",
+            "技術選定の判断を後悔する瞬間が来る。でも、それは後から分かること。今できる最善を尽くせ。",
+            "要件は揺れ、心も揺れる。いまは結論を急ぐな。ブレずに前提を確かめよ。",
+            "パフォーマンスの霧、視界を奪う。測らずして語るべからず。計測の灯を掲げよ。",
+            "通知の波にさらわれる凶相。手を止め、まず静けさを取り戻せ。集中は最大の武器なり。",
+            "魔改造の誘惑、後に祟る。短き道は長き遠回り。正道を行け。",
           ],
         },
         actions: [
@@ -568,6 +647,36 @@
           "OGP画像を作り直す",
           "Xで進捗報告をする",
           "ユーザーにDMを送る",
+          "アプリのパフォーマンスを計測する",
+          "セキュリティアップデートを適用する",
+          "エラーログを分析して改善する",
+          "ユーザーフィードバックを集める",
+          "A/Bテストを実施する",
+          "アクセシビリティを改善する",
+          "多言語対応を検討する",
+          "アナリティクスを設定する",
+          "プライバシーポリシーを更新する",
+          "バックアップを確認する",
+          "CI/CDパイプラインを最適化する",
+          "コードのコメントを充実させる",
+          "テストカバレッジを上げる",
+          "モバイル対応を改善する",
+          "SEO対策を見直す",
+          "バグ再現条件を最小化する",
+          "命名規則を統一する",
+          "環境変数の整理を行う",
+          "例外の粒度を見直す",
+          "ユースケースを図解する",
+          "タスクの所要時間を見積もる",
+          "ペアレビューを依頼する",
+          "PRテンプレートを整備する",
+          "コミットメッセージを改善する",
+          "APIスキーマを更新する",
+          "ログレベルを調整する",
+          "レート制限を設計する",
+          "キャッシュの無効化戦略を決める",
+          "テレメトリを追加する",
+          "アクセシビリティ監査を走らせる",
         ],
         avoids: [
           "深夜3時のデプロイ",
@@ -577,6 +686,28 @@
           "エゴサーチ",
           "無限スクロールの実装",
           "複雑すぎる正規表現",
+          "本番環境での直接編集",
+          "パスワードのハードコード",
+          "無限ループの実装",
+          "メモリリークを放置",
+          "セキュリティパッチの無視",
+          "ドキュメントなしのリリース",
+          "バックアップなしのデータ削除",
+          "他人のコードを無断コピー",
+          "ライセンス違反",
+          "過度な最適化（早期最適化）",
+          "完璧主義によるリリース遅延",
+          "技術的負債の先送り",
+          "根拠なき最適化",
+          "独自仕様の量産",
+          "レビューなしのマージ",
+          "責務の曖昧なクラス",
+          "コメントでの挙動保証",
+          "暗黙の依存",
+          "ドキュメント未更新",
+          "型無視のcast連発",
+          "ルール未定義のLint解除",
+          "ベンチマーク不在の選定",
         ],
         luckies: [
           "HHKB",
@@ -587,6 +718,32 @@
           "ダークモード",
           "GitHub Copilot",
           "技術ポッドキャスト",
+          "スタンディングデスク",
+          "メカニカルキーボード",
+          "4Kモニター",
+          "エルゴノミクスマウス",
+          "コーディング音楽プレイリスト",
+          "プログラミング用の椅子",
+          "ブルーライトカットメガネ",
+          "コーヒー",
+          "緑茶",
+          "集中力サプリ",
+          "ポモドーロタイマー",
+          "GitHub Sponsors",
+          "技術コミュニティ",
+          "メンター",
+          "コードレビューパートナー",
+          "開発仲間",
+          "カフェの窓際席",
+          "朝活タイム",
+          "ほどよい雨音",
+          "新しい万年筆",
+          "軽めの散歩",
+          "昼寝20分",
+          "お気に入りのフレグランス",
+          "和菓子",
+          "良質なイヤーパッド",
+          "温かいブランケット",
         ],
       };
 
@@ -594,38 +751,48 @@
         0: {
           id: "R-001",
           title: "覚醒の刻",
-          text: "今日、最初の一歩を踏み出す時が来た。Hello Worldは待っている。",
+          text: "今年、最初の一歩を踏み出す時が来た。Hello Worldは待っている。今こそ、開発者としての旅が始まる。迷わず進め。",
         },
         1: {
           id: "R-002",
           title: "0→1の奇跡",
-          text: "あなたのアプリが誰か一人の人生を変える。その一人はすぐそばにいる。",
+          text: "あなたのアプリが誰か一人の人生を変える。その一人はすぐそばにいる。0から1への第一歩が、誰かの世界を変える。",
         },
         "2_3": {
           id: "R-003",
           title: "継続の鬼",
-          text: "「やめないこと」こそが最強の才能。誰もあなたに追いつけない。",
+          text: "「やめないこと」こそが最強の才能。誰もあなたに追いつけない。継続こそが、天才を超える唯一の方法。",
         },
         "4_9": {
           id: "R-004",
           title: "量産型天才",
-          text: "打席に立ち続けた数だけ、ホームランの確率は上がっている。",
+          text: "打席に立ち続けた数だけ、ホームランの確率は上がっている。量が質を生む。あなたの努力は必ず報われる。",
         },
         "10_plus": {
           id: "R-005",
           title: "生ける伝説",
-          text: "あなたのコードはもはや芸術。後進のために知恵を記せ。",
+          text: "あなたのコードはもはや芸術。後進のために知恵を記せ。伝説は語り継がれる。あなたの経験が、次の世代を育てる。",
         },
         // Generic rares
         gen_1: {
           id: "R-777",
           title: "Product Hunt 1位",
-          text: "世界があなたのプロダクトを発見する日。英語の準備はいいか？",
+          text: "世界があなたのプロダクトを発見する年。英語の準備はいいか？グローバルな舞台があなたを待っている。",
         },
         gen_2: {
           id: "R-888",
           title: "買収オファー",
-          text: "メールボックスを確認せよ。桁違いの提案が届いているかもしれない。",
+          text: "メールボックスを確認せよ。桁違いの提案が届いているかもしれない。人生を変えるメールが、今、届いている。",
+        },
+        gen_3: {
+          id: "R-999",
+          title: "海外からの光",
+          text: "遠く異国より、思いがけぬ招待状届く。技も志も通ずれば、言葉の壁は薄くなる。挑戦の扉、今ここに。",
+        },
+        gen_4: {
+          id: "R-555",
+          title: "運命の協業",
+          text: "価値観を共にする相棒現る。二人三脚は歩み早し。ただし役割を明らかに、調和を忘るるな。",
         },
       };
 
@@ -675,6 +842,16 @@
               el.classList.remove("flex");
             }
           });
+
+          // 結果画面の時はヘッダーを非表示
+          const header = document.querySelector("header");
+          if (header) {
+            if (id === "view-result") {
+              header.style.display = "none";
+            } else {
+              header.style.display = "";
+            }
+          }
         },
 
         /**
@@ -773,8 +950,19 @@
         generateRare() {
           // Try to get specific rare for tier, fallback to generic
           const pool = RARE_POOL[this.state.tier]
-            ? [RARE_POOL[this.state.tier], RARE_POOL.gen_1, RARE_POOL.gen_2]
-            : [RARE_POOL.gen_1, RARE_POOL.gen_2];
+            ? [
+                RARE_POOL[this.state.tier],
+                RARE_POOL.gen_1,
+                RARE_POOL.gen_2,
+                RARE_POOL.gen_3,
+                RARE_POOL.gen_4,
+              ]
+            : [
+                RARE_POOL.gen_1,
+                RARE_POOL.gen_2,
+                RARE_POOL.gen_3,
+                RARE_POOL.gen_4,
+              ];
           const item = pool[Math.floor(Math.random() * pool.length)];
 
           return {
@@ -901,66 +1089,77 @@
           const text = `#個人開発おみくじ をひいたよ！
 
 【${r.fortune}】${r.title}
-Dev Lv: ${TIER_LABELS[this.state.tier]}
-Shake Power: ${Math.floor(
-            this.state.power
-          )} (Rare ${this.state.rareChance.toFixed(1)}%)
-今日の一手: ${r.action}
+${r.text}
+今年の一手: ${r.action}
+禁忌: ${r.avoid}
+Lucky: ${r.lucky}
 
 あなたもひいてみる？
-${url}`;
+${url}
+
+@app_saikou`;
+
+          // ボタンのフィードバック
+          const btn = event.currentTarget;
+          const originalText = btn.innerHTML;
+          btn.innerHTML =
+            '<i class="fab fa-x-twitter text-white"></i> 生成中...';
 
           try {
             // 画像を生成
             if (document.fonts && document.fonts.ready) {
               await document.fonts.ready;
             }
-            await new Promise((res) => setTimeout(res, 80));
+            await new Promise((res) => setTimeout(res, 200));
 
             const card = document.getElementById("result-card");
+
+            // html2canvasで画像生成（最適化設定）
             const canvas = await html2canvas(card, {
-              scale: 3,
-              backgroundColor: "#ffffff",
+              scale: 2, // 3から2に下げてパフォーマンス改善
+              backgroundColor: null, // nullにしてCSS背景を使用
               useCORS: true,
-              allowTaint: false,
-              foreignObjectRendering: true,
-              imageTimeout: 15000,
+              allowTaint: true, // trueに変更して外部リソースを許可
+              foreignObjectRendering: false, // falseにして互換性向上
+              logging: false,
+              removeContainer: false,
+              imageTimeout: 0, // タイムアウトを無効化
+              onclone: (clonedDoc) => {
+                // アニメーション・トランジションを無効化
+                const clonedCard = clonedDoc.getElementById("result-card");
+                if (clonedCard) {
+                  const disableAnim = (el) => {
+                    el.classList.remove("pop-in", "fade-in");
+                    el.style.animation = "none";
+                    el.style.transition = "none";
+                    el.style.transform = "none";
+                  };
+                  disableAnim(clonedCard);
+                  clonedCard.querySelectorAll("*").forEach(disableAnim);
+
+                  // スタイルを直接適用（グラデーション対応）
+                  const computedStyle = window.getComputedStyle(card);
+                  clonedCard.style.background = computedStyle.background;
+                  clonedCard.style.backgroundColor =
+                    computedStyle.backgroundColor;
+                  clonedCard.style.backgroundImage =
+                    computedStyle.backgroundImage;
+
+                  // フォントを確実に読み込む
+                  const fontLink = clonedDoc.createElement("link");
+                  fontLink.href =
+                    "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap";
+                  fontLink.rel = "stylesheet";
+                  clonedDoc.head.appendChild(fontLink);
+                }
+              },
             });
 
-            const blob = await new Promise((resolve) =>
-              canvas.toBlob(resolve, "image/png", 1.0)
-            );
-
-            if (blob) {
-              const file = new File([blob], `dev_fortune_${Date.now()}.png`, {
-                type: "image/png",
-              });
-
-              // Web Share APIで画像付き共有を試行（スマホでXアプリが開く場合、画像が添付される）
-              if (
-                navigator.share &&
-                navigator.canShare &&
-                navigator.canShare({ files: [file], text })
-              ) {
-                try {
-                  await navigator.share({ files: [file], text });
-                  return; // 共有成功したら終了
-                } catch (shareError) {
-                  // ユーザーがキャンセルした場合などは、フォールバック処理に進む
-                  if (shareError.name !== "AbortError") {
-                    console.log("Web Share failed, falling back to X intent");
-                  }
-                }
-              }
-            }
-
-            // フォールバック: 画像をダウンロード + Xの投稿画面を開く
-            if (blob) {
-              const linkDl = document.createElement("a");
-              linkDl.download = `dev_fortune_${Date.now()}.png`;
-              linkDl.href = canvas.toDataURL("image/png", 1.0);
-              linkDl.click();
-            }
+            // 画像をダウンロード
+            const linkDl = document.createElement("a");
+            linkDl.download = `dev_fortune_${Date.now()}.png`;
+            linkDl.href = canvas.toDataURL("image/png", 1.0);
+            linkDl.click();
 
             // Xの投稿画面を開く
             const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
@@ -974,64 +1173,8 @@ ${url}`;
               text
             )}`;
             window.open(intent, "_blank");
-          }
-        },
-
-        async shareImage() {
-          const card = document.getElementById("result-card");
-          if (!card) return;
-
-          // Simple loading feedback
-          const btn = event.currentTarget;
-          const originalText = btn.innerHTML;
-          btn.innerText = "生成中...";
-
-          try {
-            // フォント読み込み完了を待機
-            if (document.fonts && document.fonts.ready) {
-              await document.fonts.ready;
-            }
-            // レイアウト安定のためにわずかに待機
-            await new Promise((r) => setTimeout(r, 100));
-
-            const canvas = await html2canvas(card, {
-              scale: 3, // 高解像度
-              backgroundColor: "#ffffff", // カードの白背景を維持
-              logging: false,
-              useCORS: true,
-              allowTaint: false,
-              foreignObjectRendering: true,
-              imageTimeout: 15000,
-              width: card.offsetWidth,
-              height: card.offsetHeight,
-              windowWidth: card.scrollWidth,
-              windowHeight: card.scrollHeight,
-              x: 0,
-              y: 0,
-              onclone: (clonedDoc) => {
-                // アニメーション・トランジションによる文字のブレ/二重描画を防ぐ
-                const clonedCard = clonedDoc.getElementById("result-card");
-                if (clonedCard) {
-                  const disableAnim = (el) => {
-                    el.classList.remove("pop-in", "fade-in");
-                    el.style.animation = "none";
-                    el.style.transition = "none";
-                    el.style.transform = "none";
-                  };
-                  disableAnim(clonedCard);
-                  clonedCard.querySelectorAll("*").forEach(disableAnim);
-                }
-              },
-            });
-
-            const link = document.createElement("a");
-            link.download = `dev_fortune_${Date.now()}.png`;
-            link.href = canvas.toDataURL("image/png", 1.0);
-            link.click();
-          } catch (err) {
-            console.error("Image generation failed", err);
-            alert("画像の生成に失敗しました");
           } finally {
+            // ボタンのテキストを元に戻す
             btn.innerHTML = originalText;
           }
         },
