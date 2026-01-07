@@ -71,6 +71,7 @@
   },
   "devDependencies": {
     "@types/node": "24.6.0",
-    "@types/react": "18.3.25"
+    "@types/react": "18.3.25",
+    "baseline-browser-mapping": "^2.9.11"
   }
 }

@@ -21,6 +21,7 @@ export function Header() {
     { href: "/magazine", label: t.nav.magazine },
     { href: "/roadmap", label: t.nav.roadmap },
     { href: "/sponsor", label: t.nav.sponsor },
+    { href: "/omikuji", label: t.nav.omikuji },
   ];
 
   return (

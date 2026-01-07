@@ -9,6 +9,7 @@ export const translations = {
       magazine: "マガジン",
       roadmap: "ロードマップ",
       sponsor: "スポンサー",
+      omikuji: "おみくじ",
     },
     home: {
       title: "Moedora",
@@ -444,6 +445,7 @@ export const translations = {
       magazine: "Magazine",
       roadmap: "Roadmap",
       sponsor: "Sponsor",
+      omikuji: "Fortune",
     },
     home: {
       title: "Moedora",

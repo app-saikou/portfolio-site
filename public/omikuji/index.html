@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>個人開発者おみくじ 2026</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- html2canvas for Screenshot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --primary: #6366f1;
+        --secondary: #ec4899;
+        --accent: #8b5cf6;
+        --bg-dark: #0f172a;
+        --card-glass: rgba(255, 255, 255, 0.05);
+        --gold: #fbbf24;
+      }
+
+      body {
+        font-family: "Noto Sans JP", sans-serif;
+        background-color: var(--bg-dark);
+        color: white;
+        overflow: hidden; /* Prevent pull-to-refresh on mobile */
+        touch-action: none; /* Crucial for custom drag gestures */
+      }
+
+      /* Modern Gradient Background Animation */
+      .bg-animated {
+        background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #1f2937);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+      }
+
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Glassmorphism Utilities */
+      .glass {
+        background: var(--card-glass);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .glass-panel {
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(16px);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* Shake Animation Classes */
+      .shake-box {
+        transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: transform;
+        cursor: grab;
+      }
+      .shake-box:active {
+        cursor: grabbing;
+      }
+
+      /* Result Card Styles */
+      .result-card {
+        background: white;
+        color: #1f2937;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .rare-card {
+        background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+        border: 4px solid var(--gold);
+        position: relative;
+        overflow: hidden;
+      }
+      .rare-card::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(251, 191, 36, 0.3),
+          transparent
+        );
+        transform: rotate(45deg);
+        animation: shine 3s infinite;
+      }
+
+      @keyframes shine {
+        0% {
+          transform: translateX(-100%) rotate(45deg);
+        }
+        100% {
+          transform: translateX(100%) rotate(45deg);
+        }
+      }
+
+      .tier-badge {
+        background: #1f2937;
+        color: white;
+      }
+      .rare-card .tier-badge {
+        background: var(--gold);
+        color: #78350f;
+      }
+
+      /* Animations */
+      .fade-in {
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+      .pop-in {
+        animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes popIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.8) translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+
+      /* CRT/Scanline effect overlay for "Tech" feel */
+      .scanlines {
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0),
+          rgba(255, 255, 255, 0) 50%,
+          rgba(0, 0, 0, 0.1) 50%,
+          rgba(0, 0, 0, 0.1)
+        );
+        background-size: 100% 4px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 50;
+        opacity: 0.3;
+      }
+    </style>
+  </head>
+  <body
+    class="h-screen w-screen flex flex-col items-center justify-center select-none"
+  >
+    <!-- Background -->
+    <div class="bg-animated"></div>
+    <div class="scanlines"></div>
+
+    <!-- UI Container -->
+    <main
+      id="app"
+      class="relative z-10 w-full max-w-md h-full flex flex-col p-4"
+    >
+      <!-- HEADER -->
+      <header class="text-center py-4">
+        <h1
+          class="text-2xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-400 drop-shadow-sm"
+        >
+          個人開発者おみくじ
+        </h1>
+        <p class="text-xs text-gray-400 mt-1 tracking-widest">
+          INDIE DEV FORTUNE 2026
+        </p>
+      </header>
+
+      <!-- VIEW 1: TIER SELECTION -->
+      <section
+        id="view-tier"
+        class="flex-1 flex flex-col justify-center gap-6 fade-in"
+      >
+        <div class="text-center space-y-2">
+          <h2 class="text-xl font-bold">開発状況を選んでください</h2>
+          <p class="text-sm text-gray-300">
+            今のあなたのステータスに合わせて<br />運勢とアドバイスが変わります
+          </p>
+        </div>
+
+        <div class="grid gap-3 px-4">
+          <button
+            onclick="app.selectTier('0')"
+            class="glass p-4 rounded-xl hover:bg-white/10 transition flex items-center gap-3 group"
+          >
+            <span
+              class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-xs group-hover:bg-cyan-500 transition"
+              >🥚</span
+            >
+            <div class="text-left">
+              <div class="font-bold">未公開 / 準備中</div>
+              <div class="text-xs text-gray-400">リリース数: 0本</div>
+            </div>
+          </button>
+          <button
+            onclick="app.selectTier('1')"
+            class="glass p-4 rounded-xl hover:bg-white/10 transition flex items-center gap-3 group"
+          >
+            <span
+              class="w-8 h-8 rounded-full bg-blue-900 flex items-center justify-center text-xs group-hover:bg-cyan-500 transition"
+              >🐣</span
+            >
+            <div class="text-left">
+              <div class="font-bold">初リリース達成</div>
+              <div class="text-xs text-gray-400">リリース数: 1本</div>
+            </div>
+          </button>
+          <button
+            onclick="app.selectTier('2_3')"
+            class="glass p-4 rounded-xl hover:bg-white/10 transition flex items-center gap-3 group"
+          >
+            <span
+              class="w-8 h-8 rounded-full bg-indigo-900 flex items-center justify-center text-xs group-hover:bg-cyan-500 transition"
+              >🐥</span
+            >
+            <div class="text-left">
+              <div class="font-bold">継続開発者</div>
+              <div class="text-xs text-gray-400">リリース数: 2〜3本</div>
+            </div>
+          </button>
+          <button
+            onclick="app.selectTier('4_9')"
+            class="glass p-4 rounded-xl hover:bg-white/10 transition flex items-center gap-3 group"
+          >
+            <span
+              class="w-8 h-8 rounded-full bg-purple-900 flex items-center justify-center text-xs group-hover:bg-cyan-500 transition"
+              >🐓</span
+            >
+            <div class="text-left">
+              <div class="font-bold">量産体制</div>
+              <div class="text-xs text-gray-400">リリース数: 4〜9本</div>
+            </div>
+          </button>
+          <button
+            onclick="app.selectTier('10_plus')"
+            class="glass p-4 rounded-xl hover:bg-white/10 transition flex items-center gap-3 group"
+          >
+            <span
+              class="w-8 h-8 rounded-full bg-pink-900 flex items-center justify-center text-xs group-hover:bg-cyan-500 transition"
+              >🐲</span
+            >
+            <div class="text-left">
+              <div class="font-bold">古参 / 仙人</div>
+              <div class="text-xs text-gray-400">リリース数: 10本以上</div>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <!-- VIEW 2: MAIN (SHAKE) -->
+      <section
+        id="view-shake"
+        class="hidden flex-1 flex flex-col justify-between py-6 fade-in"
+      >
+        <!-- Stats -->
+        <div class="grid grid-cols-2 gap-4 px-4">
+          <div class="glass p-3 rounded-lg text-center">
+            <div class="text-[10px] text-gray-400 uppercase tracking-widest">
+              Shake Power
+            </div>
+            <div
+              class="text-2xl font-black text-cyan-400 font-mono"
+              id="disp-power"
+            >
+              0
+            </div>
+            <div
+              class="w-full bg-gray-700 h-1 mt-2 rounded-full overflow-hidden"
+            >
+              <div
+                id="bar-power"
+                class="bg-cyan-400 h-full w-0 transition-all duration-75"
+              ></div>
+            </div>
+          </div>
+          <div class="glass p-3 rounded-lg text-center">
+            <div class="text-[10px] text-gray-400 uppercase tracking-widest">
+              Rare Chance
+            </div>
+            <div class="text-2xl font-black text-pink-500 font-mono">
+              <span id="disp-chance">2</span><span class="text-sm">%</span>
+            </div>
+            <div class="text-[10px] text-pink-300 mt-1">MAX 12%</div>
+          </div>
+        </div>
+
+        <!-- Box Area -->
+        <div class="flex-1 flex items-center justify-center relative my-8">
+          <!-- Hint Circle -->
+          <div
+            class="absolute w-[70vw] h-[70vw] md:w-[24rem] md:h-[24rem] border-2 border-dashed border-white/10 rounded-full animate-pulse pointer-events-none"
+          ></div>
+
+          <!-- The Box -->
+          <div
+            id="omikuji-box"
+            class="shake-box relative w-[60vw] h-[60vw] md:w-[20rem] md:h-[20rem] flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src="/omikuji/box.png"
+              alt="omikuji box"
+              class="absolute inset-0 w-full h-full object-cover object-center pointer-events-none select-none transform scale-[1.7]"
+            />
+            <div
+              class="absolute -bottom-10 text-sm font-bold text-white/50 tracking-widest pointer-events-none"
+            >
+              DRAG & SHAKE
+            </div>
+          </div>
+        </div>
+
+        <!-- Hint Text -->
+        <div class="text-center px-6">
+          <p class="text-sm text-gray-300 mb-2">
+            箱を指で掴んで左右に激しく振ってください
+          </p>
+          <p class="text-xs text-gray-500">パワーを貯めて指を離すと抽選！</p>
+          <button
+            onclick="app.resetTier()"
+            class="mt-8 text-xs text-gray-600 underline"
+          >
+            設定を変更する
+          </button>
+        </div>
+      </section>
+
+      <!-- VIEW 3: RESULT -->
+      <section
+        id="view-result"
+        class="hidden flex-1 flex flex-col items-center justify-start pt-4 pb-8 overflow-y-auto w-full"
+      >
+        <!-- Result Card Container (Target for Screenshot) -->
+        <div id="card-container" class="w-full px-4 mb-6 pop-in">
+          <div
+            id="result-card"
+            class="result-card relative w-full aspect-[3/4.5] rounded-2xl p-6 flex flex-col items-center text-center justify-between overflow-hidden"
+          >
+            <!-- Decorative Elements -->
+            <div
+              class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-cyan-500 to-blue-500"
+            ></div>
+            <div
+              class="absolute bottom-0 right-0 p-3 opacity-10 pointer-events-none"
+            >
+              <i class="fas fa-code text-6xl"></i>
+            </div>
+
+            <!-- Header -->
+            <div class="w-full flex justify-between items-start mb-2">
+              <span id="res-date" class="text-[10px] text-gray-400 font-mono"
+                >2026.01.07</span
+              >
+              <div
+                id="res-tier-badge"
+                class="tier-badge text-[10px] px-2 py-0.5 rounded font-bold uppercase tracking-wider"
+              >
+                DEV LV.1
+              </div>
+            </div>
+
+            <!-- Fortune Main -->
+            <div
+              class="flex-1 flex flex-col justify-center items-center w-full"
+            >
+              <div
+                id="res-fortune"
+                class="text-5xl font-black mb-2 tracking-widest text-gray-800"
+              >
+                大吉
+              </div>
+              <div
+                id="res-title"
+                class="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 mb-4"
+              >
+                バグゼロの神
+              </div>
+              <div class="w-12 h-1 bg-gray-200 rounded-full mb-4"></div>
+              <p
+                id="res-oneliner"
+                class="text-sm text-gray-600 leading-relaxed font-medium"
+              >
+                リリースした瞬間にトレンド入り。<br />サーバーだけ落とすなよ。
+              </p>
+            </div>
+
+            <!-- Stats Row -->
+            <div
+              class="w-full flex justify-center gap-4 text-[10px] text-gray-400 font-mono mb-6 border-t border-b border-gray-100 py-2"
+            >
+              <span>POWER: <b id="res-power" class="text-gray-600">88</b></span>
+              <span>RARE: <b id="res-rare" class="text-gray-600">10%</b></span>
+            </div>
+
+            <!-- Actions -->
+            <div
+              class="w-full text-left bg-gray-50 rounded-lg p-3 space-y-2 text-xs"
+            >
+              <div class="flex gap-2">
+                <span class="font-bold text-cyan-600 whitespace-nowrap"
+                  >今日の一手</span
+                >
+                <span id="res-action" class="text-gray-700"
+                  >LPのFVを修正する</span
+                >
+              </div>
+              <div class="flex gap-2">
+                <span class="font-bold text-red-500 whitespace-nowrap"
+                  >禁忌</span
+                >
+                <span id="res-avoid" class="text-gray-700">深夜のデプロイ</span>
+              </div>
+              <div class="flex gap-2">
+                <span class="font-bold text-amber-500 whitespace-nowrap"
+                  >Lucky</span
+                >
+                <span id="res-lucky" class="text-gray-700"
+                  >エナジードリンク</span
+                >
+              </div>
+            </div>
+
+            <!-- Footer -->
+            <div
+              class="mt-4 text-[10px] text-gray-400 font-mono tracking-wider"
+            >
+              #個人開発者おみくじ
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="w-full px-4 flex flex-col gap-3">
+          <div class="grid grid-cols-2 gap-3">
+            <button
+              onclick="app.shareImage()"
+              class="glass-panel p-3 rounded-lg flex items-center justify-center gap-2 font-bold text-sm hover:bg-white/10 active:scale-95 transition"
+            >
+              <i class="fas fa-camera text-cyan-400"></i> 画像保存
+            </button>
+            <button
+              onclick="app.shareText()"
+              class="glass-panel p-3 rounded-lg flex items-center justify-center gap-2 font-bold text-sm hover:bg-white/10 active:scale-95 transition"
+            >
+              <i class="fab fa-x-twitter text-white"></i> ポスト
+            </button>
+          </div>
+          <button
+            onclick="app.resetGame()"
+            class="py-3 text-sm text-gray-400 underline hover:text-white transition"
+          >
+            もう一度引く
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- JS Logic -->
+    <script>
+      /**
+       * DATA POOLS
+       */
+      const TIER_LABELS = {
+        0: "LV.0 未公開",
+        1: "LV.1 初リリース",
+        "2_3": "LV.2 継続開発",
+        "4_9": "LV.3 量産体制",
+        "10_plus": "LV.MAX 古参",
+      };
+
+      const FORTUNES = [
+        { label: "大吉", weight: 6, color: "text-red-500" },
+        { label: "中吉", weight: 12, color: "text-orange-500" },
+        { label: "小吉", weight: 18, color: "text-yellow-600" },
+        { label: "吉", weight: 26, color: "text-green-600" },
+        { label: "末吉", weight: 20, color: "text-blue-500" },
+        { label: "凶", weight: 14, color: "text-purple-600" },
+        { label: "大凶", weight: 4, color: "text-gray-600" },
+      ];
+
+      // Combine logic: Tier + Fortune level -> Text
+      const NORMAL_POOL = {
+        titles: [
+          "週末の覇者",
+          "無限の実装力",
+          "バグバスター",
+          "アイデア長者",
+          "フルスタック魔人",
+          "APIの魔術師",
+          "ログ監視員",
+          "技術記事職人",
+        ],
+        oneLiners: {
+          good: [
+            "書いたコードがそのまま仕様になる日。",
+            "予期せぬバズがあなたのサービスを襲う。",
+            "長年放置していたIssueが自然消滅する。",
+            "神ライブラリとの運命的な出会いがある。",
+            "デプロイ一発成功。CIもオールグリーン。",
+          ],
+          normal: [
+            "進捗は地味だが、着実に積み上がる。",
+            "リファクタリングには最適な一日。",
+            "ドキュメント整備が未来の自分を救う。",
+            "競合調査をしてモチベを上げるが吉。",
+            "今日はコーディングより設計に時間を使おう。",
+          ],
+          bad: [
+            "npm install で謎のエラーにハマる予感。",
+            "本番環境のみで再現するバグに遭遇する。",
+            "仕様変更の連絡が来る前に寝たほうがいい。",
+            "Wi-Fiの調子が悪い。カフェに行こう。",
+            "git push --force は絶対にするな。",
+          ],
+        },
+        actions: [
+          "LPのFV（ファーストビュー）を見直す",
+          "READMEを最新化する",
+          "未使用のコードを削除する",
+          "Google Search Consoleを見る",
+          "友人にアプリを使ってもらう",
+          "積読していた技術書を1章読む",
+          "faviconを新しくする",
+          "OGP画像を作り直す",
+          "Xで進捗報告をする",
+          "ユーザーにDMを送る",
+        ],
+        avoids: [
+          "深夜3時のデプロイ",
+          "テスト無しのmasterマージ",
+          "技術選定のちゃぶ台返し",
+          "他人との比較",
+          "エゴサーチ",
+          "無限スクロールの実装",
+          "複雑すぎる正規表現",
+        ],
+        luckies: [
+          "HHKB",
+          "エナジードリンク",
+          "ノイズキャンセリング",
+          "デュアルモニター",
+          "バランスボール",
+          "ダークモード",
+          "GitHub Copilot",
+          "技術ポッドキャスト",
+        ],
+      };
+
+      const RARE_POOL = {
+        0: {
+          id: "R-001",
+          title: "覚醒の刻",
+          text: "今日、最初の一歩を踏み出す時が来た。Hello Worldは待っている。",
+        },
+        1: {
+          id: "R-002",
+          title: "0→1の奇跡",
+          text: "あなたのアプリが誰か一人の人生を変える。その一人はすぐそばにいる。",
+        },
+        "2_3": {
+          id: "R-003",
+          title: "継続の鬼",
+          text: "「やめないこと」こそが最強の才能。誰もあなたに追いつけない。",
+        },
+        "4_9": {
+          id: "R-004",
+          title: "量産型天才",
+          text: "打席に立ち続けた数だけ、ホームランの確率は上がっている。",
+        },
+        "10_plus": {
+          id: "R-005",
+          title: "生ける伝説",
+          text: "あなたのコードはもはや芸術。後進のために知恵を記せ。",
+        },
+        // Generic rares
+        gen_1: {
+          id: "R-777",
+          title: "Product Hunt 1位",
+          text: "世界があなたのプロダクトを発見する日。英語の準備はいいか？",
+        },
+        gen_2: {
+          id: "R-888",
+          title: "買収オファー",
+          text: "メールボックスを確認せよ。桁違いの提案が届いているかもしれない。",
+        },
+      };
+
+      /**
+       * APP LOGIC
+       */
+      const app = {
+        state: {
+          tier: localStorage.getItem("devFortune_tier") || null,
+          power: 0,
+          rareChance: 2,
+          isDragging: false,
+          lastX: 0,
+          lastY: 0,
+          result: null,
+        },
+
+        init() {
+          if (this.state.tier) {
+            this.switchView("view-shake");
+            this.initShake();
+          } else {
+            this.switchView("view-tier");
+          }
+        },
+
+        selectTier(tier) {
+          this.state.tier = tier;
+          localStorage.setItem("devFortune_tier", tier);
+          this.switchView("view-shake");
+          this.initShake();
+        },
+
+        resetTier() {
+          localStorage.removeItem("devFortune_tier");
+          location.reload();
+        },
+
+        switchView(id) {
+          ["view-tier", "view-shake", "view-result"].forEach((v) => {
+            const el = document.getElementById(v);
+            if (v === id) {
+              el.classList.remove("hidden");
+              el.classList.add("flex");
+            } else {
+              el.classList.add("hidden");
+              el.classList.remove("flex");
+            }
+          });
+        },
+
+        /**
+         * SHAKE MECHANIC
+         */
+        initShake() {
+          const box = document.getElementById("omikuji-box");
+          const appMain = document.getElementById("app");
+
+          // Mouse/Touch events
+          appMain.addEventListener("pointerdown", (e) => {
+            if (e.target.closest("#omikuji-box")) {
+              this.state.isDragging = true;
+              this.state.lastX = e.clientX;
+              this.state.lastY = e.clientY;
+              box.setPointerCapture(e.pointerId);
+              box.style.cursor = "grabbing";
+            }
+          });
+
+          appMain.addEventListener("pointermove", (e) => {
+            if (!this.state.isDragging) return;
+
+            const dx = e.clientX - this.state.lastX;
+            const dy = e.clientY - this.state.lastY;
+
+            // Visual Movement
+            box.style.transform = `translate(${dx}px, ${dy}px) rotate(${
+              dx * 0.5
+            }deg)`;
+
+            // Calculate Power
+            const velocity = Math.abs(dx) + Math.abs(dy);
+            let gain = velocity * 0.05; // Tuned multiplier
+
+            // Direction change bonus (simplified logic: high velocity implies shaking)
+            if (velocity > 30) gain *= 1.5;
+
+            this.addPower(gain);
+
+            this.state.lastX = e.clientX;
+            this.state.lastY = e.clientY;
+          });
+
+          appMain.addEventListener("pointerup", (e) => {
+            if (!this.state.isDragging) return;
+            this.state.isDragging = false;
+            box.style.transform = "translate(0px, 0px) rotate(0deg)";
+            box.style.cursor = "grab";
+
+            // Threshold to draw
+            if (this.state.power >= 15) {
+              // Minimum effort required
+              this.drawLottery();
+            }
+          });
+        },
+
+        addPower(amount) {
+          this.state.power = Math.min(100, this.state.power + amount);
+
+          // Recalculate Rare Chance: 2 + 10 * (power/100)^0.7
+          const ratio = this.state.power / 100;
+          this.state.rareChance = 2 + 10 * Math.pow(ratio, 0.7);
+
+          // Update UI
+          document.getElementById("disp-power").innerText = Math.floor(
+            this.state.power
+          );
+          document.getElementById(
+            "bar-power"
+          ).style.width = `${this.state.power}%`;
+          document.getElementById("disp-chance").innerText =
+            this.state.rareChance.toFixed(1);
+        },
+
+        /**
+         * LOTTERY LOGIC
+         */
+        drawLottery() {
+          // Rare Check
+          const isRare = Math.random() * 100 < this.state.rareChance;
+          let result = {};
+
+          if (isRare) {
+            result = this.generateRare();
+          } else {
+            result = this.generateNormal();
+          }
+
+          this.state.result = result;
+          this.renderResult(result);
+          this.switchView("view-result");
+        },
+
+        generateRare() {
+          // Try to get specific rare for tier, fallback to generic
+          const pool = RARE_POOL[this.state.tier]
+            ? [RARE_POOL[this.state.tier], RARE_POOL.gen_1, RARE_POOL.gen_2]
+            : [RARE_POOL.gen_1, RARE_POOL.gen_2];
+          const item = pool[Math.floor(Math.random() * pool.length)];
+
+          return {
+            isRare: true,
+            fortune: "極",
+            title: item.title,
+            text: item.text,
+            action: "この運命を信じて突き進む",
+            avoid: "迷い",
+            lucky: "自分自身",
+          };
+        },
+
+        generateNormal() {
+          // Pick Fortune
+          const rand = Math.random() * 100;
+          let sum = 0;
+          let fortune = FORTUNES[FORTUNES.length - 1]; // fallback
+          for (let f of FORTUNES) {
+            sum += f.weight;
+            if (rand < sum) {
+              fortune = f;
+              break;
+            }
+          }
+
+          // Pick Text
+          let textType = "normal";
+          if (["大吉", "中吉"].includes(fortune.label)) textType = "good";
+          if (["凶", "大凶"].includes(fortune.label)) textType = "bad";
+
+          const oneLiner =
+            NORMAL_POOL.oneLiners[textType][
+              Math.floor(Math.random() * NORMAL_POOL.oneLiners[textType].length)
+            ];
+          const title =
+            NORMAL_POOL.titles[
+              Math.floor(Math.random() * NORMAL_POOL.titles.length)
+            ];
+          const action =
+            NORMAL_POOL.actions[
+              Math.floor(Math.random() * NORMAL_POOL.actions.length)
+            ];
+          const avoid =
+            NORMAL_POOL.avoids[
+              Math.floor(Math.random() * NORMAL_POOL.avoids.length)
+            ];
+          const lucky =
+            NORMAL_POOL.luckies[
+              Math.floor(Math.random() * NORMAL_POOL.luckies.length)
+            ];
+
+          return {
+            isRare: false,
+            fortune: fortune.label,
+            title: title,
+            text: oneLiner,
+            action: action,
+            avoid: avoid,
+            lucky: lucky,
+          };
+        },
+
+        /**
+         * RENDER RESULT
+         */
+        renderResult(data) {
+          const card = document.getElementById("result-card");
+          const tierBadge = document.getElementById("res-tier-badge");
+
+          // Styling for Rare vs Normal
+          if (data.isRare) {
+            card.classList.add("rare-card");
+            document
+              .getElementById("res-fortune")
+              .classList.add("text-yellow-600");
+          } else {
+            card.classList.remove("rare-card");
+            document.getElementById(
+              "res-fortune"
+            ).className = `text-5xl font-black mb-2 tracking-widest ${
+              data.fortune === "大吉" ? "text-red-500" : "text-gray-800"
+            }`;
+          }
+
+          // Fill Text
+          document.getElementById("res-date").innerText =
+            new Date().toLocaleDateString("ja-JP");
+          tierBadge.innerText = TIER_LABELS[this.state.tier];
+
+          document.getElementById("res-fortune").innerText = data.fortune;
+          document.getElementById("res-title").innerText = data.title;
+          document.getElementById("res-oneliner").innerHTML = data.text; // InnerHTML to allow <br> if needed
+
+          document.getElementById("res-power").innerText = Math.floor(
+            this.state.power
+          );
+          document.getElementById("res-rare").innerText =
+            this.state.rareChance.toFixed(1) + "%";
+
+          document.getElementById("res-action").innerText = data.action;
+          document.getElementById("res-avoid").innerText = data.avoid;
+          document.getElementById("res-lucky").innerText = data.lucky;
+        },
+
+        resetGame() {
+          this.state.power = 0;
+          this.state.rareChance = 2;
+          this.state.result = null;
+          // update UI reset
+          document.getElementById("disp-power").innerText = "0";
+          document.getElementById("bar-power").style.width = "0%";
+          document.getElementById("disp-chance").innerText = "2";
+
+          this.switchView("view-shake");
+        },
+
+        /**
+         * SHARING
+         */
+        async shareText() {
+          const r = this.state.result;
+          const url = "https://app-saikou.netlify.app/omikuji";
+          const text = `#個人開発おみくじ をひいたよ！
+
+【${r.fortune}】${r.title}
+Dev Lv: ${TIER_LABELS[this.state.tier]}
+Shake Power: ${Math.floor(
+            this.state.power
+          )} (Rare ${this.state.rareChance.toFixed(1)}%)
+今日の一手: ${r.action}
+
+あなたもひいてみる？
+${url}`;
+
+          try {
+            // 画像を生成
+            if (document.fonts && document.fonts.ready) {
+              await document.fonts.ready;
+            }
+            await new Promise((res) => setTimeout(res, 80));
+
+            const card = document.getElementById("result-card");
+            const canvas = await html2canvas(card, {
+              scale: 3,
+              backgroundColor: "#ffffff",
+              useCORS: true,
+              allowTaint: false,
+              foreignObjectRendering: true,
+              imageTimeout: 15000,
+            });
+
+            const blob = await new Promise((resolve) =>
+              canvas.toBlob(resolve, "image/png", 1.0)
+            );
+
+            if (blob) {
+              const file = new File([blob], `dev_fortune_${Date.now()}.png`, {
+                type: "image/png",
+              });
+
+              // Web Share APIで画像付き共有を試行（スマホでXアプリが開く場合、画像が添付される）
+              if (
+                navigator.share &&
+                navigator.canShare &&
+                navigator.canShare({ files: [file], text })
+              ) {
+                try {
+                  await navigator.share({ files: [file], text });
+                  return; // 共有成功したら終了
+                } catch (shareError) {
+                  // ユーザーがキャンセルした場合などは、フォールバック処理に進む
+                  if (shareError.name !== "AbortError") {
+                    console.log("Web Share failed, falling back to X intent");
+                  }
+                }
+              }
+            }
+
+            // フォールバック: 画像をダウンロード + Xの投稿画面を開く
+            if (blob) {
+              const linkDl = document.createElement("a");
+              linkDl.download = `dev_fortune_${Date.now()}.png`;
+              linkDl.href = canvas.toDataURL("image/png", 1.0);
+              linkDl.click();
+            }
+
+            // Xの投稿画面を開く
+            const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+              text
+            )}`;
+            window.open(intent, "_blank");
+          } catch (e) {
+            console.error("share failed", e);
+            // エラー時もXの投稿画面を開く
+            const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+              text
+            )}`;
+            window.open(intent, "_blank");
+          }
+        },
+
+        async shareImage() {
+          const card = document.getElementById("result-card");
+          if (!card) return;
+
+          // Simple loading feedback
+          const btn = event.currentTarget;
+          const originalText = btn.innerHTML;
+          btn.innerText = "生成中...";
+
+          try {
+            // フォント読み込み完了を待機
+            if (document.fonts && document.fonts.ready) {
+              await document.fonts.ready;
+            }
+            // レイアウト安定のためにわずかに待機
+            await new Promise((r) => setTimeout(r, 100));
+
+            const canvas = await html2canvas(card, {
+              scale: 3, // 高解像度
+              backgroundColor: "#ffffff", // カードの白背景を維持
+              logging: false,
+              useCORS: true,
+              allowTaint: false,
+              foreignObjectRendering: true,
+              imageTimeout: 15000,
+              width: card.offsetWidth,
+              height: card.offsetHeight,
+              windowWidth: card.scrollWidth,
+              windowHeight: card.scrollHeight,
+              x: 0,
+              y: 0,
+              onclone: (clonedDoc) => {
+                // アニメーション・トランジションによる文字のブレ/二重描画を防ぐ
+                const clonedCard = clonedDoc.getElementById("result-card");
+                if (clonedCard) {
+                  const disableAnim = (el) => {
+                    el.classList.remove("pop-in", "fade-in");
+                    el.style.animation = "none";
+                    el.style.transition = "none";
+                    el.style.transform = "none";
+                  };
+                  disableAnim(clonedCard);
+                  clonedCard.querySelectorAll("*").forEach(disableAnim);
+                }
+              },
+            });
+
+            const link = document.createElement("a");
+            link.download = `dev_fortune_${Date.now()}.png`;
+            link.href = canvas.toDataURL("image/png", 1.0);
+            link.click();
+          } catch (err) {
+            console.error("Image generation failed", err);
+            alert("画像の生成に失敗しました");
+          } finally {
+            btn.innerHTML = originalText;
+          }
+        },
+      };
+
+      // Start App
+      window.addEventListener("DOMContentLoaded", () => {
+        app.init();
+      });
+    </script>
+  </body>
+</html>
