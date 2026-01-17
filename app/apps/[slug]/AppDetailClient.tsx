@@ -2,7 +2,20 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Download } from "lucide-react";
+import {
+  ArrowLeft,
+  Download,
+  TrendingUp,
+  PieChart,
+  Target,
+  Calculator,
+  Check,
+  X,
+  Star,
+  Clock,
+  Shield,
+  BarChart3,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TwitterIcon } from "@/components/TwitterIcon";
 import { useLanguage } from "@/context/LanguageContext";
@@ -246,7 +259,7 @@ export function AppDetailClient({ app }: AppDetailClientProps) {
                 key={index}
                 className="flex-shrink-0 w-[80vw] md:w-[60vw] lg:w-[40vw] max-w-[350px]"
               >
-                <div className="w-full aspect-[9/19.5] rounded-2xl overflow-hidden shadow-2xl border-4 border-gray-200 bg-white relative">
+                <div className="w-full aspect-[9/18] rounded-2xl overflow-hidden shadow-2xl border-4 border-gray-200 bg-white relative">
                   <Image
                     src={screenshot}
                     alt={`${app.name} Screenshot ${index + 1}`}
@@ -266,10 +279,179 @@ export function AppDetailClient({ app }: AppDetailClientProps) {
         <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-4">
           {t.apps.detail.overview}
         </h2>
-        <p className="text-gray-700 leading-relaxed text-sm md:text-base">
-          {description}
-        </p>
+        {app.slug === "tanao" ? (
+          <div className="space-y-6">
+            <p className="text-gray-700 leading-relaxed text-base md:text-lg font-medium text-center">
+              家計簿は続かない、でも資産は把握したい。
+              <br />
+              そんな悩みを解決するのがTanaoです。
+            </p>
+
+            {/* Benefits Grid */}
+            <div className="grid md:grid-cols-3 gap-6 mt-8">
+              {/* 時間の節約 */}
+              <div className="notion-card bg-gradient-to-br from-blue-50 to-white border-2 border-blue-100">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                    <Clock className="text-blue-600" size={32} />
+                  </div>
+                  <h3 className="font-bold text-lg text-gray-900 mb-3">
+                    時間の節約
+                  </h3>
+                  <p className="text-gray-700 text-sm leading-relaxed">
+                    毎日の記録は不要。月1回、たった数分で資産を把握できます。
+                    <br />
+                    忙しいあなたでも、無理なく続けられます。
+                  </p>
+                </div>
+              </div>
+
+              {/* 将来への安心 */}
+              <div className="notion-card bg-gradient-to-br from-green-50 to-white border-2 border-green-100">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-4">
+                    <Shield className="text-green-600" size={32} />
+                  </div>
+                  <h3 className="font-bold text-lg text-gray-900 mb-3">
+                    将来への安心
+                  </h3>
+                  <p className="text-gray-700 text-sm leading-relaxed">
+                    複利計算で100歳までの資産を予測。今の行動が将来どうなるか、一目で分かります。
+                    <br />
+                    資産形成のモチベーションが続きます。
+                  </p>
+                </div>
+              </div>
+
+              {/* シンプルな管理 */}
+              <div className="notion-card bg-gradient-to-br from-purple-50 to-white border-2 border-purple-100">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mb-4">
+                    <BarChart3 className="text-purple-600" size={32} />
+                  </div>
+                  <h3 className="font-bold text-lg text-gray-900 mb-3">
+                    シンプルな管理
+                  </h3>
+                  <p className="text-gray-700 text-sm leading-relaxed">
+                    現金、株式資産を1つのアプリで管理。
+                    <br />
+                    資産の全体像が一目瞭然です。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            <p className="text-gray-700 leading-relaxed text-base md:text-lg font-medium">
+              {description}
+            </p>
+          </div>
+        )}
       </div>
+
+      {/* Comparison - Tanao only */}
+      {app.slug === "tanao" && (
+        <div className="mb-12">
+          <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-6">
+            従来の家計簿との違い
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* 従来の家計簿 */}
+            <div className="notion-card border-2 border-gray-200">
+              <h3 className="font-semibold text-lg text-gray-900 mb-4">
+                従来の家計簿
+              </h3>
+              <ul className="space-y-3">
+                <li className="flex items-start space-x-2">
+                  <X size={20} className="text-red-500 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-700 text-sm md:text-base">
+                    毎日の記録が必要
+                  </span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <X size={20} className="text-red-500 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-700 text-sm md:text-base">
+                    細かい支出まで記録が面倒
+                  </span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <X size={20} className="text-red-500 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-700 text-sm md:text-base">
+                    資産全体が見えない
+                  </span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <X size={20} className="text-red-500 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-700 text-sm md:text-base">
+                    将来予測がない
+                  </span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <X size={20} className="text-red-500 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-700 text-sm md:text-base">
+                    記録が負担で挫折しやすい
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Tanao */}
+            <div className="notion-card border-2 border-gray-900 bg-gray-50">
+              <h3 className="font-semibold text-lg text-gray-900 mb-4">
+                Tanao
+              </h3>
+              <ul className="space-y-3">
+                <li className="flex items-start space-x-2">
+                  <Check
+                    size={20}
+                    className="text-green-600 mt-0.5 flex-shrink-0"
+                  />
+                  <span className="text-gray-700 text-sm md:text-base">
+                    月1回の棚卸しでOK
+                  </span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <Check
+                    size={20}
+                    className="text-green-600 mt-0.5 flex-shrink-0"
+                  />
+                  <span className="text-gray-700 text-sm md:text-base">
+                    まとめて入力するだけ
+                  </span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <Check
+                    size={20}
+                    className="text-green-600 mt-0.5 flex-shrink-0"
+                  />
+                  <span className="text-gray-700 text-sm md:text-base">
+                    全資産を一元管理
+                  </span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <Check
+                    size={20}
+                    className="text-green-600 mt-0.5 flex-shrink-0"
+                  />
+                  <span className="text-gray-700 text-sm md:text-base">
+                    100歳までの資産予測
+                  </span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <Check
+                    size={20}
+                    className="text-green-600 mt-0.5 flex-shrink-0"
+                  />
+                  <span className="text-gray-700 text-sm md:text-base">
+                    負担が少なく続けやすい
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Features */}
       <div className="mb-12">
@@ -279,17 +461,154 @@ export function AppDetailClient({ app }: AppDetailClientProps) {
             {t.apps.detail.featuresSubtitle}
           </span>
         </h2>
-        <div className="space-y-3">
-          {features.map((feature: string, index: number) => (
-            <div key={index} className="flex items-center space-x-3">
-              <div className="flex-shrink-0 w-2 h-2 bg-gray-900 rounded-full"></div>
-              <span className="text-gray-700 text-sm md:text-base">
-                {feature}
-              </span>
+        {app.slug === "tanao" ? (
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* 月1回の簡単棚卸し */}
+            <div className="notion-card hover-accent-bg">
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center">
+                  <Calculator className="text-gray-900" size={24} />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-gray-900 mb-2 text-base md:text-lg">
+                    月1回の簡単棚卸し
+                  </h3>
+                  <p className="text-gray-600 text-sm md:text-base">
+                    毎日の記録は不要。月末に現在の資産額を入力するだけ
+                  </p>
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
+
+            {/* 全資産の一覧表示 */}
+            <div className="notion-card hover-accent-bg">
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center">
+                  <PieChart className="text-gray-900" size={24} />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-gray-900 mb-2 text-base md:text-lg">
+                    全資産の一覧表示
+                  </h3>
+                  <p className="text-gray-600 text-sm md:text-base">
+                    銀行、投資、不動産など複数の資産を一元管理
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* 100歳までの資産予測 */}
+            <div className="notion-card hover-accent-bg">
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center">
+                  <TrendingUp className="text-gray-900" size={24} />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-gray-900 mb-2 text-base md:text-lg">
+                    100歳までの資産予測
+                  </h3>
+                  <p className="text-gray-600 text-sm md:text-base">
+                    複利計算で将来の資産を可視化。目標達成への道筋が明確に
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* 複利計算エンジン */}
+            <div className="notion-card hover-accent-bg">
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center">
+                  <Target className="text-gray-900" size={24} />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-gray-900 mb-2 text-base md:text-lg">
+                    複利計算エンジン
+                  </h3>
+                  <p className="text-gray-600 text-sm md:text-base">
+                    設定された年利率で、将来価値を自動計算
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* シンプルな操作 */}
+            <div className="notion-card hover-accent-bg md:col-span-2">
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center">
+                  <Check className="text-gray-900" size={24} />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-gray-900 mb-2 text-base md:text-lg">
+                    シンプルな操作
+                  </h3>
+                  <p className="text-gray-600 text-sm md:text-base">
+                    直感的なUIで、初心者でも簡単に使い始められます
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {features.map((feature: string, index: number) => (
+              <div key={index} className="flex items-center space-x-3">
+                <div className="flex-shrink-0 w-2 h-2 bg-gray-900 rounded-full"></div>
+                <span className="text-gray-700 text-sm md:text-base">
+                  {feature}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
+
+      {/* User Reviews - Tanao only */}
+      {app.slug === "tanao" && (
+        <div className="mb-12">
+          <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-6">
+            ユーザーレビュー
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Review 1 */}
+            <div className="notion-card">
+              <div className="flex items-center space-x-1 mb-3">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    size={20}
+                    className="fill-orange-400 text-orange-400"
+                  />
+                ))}
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2 text-base md:text-lg">
+                良いアプリです！
+              </h3>
+              <p className="text-gray-700 text-sm md:text-base leading-relaxed">
+                簡単に登録できて、将来の資産の算出ができました！
+              </p>
+            </div>
+
+            {/* Review 2 */}
+            <div className="notion-card">
+              <div className="flex items-center space-x-1 mb-3">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    size={20}
+                    className="fill-orange-400 text-orange-400"
+                  />
+                ))}
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2 text-base md:text-lg">
+                将来の資産額が見えて安心できる
+              </h3>
+              <p className="text-gray-700 text-sm md:text-base leading-relaxed">
+                毎日の家計簿入力がいらないので無理なく使えそうで便利！
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Technologies */}
       <div className="mb-12">

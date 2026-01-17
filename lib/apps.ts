@@ -12,7 +12,7 @@ export const apps: App[] = [
   {
     id: "tanao",
     name: "Tanao - 家計簿いらずの資産トラッカー",
-    description: "月イチで棚卸しする新しい資産管理アプリ",
+    description: "月イチ棚卸しで資産形成をもっとシンプルに",
     iconUrl: "/app-icons/tanao.png", // ← ここを変更
     slug: "tanao",
     status: "リリース済み",

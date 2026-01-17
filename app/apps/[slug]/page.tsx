@@ -19,8 +19,9 @@ const getAppData = (slug: string) => {
   const apps: Record<string, any> = {
     tanao: {
       name: "Tanao - 家計簿いらずの資産トラッカー",
-      tagline: "月イチで棚卸しする新しい資産管理アプリ",
+      tagline: "月イチ棚卸しで資産形成をもっとシンプルに",
       iconUrl: "/app-icons/tanao.png",
+      ogImageUrl: "/og/apps/tanao.png",
       status: "リリース済み",
       version: "v1.1.0",
       slug: "tanao",
@@ -102,8 +103,8 @@ export async function generateMetadata({
     };
   }
 
-  // OG画像: アイコンがあればそれを使用、なければ最初のスクリーンショットを使用
-  const ogImage = app.iconUrl || app.screenshots?.[0] || "/og-image.png";
+  // OG画像: 専用OGP画像があればそれを使用、なければアイコンを使用
+  const ogImage = app.ogImageUrl || app.iconUrl || "/og-image.png";
   const ogImageUrl = `${siteUrl}${ogImage}`;
 
   return {
