@@ -223,6 +223,121 @@ export const translations = {
               },
             },
           },
+          sugumemo: {
+            description:
+              "「あ、何だっけ…？」となる前に。思いついてから10秒で、記録とリマインドを完了。ロック画面から0秒起動、音声入力と1タップ予約で、あなたの「ひらめき」を忘れる前に確実に記録。",
+            features: [
+              "ロック画面から0秒で起動",
+              "10秒でリマインド完了",
+              "音声入力機能",
+              "手書き風デザイン",
+              "スヌーズ機能",
+              "多言語対応（11言語）",
+            ],
+            faq: [
+              {
+                question: "Q1. アプリの料金はいくらですか？",
+                answer:
+                  "A. 現在は基本機能を無料でご利用いただけます。アプリ内に広告が表示される場合があります。将来的にプレミアム機能を追加する際は、事前にご案内いたします。",
+              },
+              {
+                question: "Q2. 音声入力はどのように使いますか？",
+                answer:
+                  "A. マイクボタンを長押しして話すだけです。リアルタイムで文字が浮かび上がり、指を離した瞬間に予約完了します。",
+              },
+              {
+                question: "Q3. データは安全に保存されますか？",
+                answer:
+                  "A. はい。すべてのメモ・リマインダーデータは、デバイス内のローカルストレージにのみ保存されます。外部サーバーには送信されません。",
+              },
+              {
+                question: "Q4. スヌーズ機能とは何ですか？",
+                answer:
+                  "A. 通知が来ても、ロック画面から「あと10分」と延長できる機能です。忙しい時でも簡単にリマインドを調整できます。",
+              },
+              {
+                question: "Q5. どの言語に対応していますか？",
+                answer:
+                  "A. 日本語、英語、中国語、韓国語、スペイン語、フランス語、ドイツ語、ポルトガル語、ヒンディー語、アラビア語、イタリア語の11言語に対応しています。",
+              },
+              {
+                question: "Q6. データの自動削除について教えてください",
+                answer:
+                  "A. 完了済みリマインダーは完了から7日経過後に、期限切れリマインダーは期限切れから30日経過後に自動削除されます。また、最大保存件数が50件を超える場合、古いデータから自動削除されます。",
+              },
+            ],
+            privacyPolicy: {
+              title: "プライバシーポリシー",
+              lastUpdated: "最終更新日：2025年1月31日",
+              dataCollection: {
+                title: "データの収集・使用について",
+                intro:
+                  "SuguMemo（以下「本アプリ」）は、ユーザーのプライバシーを尊重し、個人情報の保護に努めています。本プライバシーポリシーは、本アプリがどのような情報を収集し、どのように使用するかについて説明します。",
+              },
+              collectedData: {
+                title: "収集する情報",
+                items: [
+                  "メモ・リマインダーの内容: ユーザーが入力したメモテキスト",
+                  "作成日時: メモ・リマインダーが作成された日時",
+                  "通知予定日時: リマインダーの通知が予定されている日時",
+                  "ステータス情報: リマインダーの状態（予定済み、完了、期限切れ）",
+                  "設定情報: 最後に使用したプリセット時間などの設定",
+                  "デバイス情報: デバイスの種類、OSバージョン、言語設定など（アプリの動作に必要な範囲内）",
+                  "広告識別子: Google AdMobによる広告表示のために使用されます",
+                ],
+              },
+              dataUsage: {
+                title: "情報の使用方法",
+                items: [
+                  "メモ・リマインダー機能の提供",
+                  "通知機能の提供",
+                  "音声入力機能の提供",
+                  "アプリの動作に必要な技術的な処理",
+                  "広告の配信と効果測定",
+                ],
+              },
+              dataStorage: {
+                title: "データの保存と削除",
+                items: [
+                  "すべてのメモ・リマインダーデータは、ユーザーのデバイス内にのみ保存されます。外部サーバーには送信されません。",
+                  "データはデバイス内のローカルストレージ（AsyncStorage）に保存され、暗号化されたストレージを使用します。",
+                  "完了済みリマインダー: 完了から7日経過後に自動削除",
+                  "期限切れリマインダー: 期限切れから30日経過後に自動削除",
+                  "最大保存件数: 50件を超える場合、古いデータから自動削除",
+                  "ユーザーは、アプリをアンインストールすることで、すべてのデータを削除できます。",
+                ],
+              },
+              dataDeletion: {
+                title: "権限の使用",
+                items: [
+                  "マイクアクセス: 音声入力機能を使用するために必要です。音声データはデバイス上で処理され、外部サーバーには送信されません。",
+                  "音声認識アクセス: 音声をテキストに変換するために必要です。音声認識はデバイスの機能を使用し、外部サーバーには送信されません。",
+                  "通知権限: リマインダーの通知を送信するために必要です。",
+                ],
+              },
+              thirdPartyServices: {
+                title: "外部サービスのプライバシーポリシー",
+                intro: "本アプリは、以下の外部サービスを使用しています。各サービスのプライバシーポリシーをご確認ください：",
+                items: [
+                  "Google AdMob: 広告の配信と効果測定のために、広告識別子（IDFA/AAID）、デバイス情報、広告の表示・クリック履歴を収集・使用する場合があります。",
+                  "Apple App Store / Google Play Store: 各ストアのプライバシーポリシー",
+                ],
+                note: "AdMobのプライバシーポリシーについては、Google AdMob プライバシーポリシー（https://policies.google.com/privacy）をご確認ください。",
+              },
+              dataSharing: {
+                title: "情報の共有",
+                items: [
+                  "本アプリは、以下の場合を除き、ユーザーの個人情報を第三者と共有することはありません：",
+                  "広告配信: Google AdMobによる広告配信のため",
+                  "法的要求: 法律、規制、または法的プロセスに従う必要がある場合",
+                ],
+              },
+              policyChanges: {
+                title: "プライバシーポリシーの変更",
+                text: "本プライバシーポリシーは、予告なく変更される場合があります。重要な変更がある場合は、アプリ内で通知するか、本ページを更新します。",
+              },
+            },
+          },
         },
       },
     },
@@ -658,6 +773,121 @@ export const translations = {
               policyChanges: {
                 title: "Privacy Policy Changes",
                 text: "This privacy policy may be changed without notice. If there are significant changes, we will notify you within the app.",
+              },
+            },
+          },
+          sugumemo: {
+            description:
+              "Before you forget. Complete recording and reminders in 10 seconds from the moment you think of it. Launch in 0 seconds from the lock screen, record your 'inspirations' reliably before you forget with voice input and one-tap scheduling.",
+            features: [
+              "Launch in 0 seconds from lock screen",
+              "Complete reminders in 10 seconds",
+              "Voice input feature",
+              "Handwritten-style design",
+              "Snooze feature",
+              "Multi-language support (11 languages)",
+            ],
+            faq: [
+              {
+                question: "Q1. How much does the app cost?",
+                answer:
+                  "A. Currently, basic features are available for free. Ads may be displayed in the app. We will notify you in advance when premium features are added in the future.",
+              },
+              {
+                question: "Q2. How do I use voice input?",
+                answer:
+                  "A. Just long-press the microphone button and speak. Text appears in real-time, and scheduling completes the moment you release your finger.",
+              },
+              {
+                question: "Q3. Is my data stored securely?",
+                answer:
+                  "A. Yes. All memo and reminder data is stored only in the device's local storage. It is not sent to external servers.",
+              },
+              {
+                question: "Q4. What is the snooze feature?",
+                answer:
+                  "A. This feature allows you to extend reminders by '10 more minutes' from the lock screen even after notifications arrive. You can easily adjust reminders even when busy.",
+              },
+              {
+                question: "Q5. What languages are supported?",
+                answer:
+                  "A. Supports 11 languages: Japanese, English, Chinese, Korean, Spanish, French, German, Portuguese, Hindi, Arabic, and Italian.",
+              },
+              {
+                question: "Q6. Tell me about automatic data deletion",
+                answer:
+                  "A. Completed reminders are automatically deleted 7 days after completion, and expired reminders are automatically deleted 30 days after expiration. Also, if the maximum storage limit of 50 items is exceeded, old data is automatically deleted.",
+              },
+            ],
+            privacyPolicy: {
+              title: "Privacy Policy",
+              lastUpdated: "Last Updated: January 31, 2025",
+              dataCollection: {
+                title: "Data Collection and Usage",
+                intro:
+                  "SuguMemo (hereinafter referred to as 'this app') respects user privacy and strives to protect personal information. This privacy policy explains what information this app collects and how it is used.",
+              },
+              collectedData: {
+                title: "Information Collected",
+                items: [
+                  "Memo/Reminder content: Memo text entered by users",
+                  "Creation date and time: Date and time when memos/reminders were created",
+                  "Scheduled notification date and time: Date and time when reminder notifications are scheduled",
+                  "Status information: Reminder status (scheduled, completed, expired)",
+                  "Settings information: Settings such as last used preset time",
+                  "Device information: Device type, OS version, language settings, etc. (within the scope necessary for app operation)",
+                  "Advertising identifier: Used for ad display by Google AdMob",
+                ],
+              },
+              dataUsage: {
+                title: "How Information is Used",
+                items: [
+                  "Providing memo/reminder features",
+                  "Providing notification features",
+                  "Providing voice input features",
+                  "Technical processing necessary for app operation",
+                  "Ad delivery and effectiveness measurement",
+                ],
+              },
+              dataStorage: {
+                title: "Data Storage and Deletion",
+                items: [
+                  "All memo/reminder data is stored only on the user's device. It is not sent to external servers.",
+                  "Data is stored in the device's local storage (AsyncStorage) and uses encrypted storage.",
+                  "Completed reminders: Automatically deleted 7 days after completion",
+                  "Expired reminders: Automatically deleted 30 days after expiration",
+                  "Maximum storage: If exceeding 50 items, old data is automatically deleted",
+                  "Users can delete all data by uninstalling the app.",
+                ],
+              },
+              dataDeletion: {
+                title: "Permission Usage",
+                items: [
+                  "Microphone access: Required to use voice input features. Voice data is processed on the device and is not sent to external servers.",
+                  "Speech recognition access: Required to convert speech to text. Speech recognition uses device features and is not sent to external servers.",
+                  "Notification permission: Required to send reminder notifications.",
+                ],
+              },
+              thirdPartyServices: {
+                title: "Third-Party Service Privacy Policies",
+                intro: "This app uses the following external services. Please check each service's privacy policy:",
+                items: [
+                  "Google AdMob: May collect and use advertising identifiers (IDFA/AAID), device information, and ad display/click history for ad delivery and effectiveness measurement.",
+                  "Apple App Store / Google Play Store: Each store's privacy policy",
+                ],
+                note: "For AdMob's privacy policy, please check the Google AdMob Privacy Policy (https://policies.google.com/privacy).",
+              },
+              dataSharing: {
+                title: "Information Sharing",
+                items: [
+                  "This app does not share users' personal information with third parties except in the following cases:",
+                  "Ad delivery: For ad delivery by Google AdMob",
+                  "Legal requirements: When required by law, regulations, or legal processes",
+                ],
+              },
+              policyChanges: {
+                title: "Privacy Policy Changes",
+                text: "This privacy policy may be changed without notice. If there are significant changes, we will notify you within the app or update this page.",
               },
             },
           },

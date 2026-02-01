@@ -18,6 +18,15 @@ export const apps: App[] = [
     status: "リリース済み",
     technologies: ["React Native", "TypeScript", "Supabase"],
   },
+  {
+    id: "sugumemo",
+    name: "すぐメモ - 音声入力 & リマインダーメモ",
+    description: "忘れる前に、10秒で記録。ひらめきを逃さない爆速メモ。",
+    iconUrl: "/app-icons/sugumemo.png",
+    slug: "sugumemo",
+    status: "リリース済み",
+    technologies: ["React Native", "TypeScript", "Expo"],
+  },
 ];
 
 // ホーム画面用のシンプルなデータ

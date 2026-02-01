@@ -73,7 +73,7 @@ export function AppDetailClient({ app }: AppDetailClientProps) {
   }, []);
 
   // アプリ固有の翻訳データを取得
-  const appTranslations = t.apps.detail.appData?.[app.slug as "tanao"];
+  const appTranslations = t.apps.detail.appData?.[app.slug as "tanao" | "sugumemo"];
   const description = appTranslations?.description || app.description;
   const features = appTranslations?.features || app.features;
   const faq = appTranslations?.faq;

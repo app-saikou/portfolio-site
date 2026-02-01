@@ -8,6 +8,7 @@ const siteUrl = "https://app-saikou.netlify.app";
 export async function generateStaticParams() {
   return [
     { slug: "tanao" },
+    { slug: "sugumemo" },
     { slug: "quicknote" },
     { slug: "habitbuilder" },
     { slug: "minimal-weather" },
@@ -38,6 +39,34 @@ const getAppData = (slug: string) => {
       technologies: ["React Native", "TypeScript", "Supabase", "Expo"],
       downloadUrl:
         "https://apps.apple.com/jp/app/tanao-%E5%AE%B6%E8%A8%88%E7%B0%BF%E3%81%84%E3%82%89%E3%81%9A%E3%81%AE%E8%B3%87%E7%94%A3%E3%83%88%E3%83%A9%E3%83%83%E3%82%AB%E3%83%BC/id6753191685",
+    },
+    sugumemo: {
+      name: "すぐメモ - 音声入力 & リマインダーメモ",
+      tagline: "忘れる前に、10秒で記録。ひらめきを逃さない爆速メモ。",
+      iconUrl: "/app-icons/sugumemo.png",
+      ogImageUrl: "/og/apps/sugumemo.png",
+      status: "リリース済み",
+      version: "v1.0.0",
+      slug: "sugumemo",
+      description:
+        "「あ、何だっけ…？」となる前に。思いついてから10秒で、記録とリマインドを完了。ロック画面から0秒起動、音声入力と1タップ予約で、あなたの「ひらめき」を忘れる前に確実に記録。",
+      screenshots: [
+        "/screenshots/sugumemo/1.png",
+        "/screenshots/sugumemo/2.png",
+        "/screenshots/sugumemo/3.png",
+        "/screenshots/sugumemo/4.png",
+        "/screenshots/sugumemo/5.png",
+      ],
+      features: [
+        "ロック画面から0秒で起動",
+        "10秒でリマインド完了",
+        "音声入力機能",
+        "手書き風デザイン",
+        "スヌーズ機能",
+        "多言語対応（11言語）",
+      ],
+      technologies: ["React Native", "TypeScript", "Expo"],
+      downloadUrl: "#",
     },
     "taskflow-pro": {
       name: "TaskFlow Pro",
