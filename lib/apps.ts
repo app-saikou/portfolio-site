@@ -1,3 +1,14 @@
+export interface AppLegalDoc {
+  id: string;
+  filename: string;
+  label: string;
+}
+
+export interface AppLegal {
+  languages: { code: string; label: string }[];
+  docs: AppLegalDoc[];
+}
+
 export interface App {
   id: string;
   name: string;
@@ -6,6 +17,7 @@ export interface App {
   slug: string;
   status?: string;
   technologies?: string[];
+  legal?: AppLegal;
 }
 
 export const apps: App[] = [
@@ -17,6 +29,16 @@ export const apps: App[] = [
     slug: "tanao",
     status: "リリース済み",
     technologies: ["React Native", "TypeScript", "Supabase"],
+    legal: {
+      languages: [{ code: "ja", label: "日本語" }],
+      docs: [
+        {
+          id: "privacy",
+          filename: "privacy-policy-subscription.md",
+          label: "プライバシーポリシー",
+        },
+      ],
+    },
   },
   {
     id: "sugumemo",
@@ -26,6 +48,34 @@ export const apps: App[] = [
     slug: "sugumemo",
     status: "リリース済み",
     technologies: ["React Native", "TypeScript", "Expo"],
+    legal: {
+      languages: [
+        { code: "ja", label: "日本語" },
+        { code: "en", label: "English" },
+        { code: "zh-CN", label: "简体中文" },
+        { code: "zh-TW", label: "繁體中文" },
+        { code: "ko", label: "한국어" },
+        { code: "es", label: "Español" },
+        { code: "fr", label: "Français" },
+        { code: "de", label: "Deutsch" },
+        { code: "pt", label: "Português" },
+        { code: "it", label: "Italiano" },
+        { code: "hi", label: "हिन्दी" },
+        { code: "ar", label: "العربية" },
+      ],
+      docs: [
+        {
+          id: "privacy",
+          filename: "privacy-policy-subscription.md",
+          label: "プライバシーポリシー",
+        },
+        {
+          id: "terms",
+          filename: "terms-of-service.md",
+          label: "利用規約",
+        },
+      ],
+    },
   },
 ];
 

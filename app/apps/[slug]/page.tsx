@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Metadata } from "next";
 import { AppDetailClient } from "./AppDetailClient";
+import type { AppData } from "./AppDetailClient";
+import { apps as appsList } from "@/lib/apps";
 
 const siteUrl = "https://app-saikou.netlify.app";
 
@@ -56,6 +58,7 @@ const getAppData = (slug: string) => {
         "/screenshots/sugumemo/3.png",
         "/screenshots/sugumemo/4.png",
         "/screenshots/sugumemo/5.png",
+        "/screenshots/sugumemo/6.png",
       ],
       features: [
         "ロック画面から0秒で起動",
@@ -119,6 +122,13 @@ const getAppData = (slug: string) => {
   return apps[slug] || null;
 };
 
+const mergeLegalFromLib = (slug: string, data: Record<string, any> | null) => {
+  if (!data) return data;
+  const appFromLib = appsList.find((a) => a.slug === slug);
+  if (appFromLib?.legal) return { ...data, legal: appFromLib.legal };
+  return data;
+};
+
 export async function generateMetadata({
   params,
 }: {
@@ -164,7 +174,7 @@ export async function generateMetadata({
 }
 
 export default function AppDetail({ params }: { params: { slug: string } }) {
-  const app = getAppData(params.slug);
+  const app = mergeLegalFromLib(params.slug, getAppData(params.slug)) as AppData | null;
 
   if (!app) {
     return (
