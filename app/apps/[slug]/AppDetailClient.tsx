@@ -22,6 +22,7 @@ import { TwitterIcon } from "@/components/TwitterIcon";
 import { useLanguage } from "@/context/LanguageContext";
 import { getTranslation } from "@/lib/i18n";
 import { useEffect, useRef, useState } from "react";
+import { useSearchParams, usePathname } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import {
@@ -150,6 +151,31 @@ export function AppDetailClient({ app }: AppDetailClientProps) {
       setLegalDocId(legal.docs[0].id);
     }
   }, [app.slug, legal]);
+
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+
+  // URL の #privacy / #terms と ?lang= を解釈し、タブ・言語を設定して法務セクションへスクロール
+  useEffect(() => {
+    if (!legal) return;
+    const hash = typeof window !== "undefined" ? window.location.hash.slice(1) : "";
+    const docId = hash === "privacy" || hash === "terms" ? hash : null;
+    const langParam = searchParams.get("lang");
+    if (docId && legal.docs.some((d) => d.id === docId)) {
+      setLegalDocId(docId);
+    }
+    if (langParam && legal.languages.some((l) => l.code === langParam)) {
+      setLegalLang(langParam);
+    }
+    if (docId) {
+      const el = document.getElementById("legal");
+      if (el) {
+        requestAnimationFrame(() => {
+          el.scrollIntoView({ behavior: "smooth" });
+        });
+      }
+    }
+  }, [legal, searchParams]);
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
@@ -742,7 +768,7 @@ export function AppDetailClient({ app }: AppDetailClientProps) {
 
       {/* プライバシーポリシー・利用規約（app.legal があるアプリのみ） */}
       {legal && (
-        <div className="mb-12">
+        <div id="legal" className="mb-12">
           <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-4">
             プライバシーポリシー・利用規約
           </h2>
@@ -774,7 +800,17 @@ export function AppDetailClient({ app }: AppDetailClientProps) {
               {legal.docs.length > 1 && (
                 <Tabs
                   value={legalDocId}
-                  onValueChange={(v) => setLegalDocId(v)}
+                  onValueChange={(v) => {
+                    setLegalDocId(v);
+                    if (typeof window !== "undefined") {
+                      const search = window.location.search || "";
+                      window.history.replaceState(
+                        null,
+                        "",
+                        `${pathname}${search}#${v}`
+                      );
+                    }
+                  }}
                 >
                   <TabsList>
                     {legal.docs.map((doc) => (
