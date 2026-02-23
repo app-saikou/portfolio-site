@@ -36,23 +36,71 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import type { AppLegal } from "@/lib/apps";
 
-// 選択言語に応じた法務タブラベル（privacy / terms）
+// 選択言語に応じた法務タブラベル（privacy / terms / tokusho）
 const LEGAL_DOC_LABELS: Record<
   string,
-  { privacy: string; terms: string }
+  { privacy: string; terms: string; tokusho: string }
 > = {
-  ja: { privacy: "プライバシーポリシー", terms: "利用規約" },
-  en: { privacy: "Privacy Policy", terms: "Terms of Service" },
-  "zh-CN": { privacy: "隐私政策", terms: "服务条款" },
-  "zh-TW": { privacy: "隱私權政策", terms: "服務條款" },
-  ko: { privacy: "개인정보 처리방침", terms: "이용약관" },
-  es: { privacy: "Política de privacidad", terms: "Términos de servicio" },
-  fr: { privacy: "Politique de confidentialité", terms: "Conditions d'utilisation" },
-  de: { privacy: "Datenschutzrichtlinie", terms: "Nutzungsbedingungen" },
-  pt: { privacy: "Política de privacidade", terms: "Termos de serviço" },
-  it: { privacy: "Informativa sulla privacy", terms: "Termini di servizio" },
-  hi: { privacy: "गोपनीयता नीति", terms: "सेवा की शर्तें" },
-  ar: { privacy: "سياسة الخصوصية", terms: "شروط الخدمة" },
+  ja: {
+    privacy: "プライバシーポリシー",
+    terms: "利用規約",
+    tokusho: "特定商取引法に基づく表示",
+  },
+  en: {
+    privacy: "Privacy Policy",
+    terms: "Terms of Service",
+    tokusho: "Specified Commercial Transaction Act",
+  },
+  "zh-CN": {
+    privacy: "隐私政策",
+    terms: "服务条款",
+    tokusho: "特定商取引法相关说明",
+  },
+  "zh-TW": {
+    privacy: "隱私權政策",
+    terms: "服務條款",
+    tokusho: "特定商取引法相關說明",
+  },
+  ko: {
+    privacy: "개인정보 처리방침",
+    terms: "이용약관",
+    tokusho: "전자상거래법에 따른 표시",
+  },
+  es: {
+    privacy: "Política de privacidad",
+    terms: "Términos de servicio",
+    tokusho: "Información según la ley de transacciones comerciales",
+  },
+  fr: {
+    privacy: "Politique de confidentialité",
+    terms: "Conditions d'utilisation",
+    tokusho: "Informations relatives à la loi sur les transactions commerciales",
+  },
+  de: {
+    privacy: "Datenschutzrichtlinie",
+    terms: "Nutzungsbedingungen",
+    tokusho: "Angaben gemäß dem Gesetz über bestimmte Handelsgeschäfte",
+  },
+  pt: {
+    privacy: "Política de privacidade",
+    terms: "Termos de serviço",
+    tokusho: "Informações com base na lei de transações comerciais",
+  },
+  it: {
+    privacy: "Informativa sulla privacy",
+    terms: "Termini di servizio",
+    tokusho: "Informazioni sulla legge sulle transazioni commerciali",
+  },
+  hi: {
+    privacy: "गोपनीयता नीति",
+    terms: "सेवा की शर्तें",
+    tokusho: "निर्दिष्ट वाणिज्यिक लेनदेन अधिनियम के तहत प्रदर्शन",
+  },
+  ar: {
+    privacy: "سياسة الخصوصية",
+    terms: "شروط الخدمة",
+    tokusho: "الإفصاح بموجب قانون المعاملات التجارية المحددة",
+  },
 };
 
 export type AppData = {
@@ -155,11 +203,11 @@ export function AppDetailClient({ app }: AppDetailClientProps) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
-  // URL の #privacy / #terms と ?lang= を解釈し、タブ・言語を設定して法務セクションへスクロール
+  // URL の #privacy / #terms / #tokusho と ?lang= を解釈し、タブ・言語を設定して法務セクションへスクロール
   useEffect(() => {
     if (!legal) return;
     const hash = typeof window !== "undefined" ? window.location.hash.slice(1) : "";
-    const docId = hash === "privacy" || hash === "terms" ? hash : null;
+    const docId = legal.docs.some((d) => d.id === hash) ? hash : null;
     const langParam = searchParams.get("lang");
     if (docId && legal.docs.some((d) => d.id === docId)) {
       setLegalDocId(docId);
@@ -815,9 +863,7 @@ export function AppDetailClient({ app }: AppDetailClientProps) {
                   <TabsList>
                     {legal.docs.map((doc) => (
                       <TabsTrigger key={doc.id} value={doc.id}>
-                        {doc.id === "privacy"
-                          ? LEGAL_DOC_LABELS[legalLang]?.privacy ?? doc.label
-                          : LEGAL_DOC_LABELS[legalLang]?.terms ?? doc.label}
+                        {(LEGAL_DOC_LABELS[legalLang] as Record<string, string> | undefined)?.[doc.id] ?? doc.label}
                       </TabsTrigger>
                     ))}
                   </TabsList>
