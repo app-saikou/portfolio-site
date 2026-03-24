@@ -36,10 +36,10 @@ const COPY_MAP = [
   {
     slug: "ideahatch",
     srcDir: "doc/apps/ideahatch",
-    langs: ["ja"],
+    langs: ["ja", "en"],
     files: [
-      { src: "privacy-policy.md", outName: "privacy-policy.md" },
-      { src: "terms-of-service.md", outName: "terms-of-service.md" },
+      { prefix: "privacy", outName: "privacy-policy.md" },
+      { prefix: "terms", outName: "terms-of-service.md" },
     ],
   },
 ];

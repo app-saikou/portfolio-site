@@ -145,7 +145,10 @@ export const apps: AppDetail[] = [
     technologies: ["React Native", "Expo", "Supabase", "OpenAI API"],
     downloadUrl: "#",
     legal: {
-      languages: [{ code: "ja", label: "日本語" }],
+      languages: [
+        { code: "ja", label: "日本語" },
+        { code: "en", label: "English" },
+      ],
       docs: [
         {
           id: "privacy",
