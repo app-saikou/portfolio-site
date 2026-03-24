@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import {
   ArrowLeft,
   Download,
@@ -15,93 +16,19 @@ import {
   Clock,
   Shield,
   BarChart3,
-  Globe,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TwitterIcon } from "@/components/TwitterIcon";
 import { useLanguage } from "@/context/LanguageContext";
 import { getTranslation } from "@/lib/i18n";
 import { useEffect, useRef, useState } from "react";
-import { useSearchParams, usePathname } from "next/navigation";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import type { AppLegal } from "@/lib/apps";
 
-// 選択言語に応じた法務タブラベル（privacy / terms / tokusho）
-const LEGAL_DOC_LABELS: Record<
-  string,
-  { privacy: string; terms: string; tokusho: string }
-> = {
-  ja: {
-    privacy: "プライバシーポリシー",
-    terms: "利用規約",
-    tokusho: "特定商取引法に基づく表示",
-  },
-  en: {
-    privacy: "Privacy Policy",
-    terms: "Terms of Service",
-    tokusho: "Specified Commercial Transaction Act",
-  },
-  "zh-CN": {
-    privacy: "隐私政策",
-    terms: "服务条款",
-    tokusho: "特定商取引法相关说明",
-  },
-  "zh-TW": {
-    privacy: "隱私權政策",
-    terms: "服務條款",
-    tokusho: "特定商取引法相關說明",
-  },
-  ko: {
-    privacy: "개인정보 처리방침",
-    terms: "이용약관",
-    tokusho: "전자상거래법에 따른 표시",
-  },
-  es: {
-    privacy: "Política de privacidad",
-    terms: "Términos de servicio",
-    tokusho: "Información según la ley de transacciones comerciales",
-  },
-  fr: {
-    privacy: "Politique de confidentialité",
-    terms: "Conditions d'utilisation",
-    tokusho: "Informations relatives à la loi sur les transactions commerciales",
-  },
-  de: {
-    privacy: "Datenschutzrichtlinie",
-    terms: "Nutzungsbedingungen",
-    tokusho: "Angaben gemäß dem Gesetz über bestimmte Handelsgeschäfte",
-  },
-  pt: {
-    privacy: "Política de privacidade",
-    terms: "Termos de serviço",
-    tokusho: "Informações com base na lei de transações comerciais",
-  },
-  it: {
-    privacy: "Informativa sulla privacy",
-    terms: "Termini di servizio",
-    tokusho: "Informazioni sulla legge sulle transazioni commerciali",
-  },
-  hi: {
-    privacy: "गोपनीयता नीति",
-    terms: "सेवा की शर्तें",
-    tokusho: "निर्दिष्ट वाणिज्यिक लेनदेन अधिनियम के तहत प्रदर्शन",
-  },
-  ar: {
-    privacy: "سياسة الخصوصية",
-    terms: "شروط الخدمة",
-    tokusho: "الإفصاح بموجب قانون المعاملات التجارية المحددة",
-  },
-};
+const LegalSection = dynamic(() => import("./LegalSection"), {
+  ssr: false,
+  loading: () => <p className="text-gray-500 text-sm">読み込み中…</p>,
+});
 
 export type AppData = {
   name: string;
@@ -159,71 +86,6 @@ export function AppDetailClient({ app }: AppDetailClientProps) {
   const description = appTranslations?.description || app.description;
   const features = appTranslations?.features || app.features;
   const faq = appTranslations?.faq;
-
-  // ステータスの翻訳マッピング
-  const getStatusTranslation = (status: string | undefined) => {
-    if (!status) return "";
-    const statusMap: Record<string, string> = {
-      リリース済み: t.apps.status.released,
-      開発中: t.apps.status.developing,
-      アイデア段階: t.apps.status.idea,
-    };
-    return statusMap[status] || status;
-  };
-
-  // 法務ドキュメント（app.legal があるアプリのみ・共通UI）
-  const legal = app.legal;
-  const [legalLang, setLegalLang] = useState(legal?.languages[0]?.code ?? "ja");
-  const [legalDocId, setLegalDocId] = useState(legal?.docs[0]?.id ?? "privacy");
-  const [legalContent, setLegalContent] = useState<string | null>(null);
-  const [legalLoading, setLegalLoading] = useState(false);
-
-  useEffect(() => {
-    if (!legal) return;
-    const doc = legal.docs.find((d) => d.id === legalDocId);
-    if (!doc) return;
-    const url = `/legal/${app.slug}/${legalLang}/${doc.filename}`;
-    setLegalLoading(true);
-    setLegalContent(null);
-    fetch(url)
-      .then((res) => (res.ok ? res.text() : Promise.reject(new Error("404"))))
-      .then(setLegalContent)
-      .catch(() => setLegalContent(null))
-      .finally(() => setLegalLoading(false));
-  }, [legal, app.slug, legalLang, legalDocId]);
-
-  // アプリ切替時に法務の言語・文書をリセット
-  useEffect(() => {
-    if (legal) {
-      setLegalLang(legal.languages[0].code);
-      setLegalDocId(legal.docs[0].id);
-    }
-  }, [app.slug, legal]);
-
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-
-  // URL の #privacy / #terms / #tokusho と ?lang= を解釈し、タブ・言語を設定して法務セクションへスクロール
-  useEffect(() => {
-    if (!legal) return;
-    const hash = typeof window !== "undefined" ? window.location.hash.slice(1) : "";
-    const docId = legal.docs.some((d) => d.id === hash) ? hash : null;
-    const langParam = searchParams.get("lang");
-    if (docId && legal.docs.some((d) => d.id === docId)) {
-      setLegalDocId(docId);
-    }
-    if (langParam && legal.languages.some((l) => l.code === langParam)) {
-      setLegalLang(langParam);
-    }
-    if (docId) {
-      const el = document.getElementById("legal");
-      if (el) {
-        requestAnimationFrame(() => {
-          el.scrollIntoView({ behavior: "smooth" });
-        });
-      }
-    }
-  }, [legal, searchParams]);
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
@@ -336,15 +198,6 @@ export function AppDetailClient({ app }: AppDetailClientProps) {
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
-              <span
-                className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  app.status === "リリース済み"
-                    ? "bg-green-100 text-green-800"
-                    : "bg-blue-100 text-blue-800"
-                }`}
-              >
-                {getStatusTranslation(app.status)}
-              </span>
               <span className="text-sm text-gray-500">{app.version}</span>
             </div>
           </div>
@@ -815,131 +668,7 @@ export function AppDetailClient({ app }: AppDetailClientProps) {
       </div>
 
       {/* プライバシーポリシー・利用規約（app.legal があるアプリのみ） */}
-      {legal && (
-        <div id="legal" className="mb-12">
-          <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-4">
-            プライバシーポリシー・利用規約
-          </h2>
-          <div className="notion-card space-y-4">
-            <div className="flex flex-wrap items-center gap-3">
-              {legal.languages.length > 1 && (
-                <div className="flex items-center gap-2">
-                  <Globe
-                    className="h-5 w-5 text-gray-500 shrink-0"
-                    aria-hidden
-                  />
-                  <Select
-                    value={legalLang}
-                    onValueChange={(v) => setLegalLang(v)}
-                  >
-                    <SelectTrigger className="w-[180px]" aria-label="表示言語">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {legal.languages.map(({ code, label }) => (
-                        <SelectItem key={code} value={code}>
-                          {label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              )}
-              {legal.docs.length > 1 && (
-                <Tabs
-                  value={legalDocId}
-                  onValueChange={(v) => {
-                    setLegalDocId(v);
-                    if (typeof window !== "undefined") {
-                      const search = window.location.search || "";
-                      window.history.replaceState(
-                        null,
-                        "",
-                        `${pathname}${search}#${v}`
-                      );
-                    }
-                  }}
-                >
-                  <TabsList>
-                    {legal.docs.map((doc) => (
-                      <TabsTrigger key={doc.id} value={doc.id}>
-                        {(LEGAL_DOC_LABELS[legalLang] as Record<string, string> | undefined)?.[doc.id] ?? doc.label}
-                      </TabsTrigger>
-                    ))}
-                  </TabsList>
-                </Tabs>
-              )}
-            </div>
-            <div className="prose prose-sm max-w-none">
-              {legalLoading && (
-                <p className="text-gray-500 text-sm">読み込み中…</p>
-              )}
-              {!legalLoading && legalContent === null && (
-                <p className="text-gray-500 text-sm">
-                  指定言語のドキュメントがありません。public/legal/
-                  {app.slug}/ に .md を配置してください。
-                </p>
-              )}
-              {!legalLoading && legalContent !== null && (
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  components={{
-                    h2: ({ children }) => (
-                      <h2 className="text-lg md:text-xl font-semibold text-gray-900 mt-6 mb-3 first:mt-0">
-                        {children}
-                      </h2>
-                    ),
-                    h3: ({ children }) => (
-                      <h3 className="text-base font-semibold text-gray-900 mt-4 mb-2">
-                        {children}
-                      </h3>
-                    ),
-                    h4: ({ children }) => (
-                      <h4 className="text-sm font-semibold text-gray-900 mt-3 mb-2">
-                        {children}
-                      </h4>
-                    ),
-                    p: ({ children }) => (
-                      <p className="text-gray-700 text-sm md:text-base mb-3">
-                        {children}
-                      </p>
-                    ),
-                    ul: ({ children }) => (
-                      <ul className="list-disc list-inside space-y-1 text-gray-700 text-sm md:text-base mb-3">
-                        {children}
-                      </ul>
-                    ),
-                    ol: ({ children }) => (
-                      <ol className="list-decimal list-inside space-y-1 text-gray-700 text-sm md:text-base mb-3">
-                        {children}
-                      </ol>
-                    ),
-                    li: ({ children }) => <li className="mb-1">{children}</li>,
-                    strong: ({ children }) => (
-                      <strong className="font-semibold text-gray-900">
-                        {children}
-                      </strong>
-                    ),
-                    a: ({ href, children, ...props }) => (
-                      <a
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-600 no-underline hover:underline"
-                        {...props}
-                      >
-                        {children}
-                      </a>
-                    ),
-                  }}
-                >
-                  {legalContent}
-                </ReactMarkdown>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+      {app.legal && <LegalSection slug={app.slug} legal={app.legal} />}
 
       {/* Related Blog Posts */}
       {app.blogPosts && app.blogPosts.length > 0 && (

@@ -12,16 +12,6 @@ export default function Apps() {
   const { language } = useLanguage();
   const t = getTranslation(language);
 
-  // ステータスの翻訳マッピング
-  const getStatusTranslation = (status: string | undefined) => {
-    if (!status) return "";
-    const statusMap: Record<string, string> = {
-      リリース済み: t.apps.status.released,
-      開発中: t.apps.status.developing,
-      アイデア段階: t.apps.status.idea,
-    };
-    return statusMap[status] || status;
-  };
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       <div className="mb-8 md:mb-12">
@@ -48,22 +38,6 @@ export default function Apps() {
                   />
                 </div>
               </Link>
-              {/* Status Badge */}
-              <div className="absolute top-3 right-3">
-                <span
-                  className={`px-3 py-1 rounded-full text-xs font-medium shadow-md ${
-                    app.status === "リリース済み"
-                      ? "bg-green-100 text-green-800"
-                      : app.status === "開発中"
-                      ? "bg-blue-100 text-blue-800"
-                      : app.status === "アイデア段階"
-                      ? "bg-gray-100 text-gray-800"
-                      : "bg-gray-100 text-gray-800"
-                  }`}
-                >
-                  {getStatusTranslation(app.status)}
-                </span>
-              </div>
             </div>
 
             {/* App Info */}
