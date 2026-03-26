@@ -41,6 +41,7 @@ export type AppData = {
   features: string[];
   technologies: string[];
   downloadUrl: string;
+  lpUrl?: string;
   blogPosts?: any[];
   slug: string;
   legal?: AppLegal;
@@ -124,36 +125,49 @@ export function AppDetailClient({ app }: AppDetailClientProps) {
                 </h2>
               </div>
             </div>
-            {app.status === "リリース済み" ? (
-              <Button
-                asChild
-                className="bg-gray-900 hover:bg-gray-800 text-white flex-shrink-0 shadow-lg hover:shadow-xl transition-all duration-300"
-                size="sm"
-              >
-                <a
-                  href={app.downloadUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+            <div className="flex items-center gap-2 flex-shrink-0">
+              {app.status === "リリース済み" ? (
+                <Button
+                  asChild
+                  className="bg-gray-900 hover:bg-gray-800 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+                  size="sm"
+                >
+                  <a
+                    href={app.downloadUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Download size={16} className="sm:mr-1" />
+                    <span className="hidden sm:inline">
+                      {t.apps.detail.download}
+                    </span>
+                  </a>
+                </Button>
+              ) : (
+                <Button
+                  variant="outline"
+                  disabled
+                  className="opacity-50 cursor-not-allowed"
+                  size="sm"
                 >
                   <Download size={16} className="sm:mr-1" />
                   <span className="hidden sm:inline">
-                    {t.apps.detail.download}
+                    {t.apps.detail.inDevelopmentStatus}
                   </span>
-                </a>
-              </Button>
-            ) : (
-              <Button
-                variant="outline"
-                disabled
-                className="opacity-50 cursor-not-allowed flex-shrink-0"
-                size="sm"
-              >
-                <Download size={16} className="sm:mr-1" />
-                <span className="hidden sm:inline">
-                  {t.apps.detail.inDevelopmentStatus}
-                </span>
-              </Button>
-            )}
+                </Button>
+              )}
+              {app.lpUrl && (
+                <Button variant="outline" size="sm" asChild>
+                  <a
+                    href={app.lpUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    LPを見る
+                  </a>
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -203,10 +217,10 @@ export function AppDetailClient({ app }: AppDetailClientProps) {
           </div>
         </div>
 
-        {/* Download Button */}
+        {/* Download + LP */}
         <div
           ref={downloadButtonRef}
-          className="flex justify-center md:justify-start"
+          className="flex flex-wrap items-stretch md:items-center justify-center md:justify-start gap-3"
         >
           {app.status === "リリース済み" ? (
             <Button
@@ -230,6 +244,17 @@ export function AppDetailClient({ app }: AppDetailClientProps) {
             >
               <Download size={18} className="mr-2" />
               {t.apps.detail.inDevelopmentStatus}
+            </Button>
+          )}
+          {app.lpUrl && (
+            <Button
+              variant="outline"
+              className="w-full md:w-auto py-6 text-base md:self-stretch"
+              asChild
+            >
+              <a href={app.lpUrl} target="_blank" rel="noopener noreferrer">
+                LPを見る
+              </a>
             </Button>
           )}
         </div>
@@ -266,7 +291,7 @@ export function AppDetailClient({ app }: AppDetailClientProps) {
       <div className="mb-12">
         <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-4">
           {t.apps.detail.overview}
-        </h2>
+            </h2>
         {app.slug === "tanao" ? (
           <div className="space-y-6">
             <p className="text-gray-700 leading-relaxed text-base md:text-lg font-medium text-center">
@@ -340,10 +365,10 @@ export function AppDetailClient({ app }: AppDetailClientProps) {
 
       {/* Comparison - Tanao only */}
       {app.slug === "tanao" && (
-        <div className="mb-12">
+      <div className="mb-12">
           <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-6">
             従来の家計簿との違い
-          </h2>
+        </h2>
           <div className="grid md:grid-cols-2 gap-6">
             {/* 従来の家計簿 */}
             <div className="notion-card border-2 border-gray-200">
@@ -382,7 +407,7 @@ export function AppDetailClient({ app }: AppDetailClientProps) {
                   </span>
                 </li>
               </ul>
-            </div>
+      </div>
 
             {/* Tanao */}
             <div className="notion-card border-2 border-gray-900 bg-gray-50">
@@ -538,15 +563,15 @@ export function AppDetailClient({ app }: AppDetailClientProps) {
           </div>
         ) : (
           <div className="space-y-3">
-            {features.map((feature: string, index: number) => (
-              <div key={index} className="flex items-center space-x-3">
+          {features.map((feature: string, index: number) => (
+            <div key={index} className="flex items-center space-x-3">
                 <div className="flex-shrink-0 w-2 h-2 bg-gray-900 rounded-full"></div>
                 <span className="text-gray-700 text-sm md:text-base">
                   {feature}
                 </span>
-              </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
         )}
       </div>
 

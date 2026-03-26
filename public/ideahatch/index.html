@@ -1,0 +1,1036 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IdeaHatch | 雑でいい。AIが、文書にする。</title>
+    <link rel="icon" href="/app-icons/ideahatch.png" type="image/png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", "Noto Sans JP", sans-serif;
+        scroll-behavior: smooth;
+      }
+      .bento-card {
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .bento-card:hover {
+        transform: translateY(-4px);
+        box-shadow:
+          0 10px 25px -5px rgba(0, 0, 0, 0.1),
+          0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      }
+      .glass-morphism {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(229, 231, 235, 0.5);
+      }
+    </style>
+  </head>
+  <body class="bg-white text-gray-900 overflow-x-hidden">
+    <!-- Header -->
+    <header
+      class="fixed top-0 w-full z-50 glass-morphism border-b border-gray-100"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-2">
+          <img
+            src="/app-icons/ideahatch.png"
+            alt=""
+            width="32"
+            height="32"
+            class="w-8 h-8 rounded-lg object-cover shadow-sm ring-1 ring-black/5"
+          />
+          <span class="font-bold text-xl tracking-tight">IdeaHatch</span>
+        </div>
+        <nav
+          class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600"
+        >
+          <a href="#features" class="hover:text-indigo-600 transition">機能</a>
+          <a href="#demo" class="hover:text-indigo-600 transition">デモ</a>
+          <a href="#pricing" class="hover:text-indigo-600 transition">料金</a>
+          <a
+            href="#"
+            class="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition"
+            >無料ダウンロード</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-6">
+      <div class="max-w-5xl mx-auto text-center">
+        <span
+          class="inline-block px-4 py-1.5 mb-6 text-sm font-semibold text-indigo-600 bg-indigo-50 rounded-full"
+        >
+          言語化の壁を取り除く、AIメモアプリ
+        </span>
+        <h1
+          class="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight"
+        >
+          雑でいい。<br /><span class="text-indigo-600"
+            >AIが、文書にする。</span
+          >
+        </h1>
+        <p
+          class="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed"
+        >
+          思いついたままを吐き出すだけ。AIが意図を読み取り、次の瞬間には人に見せられるMarkdown文書になっている。
+        </p>
+        <div
+          class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
+        >
+          <a
+            href="#"
+            class="w-full sm:w-auto px-8 py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-all transform hover:scale-105 shadow-lg shadow-indigo-200"
+          >
+            App Storeで無料ダウンロード
+          </a>
+          <a
+            href="#demo"
+            class="w-full sm:w-auto px-8 py-4 bg-white text-gray-900 font-bold rounded-xl border border-gray-200 hover:bg-gray-50 transition-all"
+          >
+            使い方を見る
+          </a>
+        </div>
+
+        <!-- Hero Image / Mockup -->
+        <div class="relative max-w-4xl mx-auto">
+          <div
+            class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-3xl blur opacity-20"
+          ></div>
+          <div
+            class="relative bg-gray-900 rounded-2xl overflow-hidden shadow-2xl border border-gray-800"
+          >
+            <div
+              class="flex items-center gap-2 px-4 py-3 border-b border-gray-800 bg-gray-900/50"
+            >
+              <div class="w-3 h-3 rounded-full bg-red-500"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 h-[450px]">
+              <div
+                class="p-6 border-r border-gray-800 bg-gray-800/30 text-left"
+              >
+                <div
+                  class="text-xs text-gray-500 mb-2 uppercase tracking-widest font-bold"
+                >
+                  Input
+                </div>
+                <div class="text-gray-300 font-mono text-sm leading-relaxed">
+                  次回のアプデ案はダークモード修正するのと検索をもっと速くしてタグ付け機能追加したいから来週までに要件をまとめる。
+                </div>
+              </div>
+              <div class="p-6 bg-gray-900 text-left relative">
+                <div
+                  class="text-xs text-emerald-500 mb-2 uppercase tracking-widest font-bold flex items-center gap-1"
+                >
+                  <span class="relative flex h-2 w-2">
+                    <span
+                      class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+                    ></span>
+                    <span
+                      class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"
+                    ></span>
+                  </span>
+                  AI Structured
+                </div>
+                <div
+                  class="text-white font-sans text-sm leading-relaxed prose prose-invert"
+                >
+                  <h3 class="text-lg font-bold text-white mb-2">
+                    🚀 アップデート計画案
+                  </h3>
+                  <p class="text-gray-400 mb-4">
+                    次期バージョンにおける改善項目とスケジュール
+                  </p>
+                  <ul class="space-y-2 text-gray-300">
+                    <li class="flex items-start gap-2">
+                      <span class="text-emerald-500">✔</span> UI/UX:
+                      ダークモードの視認性改善
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-emerald-500">✔</span> Performance:
+                      全文検索エンジンの高速化
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-emerald-500">✔</span> Feature:
+                      カスタムタグによる分類機能
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pain Points Section -->
+    <section class="py-24 bg-gray-50 border-y border-gray-100">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-16">
+          こんな悩み、ありませんか？
+        </h2>
+        <div class="grid gap-6">
+          <div
+            class="flex items-center gap-4 p-6 bg-white rounded-2xl shadow-sm border border-gray-100"
+          >
+            <div
+              class="w-10 h-10 flex-shrink-0 bg-red-50 text-red-500 rounded-full flex items-center justify-center"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </div>
+            <p class="text-lg font-medium text-gray-700">
+              アイデアはあるのに、うまく言語化できない
+            </p>
+          </div>
+          <div
+            class="flex items-center gap-4 p-6 bg-white rounded-2xl shadow-sm border border-gray-100"
+          >
+            <div
+              class="w-10 h-10 flex-shrink-0 bg-red-50 text-red-500 rounded-full flex items-center justify-center"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </div>
+            <p class="text-lg font-medium text-gray-700">
+              メモは取るけど、人に見せられる形にまとめる時間がない
+            </p>
+          </div>
+          <div
+            class="flex items-center gap-4 p-6 bg-white rounded-2xl shadow-sm border border-gray-100"
+          >
+            <div
+              class="w-10 h-10 flex-shrink-0 bg-red-50 text-red-500 rounded-full flex items-center justify-center"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </div>
+            <p class="text-lg font-medium text-gray-700">
+              Markdownで書きたいが、構造を考えながら書くのが面倒
+            </p>
+          </div>
+          <div
+            class="flex items-center gap-4 p-6 bg-white rounded-2xl shadow-sm border border-gray-100"
+          >
+            <div
+              class="w-10 h-10 flex-shrink-0 bg-red-50 text-red-500 rounded-full flex items-center justify-center"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </div>
+            <p class="text-lg font-medium text-gray-700">
+              音声でサッと記録して、後でまとめたい
+            </p>
+          </div>
+        </div>
+        <p class="text-2xl font-bold text-center mt-16 text-indigo-600">
+          それ、全部IdeaHatchに任せてください。
+        </p>
+      </div>
+    </section>
+
+    <!-- Before / After Demo Section -->
+    <section id="demo" class="py-24 px-6 overflow-hidden">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold mb-4">プロダクトの力を、その目で。</h2>
+          <p class="text-gray-500">これが、IdeaHatchです。</p>
+        </div>
+
+        <div class="grid md:grid-cols-11 gap-4 items-center">
+          <!-- Before -->
+          <div
+            class="md:col-span-5 bg-white p-8 rounded-3xl border border-gray-200 shadow-xl relative"
+          >
+            <span
+              class="absolute top-4 right-6 text-xs font-bold text-gray-400 uppercase tracking-widest"
+              >Before</span
+            >
+            <h4 class="text-sm font-bold text-gray-400 mb-4 italic">
+              あなたの「雑」な思考
+            </h4>
+            <div class="font-mono text-gray-700 space-y-2">
+              <p>
+                来週のMTGについて競合調査の件どうするかとデザインがまだかとスケジュール押してる気がするからとりあえず整理したい
+              </p>
+            </div>
+          </div>
+
+          <!-- Arrow -->
+          <div class="md:col-span-1 flex justify-center py-4">
+            <div
+              class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-indigo-200 transform rotate-90 md:rotate-0"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                ></path>
+              </svg>
+            </div>
+          </div>
+
+          <!-- After -->
+          <div
+            class="md:col-span-5 bg-indigo-900 p-8 rounded-3xl border border-indigo-800 shadow-2xl relative"
+          >
+            <span
+              class="absolute top-4 right-6 text-xs font-bold text-indigo-400 uppercase tracking-widest"
+              >After</span
+            >
+            <h4 class="text-sm font-bold text-emerald-400 mb-4">AIが構造化</h4>
+            <div class="prose prose-invert max-w-none">
+              <h3 class="text-xl font-bold text-white mb-4">
+                # 来週のMTG 準備メモ
+              </h3>
+              <div class="space-y-4 text-indigo-100">
+                <div>
+                  <h4 class="text-sm font-bold text-indigo-300 uppercase">
+                    ## 課題
+                  </h4>
+                  <ul class="list-disc ml-5">
+                    <li>競合調査の進捗確認が必要</li>
+                    <li>デザイン作業が未完了</li>
+                    <li>スケジュールの遅延リスクあり</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-indigo-300 uppercase">
+                    ## アクション
+                  </h4>
+                  <ul class="list-none space-y-1">
+                    <li class="flex items-center gap-2">
+                      <div
+                        class="w-4 h-4 border border-indigo-400 rounded"
+                      ></div>
+                      競合調査の担当者に進捗確認
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <div
+                        class="w-4 h-4 border border-indigo-400 rounded"
+                      ></div>
+                      デザイン完了予定日を確認
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <div
+                        class="w-4 h-4 border border-indigo-400 rounded"
+                      ></div>
+                      全体スケジュールを見直し
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento Benefits Section -->
+    <section id="features" class="py-24 px-6 bg-gray-50">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold mb-4 italic">What you get.</h2>
+          <p class="text-gray-500">あなたの思考を、最高の成果物へ。</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-6 grid-rows-auto gap-4">
+          <!-- Card 1 -->
+          <div
+            class="md:col-span-3 bg-white p-8 rounded-3xl bento-card border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center mb-6"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3">雑なメモが、一瞬で文書になる</h3>
+            <p class="text-gray-500 leading-relaxed">
+              うまく書こうとしなくていい。断片的でも、箇条書きでも、思ったままを入力するだけ。AIが構造を読み取り、読みやすいMarkdown文書に整理します。
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="md:col-span-3 bg-white p-8 rounded-3xl bento-card border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mb-6"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3">AIがあなたの意図を引き出す</h3>
+            <p class="text-gray-500 leading-relaxed">
+              構造化の前に、AIが的確な質問を1つ投げかけます。その答えをもとに、あなたの意図を汲んだ文書を生成。代行ではなく、加速です。
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="md:col-span-2 bg-indigo-600 text-white p-8 rounded-3xl bento-card shadow-xl shadow-indigo-100"
+          >
+            <div
+              class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-6 text-white"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3">話しかけるだけで記録される</h3>
+            <p class="text-indigo-100 text-sm leading-relaxed">
+              マイクボタンをタップして話すだけ。リアルタイムで文字起こしされるので、歩きながらでも、移動中でも、思考のスピードに追いつきます。
+            </p>
+          </div>
+
+          <!-- Card 4 -->
+          <div
+            class="md:col-span-2 bg-white p-8 rounded-3xl bento-card border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 bg-gray-100 text-gray-600 rounded-xl flex items-center justify-center mb-6 text-white"
+            >
+              <svg
+                class="w-6 h-6 text-gray-900"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h7"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Markdownエディタ＋プレビュー</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              見出し・太字・引用・タスクリストに対応した本格エディタ。タップ一つで美しいプレビューに切り替え。
+            </p>
+          </div>
+
+          <!-- Card 5 -->
+          <div
+            class="md:col-span-2 bg-white p-8 rounded-3xl bento-card border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 bg-gray-100 text-gray-600 rounded-xl flex items-center justify-center mb-6 text-white"
+            >
+              <svg
+                class="w-6 h-6 text-gray-900"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3">どこへでも持ち出せる</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              .mdファイルやPDFとして共有。Notion・Obsidian・GitHub・Cursorなど、あらゆる環境にそのまま持ち込めます。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it Works Section -->
+    <section class="py-24 px-6">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-20">How it works</h2>
+        <div class="space-y-16">
+          <div class="flex flex-col md:flex-row gap-12 items-center">
+            <div class="flex-1">
+              <div class="text-6xl font-black text-gray-100 mb-4 italic">
+                01
+              </div>
+              <h3 class="text-2xl font-bold mb-4">思いついたままを入力</h3>
+              <p class="text-gray-600 leading-relaxed">
+                うまく書かなくていい。断片的でも、箇条書きでも、雑なままで大丈夫。音声入力でさらに速く。
+              </p>
+            </div>
+            <div
+              class="flex-1 w-full bg-gray-50 aspect-video rounded-3xl border border-gray-100 flex items-center justify-center"
+            >
+              <div
+                class="p-6 bg-white shadow-sm border border-gray-100 rounded-xl w-3/4"
+              >
+                <div class="h-2 w-1/2 bg-gray-100 rounded mb-2"></div>
+                <div class="h-2 w-3/4 bg-gray-100 rounded mb-2"></div>
+                <div class="h-2 w-1/3 bg-gray-200 rounded animate-pulse"></div>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col md:flex-row-reverse gap-12 items-center">
+            <div class="flex-1">
+              <div
+                class="text-6xl font-black text-gray-100 mb-4 italic text-right md:text-left"
+              >
+                02
+              </div>
+              <h3 class="text-2xl font-bold mb-4">AIボタンをタップ</h3>
+              <p class="text-gray-600 leading-relaxed">
+                AIが質問を1つ投げかけ、あなたの意図を確認。回答をもとに、読みやすいMarkdown文書を自動生成します。
+              </p>
+            </div>
+            <div
+              class="flex-1 w-full bg-indigo-50 aspect-video rounded-3xl border border-indigo-100 flex items-center justify-center"
+            >
+              <button
+                class="px-6 py-3 bg-indigo-600 text-white rounded-full font-bold animate-bounce flex items-center gap-2 shadow-lg"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  ></path>
+                </svg>
+                AIで構造化
+              </button>
+            </div>
+          </div>
+          <div class="flex flex-col md:flex-row gap-12 items-center">
+            <div class="flex-1">
+              <div class="text-6xl font-black text-gray-100 mb-4 italic">
+                03
+              </div>
+              <h3 class="text-2xl font-bold mb-4">Markdown / PDFで書き出し</h3>
+              <p class="text-gray-600 leading-relaxed">
+                .mdファイルとしてコピー・共有、またはPDFとして書き出し。そのまま開発素材・企画資料として使えます。
+              </p>
+            </div>
+            <div
+              class="flex-1 w-full bg-emerald-50 aspect-video rounded-3xl border border-emerald-100 flex items-center justify-center"
+            >
+              <div class="flex gap-4">
+                <div
+                  class="px-4 py-2 bg-white rounded-lg border border-emerald-200 text-emerald-600 text-sm font-bold"
+                >
+                  .md
+                </div>
+                <div
+                  class="px-4 py-2 bg-white rounded-lg border border-emerald-200 text-emerald-600 text-sm font-bold"
+                >
+                  PDF
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Personas Section -->
+    <section class="py-24 px-6 bg-gray-900 text-white">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-16">
+          あなたの「書きたい」を加速させる。
+        </h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Persona 1 -->
+          <div class="p-8 rounded-3xl bg-gray-800 border border-gray-700">
+            <div
+              class="w-12 h-12 bg-gray-700 rounded-full mb-6 flex items-center justify-center"
+            >
+              <svg
+                class="w-6 h-6 text-indigo-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">エンジニア / 個人開発者</h3>
+            <p class="text-gray-400 leading-relaxed">
+              「アイデアをCursorやGitHubのIssueに即展開したい。雑なメモから.mdが出るのがちょうどいい。」
+            </p>
+          </div>
+          <!-- Persona 2 -->
+          <div class="p-8 rounded-3xl bg-gray-800 border border-gray-700">
+            <div
+              class="w-12 h-12 bg-gray-700 rounded-full mb-6 flex items-center justify-center"
+            >
+              <svg
+                class="w-6 h-6 text-indigo-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">企画職 / マーケター</h3>
+            <p class="text-gray-400 leading-relaxed">
+              「移動中に浮かんだアイデアをPDFにして、そのまま上司に送りたい。会議前の整理にも使える。」
+            </p>
+          </div>
+          <!-- Persona 3 -->
+          <div class="p-8 rounded-3xl bg-gray-800 border border-gray-700">
+            <div
+              class="w-12 h-12 bg-gray-700 rounded-full mb-6 flex items-center justify-center"
+            >
+              <svg
+                class="w-6 h-6 text-indigo-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">言語化が苦手な人</h3>
+            <p class="text-gray-400 leading-relaxed">
+              「頭の中にはあるのに、うまく書けない。AIが質問してくれるおかげで、やっと伝わる文書が書けた。」
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 px-6">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-16">プラン</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Free -->
+          <div
+            class="p-10 rounded-3xl border border-gray-200 hover:border-indigo-200 transition"
+          >
+            <h3 class="text-2xl font-bold mb-2">Free</h3>
+            <div class="text-4xl font-black mb-6">¥0</div>
+            <ul class="space-y-4 mb-10 text-gray-600">
+              <li class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-emerald-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                AIによる思考の構造化
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-emerald-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                音声入力・リアルタイム文字起こし
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-emerald-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Markdownエディタ＋プレビュー
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-emerald-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                .md / PDF 書き出し
+              </li>
+              <li class="flex items-center gap-2 text-gray-400">
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                バナー広告あり
+              </li>
+            </ul>
+            <button
+              class="w-full py-4 rounded-xl border border-gray-200 font-bold hover:bg-gray-50 transition"
+            >
+              今すぐ始める
+            </button>
+          </div>
+          <!-- Pro -->
+          <div
+            class="p-10 rounded-3xl bg-indigo-600 text-white shadow-2xl shadow-indigo-200 relative overflow-hidden"
+          >
+            <div
+              class="absolute top-4 right-4 px-3 py-1 bg-white/20 text-xs font-bold rounded-full uppercase"
+            >
+              Coming Soon
+            </div>
+            <h3 class="text-2xl font-bold mb-2">Pro</h3>
+            <div class="text-4xl font-black mb-6">TBA</div>
+            <ul class="space-y-4 mb-10 text-indigo-100">
+              <li class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-emerald-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                広告なし・集中モード
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-emerald-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                AIの優先処理
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-emerald-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                カスタムテンプレート
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-emerald-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                高度な検索・整理機能
+              </li>
+            </ul>
+            <button
+              class="w-full py-4 rounded-xl bg-white text-indigo-600 font-bold shadow-lg shadow-indigo-800/20 transition opacity-80 cursor-not-allowed"
+            >
+              準備中
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-24 px-6 bg-gray-50">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-16">よくあるご質問</h2>
+        <div class="space-y-6">
+          <details
+            class="bg-white p-6 rounded-2xl border border-gray-100 group"
+          >
+            <summary
+              class="flex justify-between items-center font-bold cursor-pointer list-none"
+            >
+              無料プランでも全機能使えますか？
+              <span
+                class="text-indigo-600 transform transition-transform group-open:rotate-180"
+                >↓</span
+              >
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              はい、無料プランでもAI構造化・音声入力・Markdownエディタ・クラウド同期など、すべての基本機能をご利用いただけます。広告が表示されますが、機能制限はありません。
+            </p>
+          </details>
+          <details
+            class="bg-white p-6 rounded-2xl border border-gray-100 group"
+          >
+            <summary
+              class="flex justify-between items-center font-bold cursor-pointer list-none"
+            >
+              AIに送ったメモはどうなりますか？
+              <span
+                class="text-indigo-600 transform transition-transform group-open:rotate-180"
+                >↓</span
+              >
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              AI構造化機能を使用する際、入力テキストはOpenAI
+              APIに送信されます。個人を特定できる情報をメモに含めないことを推奨します。詳細は<a
+                href="/apps/ideahatch#privacy"
+                class="text-indigo-600 hover:underline font-medium"
+                >プライバシーポリシー</a
+              >をご確認ください。
+            </p>
+          </details>
+          <details
+            class="bg-white p-6 rounded-2xl border border-gray-100 group"
+          >
+            <summary
+              class="flex justify-between items-center font-bold cursor-pointer list-none"
+            >
+              オフラインでも使えますか？
+              <span
+                class="text-indigo-600 transform transition-transform group-open:rotate-180"
+                >↓</span
+              >
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              テキスト入力・閲覧はオフラインでも可能です。AI構造化・クラウド同期にはインターネット接続が必要です。
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-32 px-6 text-center">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold mb-8">
+          あなたの頭の中のアイデアを、<br />今日から世界に出そう。
+        </h2>
+        <div class="flex flex-col items-center gap-6">
+          <a
+            href="#"
+            class="px-10 py-5 bg-indigo-600 text-white font-bold rounded-2xl text-xl shadow-xl shadow-indigo-200 transform hover:scale-105 transition"
+          >
+            App Storeで無料ダウンロード
+          </a>
+          <p class="text-gray-500 text-sm">iOS 15.0以降に対応</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 px-6 border-t border-gray-100 bg-gray-50">
+      <div
+        class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10"
+      >
+        <div>
+          <div
+            class="flex items-center gap-2 mb-4 justify-center md:justify-start"
+          >
+            <img
+              src="/app-icons/ideahatch.png"
+              alt=""
+              width="24"
+              height="24"
+              class="w-6 h-6 rounded-md object-cover shadow-sm ring-1 ring-black/5"
+            />
+            <span class="font-bold text-lg">IdeaHatch</span>
+          </div>
+          <p class="text-gray-400 text-sm italic">Accelerate your thinking.</p>
+        </div>
+        <div
+          class="flex flex-wrap justify-center gap-8 text-sm text-gray-500 font-medium"
+        >
+          <a
+            href="/apps/ideahatch#terms"
+            class="hover:text-indigo-600 transition"
+            >利用規約</a
+          >
+          <a
+            href="/apps/ideahatch#privacy"
+            class="hover:text-indigo-600 transition"
+            >プライバシーポリシー</a
+          >
+        </div>
+        <div class="flex gap-4">
+          <a
+            href="#"
+            class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-white transition"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="mt-12 text-center text-xs text-gray-400">
+        &copy; 2024 IdeaHatch. All rights reserved.
+      </div>
+    </footer>
+  </body>
+</html>

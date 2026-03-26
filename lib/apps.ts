@@ -23,6 +23,7 @@ export interface AppDetail {
   features: string[];
   technologies: string[];
   downloadUrl: string;
+  lpUrl?: string;
   legal?: AppLegal;
 }
 
@@ -144,6 +145,7 @@ export const apps: AppDetail[] = [
     ],
     technologies: ["React Native", "Expo", "Supabase", "OpenAI API"],
     downloadUrl: "#",
+    lpUrl: "/ideahatch/index.html",
     legal: {
       languages: [
         { code: "ja", label: "日本語" },
