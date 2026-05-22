@@ -1,6 +1,6 @@
 # プライバシーポリシー
 
-**最終更新日:** 2026-03-24
+**最終更新日:** 2026-05-22
 
 ---
 
@@ -31,7 +31,7 @@ IdeaHatch（以下「本アプリ」）は、ユーザーのプライバシー�
 | 目的 | 対象データ |
 |---|---|
 | アプリ機能の提供（メモの保存・同期） | ノートテキスト、メタデータ |
-| AI による思考構造化 | ノートテキスト（OpenAI API に送信） |
+| AI による思考構造化 | ノートテキスト（Anthropic Claude API に送信） |
 | 広告配信の最適化 | 端末情報、広告識別子 |
 | アプリの改善・不具合調査 | 利用状況データ |
 
@@ -46,11 +46,12 @@ IdeaHatch（以下「本アプリ」）は、ユーザーのプライバシー�
 - データはSupabaseのサーバー（AWS）に保存されます。
 - [Supabase Privacy Policy](https://supabase.com/privacy)
 
-#### OpenAI（AI 処理）
-- AI 構造化機能を使用する際、入力テキストを OpenAI API に送信します。
-- 送信されたテキストは OpenAI のポリシーに従い処理されます。
+#### Anthropic（AI 処理）
+- AI 構造化機能を使用する際、ユーザーの同意を得た上で入力テキストを Anthropic の Claude API に送信します。
+- 送信されるデータはメモのテキスト内容のみです。
+- 送信されたテキストは Anthropic のプライバシーポリシーに従い処理されます。
 - **個人を特定できる情報を意図的にメモに含めないことを推奨します。**
-- [OpenAI Privacy Policy](https://openai.com/privacy)
+- [Anthropic Privacy Policy](https://www.anthropic.com/privacy)
 
 #### Google AdMob（広告配信）
 - 本アプリは Google AdMob による広告を表示します。
