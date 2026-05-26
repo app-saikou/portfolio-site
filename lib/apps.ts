@@ -89,7 +89,7 @@ export const apps: AppDetail[] = [
       "多言語対応（11言語）",
     ],
     technologies: ["React Native", "TypeScript", "Expo"],
-    downloadUrl: "#",
+    downloadUrl: "https://apps.apple.com/jp/app/%E3%81%99%E3%81%90%E3%83%A1%E3%83%A2-%E9%9F%B3%E5%A3%B0%E5%85%A5%E5%8A%9B-%E3%83%AA%E3%83%9E%E3%82%A4%E3%83%B3%E3%83%80%E3%83%BC%E3%83%A1%E3%83%A2/id6758551954",
     legal: {
       languages: [
         { code: "ja", label: "日本語" },
@@ -132,8 +132,8 @@ export const apps: AppDetail[] = [
     description:
       "思いついたメモをそのまま残すだけで、AIが意図を読み取り構造化。音声入力からMarkdown文書化までを一気に行えるメモアプリです。",
     iconUrl: "/app-icons/ideahatch.png",
-    status: "開発中",
-    version: "v0.1.0",
+    status: "リリース済み",
+    version: "v1.0.0",
     screenshots: [],
     features: [
       "AIによる思考の構造化（雑なメモ → Markdown文書）",
@@ -144,7 +144,7 @@ export const apps: AppDetail[] = [
       "クラウド同期（自動保存）",
     ],
     technologies: ["React Native", "Expo", "Supabase", "OpenAI API"],
-    downloadUrl: "#",
+    downloadUrl: "https://apps.apple.com/jp/app/ideahatch/id6760715745",
     lpUrl: "/ideahatch/index.html",
     legal: {
       languages: [
