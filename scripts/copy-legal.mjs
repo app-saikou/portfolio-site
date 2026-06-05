@@ -40,6 +40,7 @@ const COPY_MAP = [
     files: [
       { prefix: "privacy", outName: "privacy-policy.md" },
       { prefix: "terms", outName: "terms-of-service.md" },
+      { prefix: "tokusho", outName: "specified-commercial-transaction.md" },
     ],
   },
 ];

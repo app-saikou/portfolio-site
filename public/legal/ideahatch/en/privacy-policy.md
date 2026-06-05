@@ -1,6 +1,6 @@
 # Privacy Policy
 
-**Last Updated:** 2026-03-24
+**Last Updated:** 2026-05-22
 
 ---
 
@@ -29,7 +29,7 @@ IdeaHatch ("the App") is committed to protecting your privacy. This Privacy Poli
 | Purpose | Data Used |
 |---|---|
 | Core app functionality (saving & syncing notes) | Note text, metadata |
-| AI-powered structuring | Note text (sent to OpenAI API) |
+| AI-powered structuring | Note text (sent to Anthropic Claude API) |
 | Ad delivery and optimization | Device info, advertising identifier |
 | App improvement and bug analysis | Usage data |
 
@@ -44,11 +44,12 @@ The App uses the following third-party services, each governed by their own priv
 - Data is stored on Supabase servers (AWS infrastructure).
 - [Supabase Privacy Policy](https://supabase.com/privacy)
 
-#### OpenAI (AI Processing)
-- When you use the AI structuring feature, your note text is sent to the OpenAI API.
-- Data is processed according to OpenAI's privacy policy.
+#### Anthropic (AI Processing)
+- When you use the AI structuring feature, your note text is sent to Anthropic's Claude API with your prior consent.
+- Only the text content of your note is transmitted.
+- Data is processed according to Anthropic's privacy policy.
 - **We recommend avoiding including personally identifiable information in your notes.**
-- [OpenAI Privacy Policy](https://openai.com/privacy)
+- [Anthropic Privacy Policy](https://www.anthropic.com/privacy)
 
 #### Google AdMob (Advertising)
 - The App displays ads served by Google AdMob.

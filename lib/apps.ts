@@ -162,6 +162,11 @@ export const apps: AppDetail[] = [
           filename: "terms-of-service.md",
           label: "利用規約",
         },
+        {
+          id: "tokusho",
+          filename: "specified-commercial-transaction.md",
+          label: "特定商取引法に基づく表示",
+        },
       ],
     },
   },
