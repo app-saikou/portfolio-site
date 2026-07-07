@@ -83,4 +83,4 @@ You agree not to:
 
 If you have any questions about these Terms, please contact us at:
 
-**Email:** *(fill in before publishing)*
+**Email:** webzero.net@gmail.com

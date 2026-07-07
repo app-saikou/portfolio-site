@@ -90,4 +90,4 @@ We may update this Privacy Policy from time to time. We will notify you of signi
 
 If you have any questions or requests regarding this Privacy Policy, please contact us at:
 
-**Email:** *(fill in before publishing)*
+**Email:** webzero.net@gmail.com
