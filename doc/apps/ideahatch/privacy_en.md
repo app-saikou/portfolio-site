@@ -1,6 +1,6 @@
 # Privacy Policy
 
-**Last Updated:** 2026-05-22
+**Last Updated:** 2026-08-01
 
 ---
 
@@ -30,6 +30,7 @@ IdeaHatch ("the App") is committed to protecting your privacy. This Privacy Poli
 |---|---|
 | Core app functionality (saving & syncing notes) | Note text, metadata |
 | AI-powered structuring | Note text (sent to Anthropic Claude API) |
+| "Ask AI" feature (Q&A over your notes) | Note text (sent to OpenAI API for semantic search, and to Anthropic API for answer generation) |
 | Ad delivery and optimization | Device info, advertising identifier |
 | App improvement and bug analysis | Usage data |
 
@@ -45,11 +46,17 @@ The App uses the following third-party services, each governed by their own priv
 - [Supabase Privacy Policy](https://supabase.com/privacy)
 
 #### Anthropic (AI Processing)
-- When you use the AI structuring feature, your note text is sent to Anthropic's Claude API with your prior consent.
-- Only the text content of your note is transmitted.
+- When you use the AI structuring feature, or the answer generation behind the "Ask AI" feature, your note text is sent to Anthropic's Claude API with your prior consent.
+- The text content of your note and, for the "Ask AI" feature, your question are transmitted.
 - Data is processed according to Anthropic's privacy policy.
 - **We recommend avoiding including personally identifiable information in your notes.**
 - [Anthropic Privacy Policy](https://www.anthropic.com/privacy)
+
+#### OpenAI (AI Processing)
+- When you use the semantic search behind the "Ask AI" feature, your note text is sent to OpenAI's Embedding API.
+- Data is processed according to OpenAI's privacy policy.
+- **We recommend avoiding including personally identifiable information in your notes.**
+- [OpenAI Privacy Policy](https://openai.com/privacy)
 
 #### Google AdMob (Advertising)
 - The App displays ads served by Google AdMob.
@@ -90,4 +97,4 @@ We may update this Privacy Policy from time to time. We will notify you of signi
 
 If you have any questions or requests regarding this Privacy Policy, please contact us at:
 
-**Email:** *(fill in before publishing)*
+**Email:** webzero.net@gmail.com
