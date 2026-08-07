@@ -170,6 +170,46 @@ export const apps: AppDetail[] = [
       ],
     },
   },
+  {
+    id: "our-family-story",
+    slug: "our-family-story",
+    name: "Our Family Story - 家族だけの記録タイムライン",
+    tagline: "夫婦と子育て、つぶやきで残す毎日",
+    description:
+      "LINEでもなく日記でもない、家族の中だけで閉じて振り返るテキスト中心のタイムラインアプリです。子供の成長記録も夫婦の何気ない気持ちも、同じタイムラインに残していけます。",
+    iconUrl: "/app-icons/our-family-story.png",
+    status: "開発中",
+    version: "1.0.0",
+    screenshots: [],
+    features: [
+      "つぶやきタイムライン（家族限定・招待制）",
+      "キーワード検索で過去の記録に戻れる",
+      "子供プロフィール代理投稿（子供はアカウント不要）",
+      "カテゴリで自由に整理",
+      "Realtimeによる即時反映・プッシュ通知",
+      "日本語・英語のアプリ内切替対応",
+    ],
+    technologies: ["React Native", "Expo", "Supabase", "Cloudflare R2"],
+    downloadUrl: "",
+    legal: {
+      languages: [
+        { code: "ja", label: "日本語" },
+        { code: "en", label: "English" },
+      ],
+      docs: [
+        {
+          id: "privacy",
+          filename: "privacy-policy.md",
+          label: "プライバシーポリシー",
+        },
+        {
+          id: "terms",
+          filename: "terms-of-service.md",
+          label: "利用規約",
+        },
+      ],
+    },
+  },
 ];
 
 export const getAppBySlug = (slug: string): AppDetail | null =>
