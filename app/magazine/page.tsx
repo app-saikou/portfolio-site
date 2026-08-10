@@ -85,7 +85,7 @@ function IssueCarousel({
                   onClick={() => onImageClick(issue.id, pageNum)}
                 >
                   <Image
-                    src={`${issue.imagePath}page-${pageNum}.png`}
+                    src={`${issue.imagePath}page-${pageNum}.webp`}
                     alt={`${t.magazine.title} - ${getDisplayName(
                       issue
                     )} - Page ${pageNum}`}
@@ -409,7 +409,7 @@ export default function Magazine() {
             {fullscreenImage && fullscreenIssue && (
               <>
                 <Image
-                  src={`${fullscreenIssue.imagePath}page-${fullscreenImage.pageNum}.png`}
+                  src={`${fullscreenIssue.imagePath}page-${fullscreenImage.pageNum}.webp`}
                   alt={`Fullscreen - Page ${fullscreenImage.pageNum}`}
                   width={1414}
                   height={2000}

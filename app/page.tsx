@@ -199,7 +199,7 @@ export default function Home() {
                     <div className="flex-shrink-0">
                       <div className="relative w-full md:w-48 aspect-[1414/2000] bg-gray-100 rounded-lg overflow-hidden shadow-md">
                         <Image
-                          src={`${issue.imagePath}page-1.png`}
+                          src={`${issue.imagePath}page-1.webp`}
                           alt={`${issue.displayName} 表紙`}
                           fill
                           className="object-cover"

@@ -7,6 +7,7 @@
     "dev": "next dev",
     "build": "node scripts/copy-legal.mjs && next build",
     "copy-legal": "node scripts/copy-legal.mjs",
+    "optimize-images": "node scripts/optimize-images.mjs",
     "clean": "rm -rf .next out",
     "start": "next start",
     "lint": "next lint",
@@ -77,6 +78,7 @@
   "devDependencies": {
     "@types/node": "24.6.0",
     "@types/react": "18.3.25",
-    "baseline-browser-mapping": "^2.9.11"
+    "baseline-browser-mapping": "^2.9.11",
+    "sharp": "^0.35.3"
   }
 }
