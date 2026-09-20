@@ -57,5 +57,4 @@
 
 关于本条款的咨询：
 
-- **开发者**：小西 祐貴 (Yuki Konishi)
 - **联系**：webzero.net@gmail.com

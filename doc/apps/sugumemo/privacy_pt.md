@@ -105,7 +105,6 @@ Esta política pode ser atualizada sem aviso prévio. Para alterações signific
 
 Para questões sobre esta política:
 
-- **Desenvolvedor**: Yuki Konishi
 - **Contacto**: webzero.net@gmail.com
 
 ## 9. Políticas de privacidade de serviços externos

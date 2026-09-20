@@ -10,9 +10,9 @@ Queste informazioni si riferiscono agli abbonamenti in-app (piano Pro) di «Sugu
 
 | Voce | Contenuto |
 |------|-----------|
-| Venditore | Yuki Konishi (小西 祐貴) |
-| Rappresentante | Yuki Konishi |
-| Sede | 3-1-43 Aomicho, Takahama-shi, Aichi 444-1324, Giappone |
+| Venditore | Divulgato tempestivamente su richiesta. Contattare webzero.net@gmail.com. |
+| Rappresentante | Divulgato tempestivamente su richiesta. Contattare webzero.net@gmail.com. |
+| Sede | Divulgato tempestivamente su richiesta. Contattare webzero.net@gmail.com. |
 | Contatto | Email: webzero.net@gmail.com (richieste solo via email) |
 
 ---

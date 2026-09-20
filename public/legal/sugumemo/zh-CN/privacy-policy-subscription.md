@@ -46,7 +46,6 @@ Sugumemo（以下简称「本应用」）尊重您的隐私并致力于保护您
 
 ## 8. 运营者与联系
 
-- **开发者**：小西 祐貴 (Yuki Konishi)
 - **联系**：webzero.net@gmail.com
 
 ## 9. 外部服务

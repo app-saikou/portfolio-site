@@ -57,5 +57,4 @@ Estos Términos se rigen por las leyes de Japón. Cualquier disputa relativa a l
 
 Para consultas sobre estos Términos:
 
-- **Desarrollador**: Yuki Konishi
 - **Contacto**: webzero.net@gmail.com

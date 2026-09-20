@@ -210,6 +210,52 @@ export const apps: AppDetail[] = [
       ],
     },
   },
+  {
+    id: "lifeplan100",
+    slug: "lifeplan100",
+    name: "100年家計 - ライフプランシミュレーター",
+    tagline: "入力するだけで、資産と年金の見通しを試算",
+    description:
+      "生年月日・収入・資産額を入力するだけで、100歳までの資産推移と年金の見通しを試算するライフプランシミュレーターです。すべてのデータは端末内にのみ保存され、外部には送信されません。",
+    iconUrl: "/app-icons/lifeplan100.webp",
+    status: "開発中",
+    version: "1.0.0",
+    screenshots: [
+      "/screenshots/lifeplan100/1.webp",
+      "/screenshots/lifeplan100/2.webp",
+      "/screenshots/lifeplan100/3.webp",
+      "/screenshots/lifeplan100/4.webp",
+      "/screenshots/lifeplan100/5.webp",
+      "/screenshots/lifeplan100/6.webp",
+      "/screenshots/lifeplan100/7.webp",
+      "/screenshots/lifeplan100/8.webp",
+    ],
+    features: [
+      "生年月日・収入・資産額から資産と年金を試算",
+      "資産推移グラフの可視化",
+      "モンテカルロシミュレーションによる資産分布表示",
+      "複数シナリオの比較",
+      "月次記録・実績管理",
+      "全データを端末内にローカル保存（外部送信なし）",
+    ],
+    technologies: ["React Native", "TypeScript", "Expo"],
+    downloadUrl: "",
+    legal: {
+      languages: [{ code: "ja", label: "日本語" }],
+      docs: [
+        {
+          id: "privacy",
+          filename: "privacy-policy.md",
+          label: "プライバシーポリシー",
+        },
+        {
+          id: "terms",
+          filename: "terms-of-service.md",
+          label: "利用規約",
+        },
+      ],
+    },
+  },
 ];
 
 export const getAppBySlug = (slug: string): AppDetail | null =>

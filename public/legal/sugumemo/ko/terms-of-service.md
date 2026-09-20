@@ -57,5 +57,4 @@
 
 본 약관에 대한 문의:
 
-- **개발자명**: 小西 祐貴 (Yuki Konishi)
 - **연락처**: webzero.net@gmail.com

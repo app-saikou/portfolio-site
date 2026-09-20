@@ -46,7 +46,6 @@ Questa informativa può essere aggiornata senza preavviso. Per modifiche rilevan
 
 ## 8. Operatore e contatti
 
-- **Sviluppatore**: Yuki Konishi
 - **Contatto**: webzero.net@gmail.com
 
 ## 9. Servizi esterni

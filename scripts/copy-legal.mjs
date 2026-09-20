@@ -1,7 +1,11 @@
 #!/usr/bin/env node
 /**
- * doc/apps/<slug>/ の法務 md を public/legal/<slug>/<lang>/<outName> にコピーする。
- * 出力パスは既存URLと完全に同一を保つ。
+ * doc/apps/<slug>/{prefix}_{lang}.md を public/legal/<slug>/<lang>/<outName> にコピーする。
+ *
+ * doc/apps 配下の各アプリディレクトリを自動スキャンするため、新しいアプリを追加するときはディレクトリと
+ * ファイルを doc/apps/_template/README.md の手順通りに置くだけでよい（このスクリプトの
+ * 編集は不要）。出力ファイル名を標準（privacy-policy.md 等）から変えたい場合のみ、
+ * そのアプリのディレクトリに _meta.json を置いて上書きする。
  */
 import fs from "fs";
 import path from "path";
@@ -9,62 +13,47 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
+const appsDir = path.join(root, "doc", "apps");
 
-const SUGUMEMO_LANGS = [
-  "ja", "en", "zh-CN", "zh-TW", "ko", "es", "fr", "de", "pt", "it", "hi", "ar",
-];
+const DEFAULT_OUT_NAMES = {
+  privacy: "privacy-policy.md",
+  terms: "terms-of-service.md",
+  tokusho: "specified-commercial-transaction.md",
+};
 
-const COPY_MAP = [
-  {
-    slug: "sugumemo",
-    srcDir: "doc/apps/sugumemo",
-    langs: SUGUMEMO_LANGS,
-    files: [
-      { prefix: "privacy", outName: "privacy-policy-subscription.md" },
-      { prefix: "terms",   outName: "terms-of-service.md" },
-      { prefix: "tokusho", outName: "specified-commercial-transaction.md" },
-    ],
-  },
-  {
-    slug: "tanao",
-    srcDir: "doc/apps/tanao",
-    langs: ["ja"],
-    files: [
-      { prefix: "privacy", outName: "privacy-policy-subscription.md" },
-    ],
-  },
-  {
-    slug: "ideahatch",
-    srcDir: "doc/apps/ideahatch",
-    langs: ["ja", "en"],
-    files: [
-      { prefix: "privacy", outName: "privacy-policy.md" },
-      { prefix: "terms", outName: "terms-of-service.md" },
-      { prefix: "tokusho", outName: "specified-commercial-transaction.md" },
-    ],
-  },
-];
+const FILENAME_PATTERN = /^(privacy|terms|tokusho)_([a-zA-Z-]+)\.md$/;
 
-for (const app of COPY_MAP) {
-  const srcBase = path.join(root, app.srcDir);
-  if (!fs.existsSync(srcBase)) {
-    console.warn(`${app.slug}: ${srcBase} が見つかりません。スキップします。`);
-    continue;
-  }
+if (!fs.existsSync(appsDir)) {
+  console.warn(`${appsDir} が見つかりません。何もコピーしません。`);
+  process.exit(0);
+}
 
-  for (const lang of app.langs) {
-    const langDir = path.join(root, "public", "legal", app.slug, lang);
+const appSlugs = fs
+  .readdirSync(appsDir, { withFileTypes: true })
+  .filter((d) => d.isDirectory() && !d.name.startsWith("_"))
+  .map((d) => d.name);
+
+for (const slug of appSlugs) {
+  const srcBase = path.join(appsDir, slug);
+  const metaPath = path.join(srcBase, "_meta.json");
+  const outNameOverrides = fs.existsSync(metaPath)
+    ? JSON.parse(fs.readFileSync(metaPath, "utf8"))
+    : {};
+
+  const files = fs.readdirSync(srcBase).filter((f) => FILENAME_PATTERN.test(f));
+
+  for (const filename of files) {
+    const [, prefix, lang] = filename.match(FILENAME_PATTERN);
+    const outName = outNameOverrides[prefix] ?? DEFAULT_OUT_NAMES[prefix];
+    if (!outName) continue;
+
+    const langDir = path.join(root, "public", "legal", slug, lang);
     fs.mkdirSync(langDir, { recursive: true });
 
-    for (const file of app.files) {
-      const srcName = file.src ?? `${file.prefix}_${lang}.md`;
-      const src = path.join(srcBase, srcName);
-      const dest = path.join(langDir, file.outName);
-      if (fs.existsSync(src)) {
-        fs.copyFileSync(src, dest);
-        console.log(`${path.relative(root, src)} -> ${path.relative(root, dest)}`);
-      }
-    }
+    const src = path.join(srcBase, filename);
+    const dest = path.join(langDir, outName);
+    fs.copyFileSync(src, dest);
+    console.log(`${path.relative(root, src)} -> ${path.relative(root, dest)}`);
   }
 }
 

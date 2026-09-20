@@ -103,9 +103,10 @@ This Privacy Policy may be updated without notice. For material changes, we will
 
 ## 8. Operator and Contact
 
+This App is provided by Moedora, an individual developer. If disclosure of business operator information (such as name or address) is legally required, we will disclose it promptly upon request sent to the contact address below.
+
 For questions or feedback about this Privacy Policy, please contact:
 
-- **Developer name**: Yuki Konishi
 - **Contact**: webzero.net@gmail.com
 
 ## 9. External Service Privacy Policies

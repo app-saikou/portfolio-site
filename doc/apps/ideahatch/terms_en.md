@@ -6,7 +6,7 @@
 
 ### 1. Introduction
 
-These Terms of Service ("Terms") govern your use of IdeaHatch ("the App"). By downloading, installing, or using the App, you agree to be bound by these Terms. If you do not agree, please do not use the App.
+These Terms of Service ("Terms") govern your use of IdeaHatch ("the App"), provided by Moedora ("we"). By downloading, installing, or using the App, you agree to be bound by these Terms. If you do not agree, please do not use the App.
 
 ---
 
@@ -79,7 +79,13 @@ You agree not to:
 
 ---
 
-### 10. Contact Us
+### 10. Business Operator Disclosure
+
+We operate this App as an individual developer. If disclosure of business operator information (such as name or address) is legally required, we will disclose it promptly upon request sent to the contact address below.
+
+---
+
+### 11. Contact Us
 
 If you have any questions about these Terms, please contact us at:
 

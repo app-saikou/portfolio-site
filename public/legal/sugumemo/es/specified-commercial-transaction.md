@@ -10,9 +10,9 @@ Esta información se refiere a las suscripciones dentro de la app (plan Pro) de 
 
 | Concepto | Contenido |
 |----------|------------|
-| Vendedor | Yuki Konishi (小西 祐貴) |
-| Representante | Yuki Konishi |
-| Domicilio | 3-1-43 Aomicho, Takahama-shi, Aichi 444-1324, Japón |
+| Vendedor | Se revelará sin demora previa solicitud. Contacte a webzero.net@gmail.com. |
+| Representante | Se revelará sin demora previa solicitud. Contacte a webzero.net@gmail.com. |
+| Domicilio | Se revelará sin demora previa solicitud. Contacte a webzero.net@gmail.com. |
 | Contacto | Correo: webzero.net@gmail.com (consultas solo por correo) |
 
 ---

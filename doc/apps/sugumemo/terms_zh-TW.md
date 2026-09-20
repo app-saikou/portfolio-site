@@ -57,5 +57,4 @@
 
 關於本條款之詢問：
 
-- **開發者**：小西 祐貴 (Yuki Konishi)
 - **聯絡方式**：webzero.net@gmail.com

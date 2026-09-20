@@ -10,9 +10,9 @@ This disclosure applies to in-app subscriptions (Pro plan) for "IdeaHatch".
 
 | Item | Details |
 |------|---------|
-| Seller name | Yuki Konishi (小西 祐貴) |
-| Representative | Yuki Konishi |
-| Address | 3-1-43 Aomicho, Takahama-shi, Aichi 444-1324, Japan |
+| Seller name | Disclosed promptly upon request. Please contact webzero.net@gmail.com. |
+| Representative | Disclosed promptly upon request. Please contact webzero.net@gmail.com. |
+| Address | Disclosed promptly upon request. Please contact webzero.net@gmail.com. |
 | Contact | Email: webzero.net@gmail.com (inquiries accepted by email only) |
 
 ---

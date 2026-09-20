@@ -57,5 +57,4 @@ Les présentes Conditions sont régies par le droit japonais. Tout litige relati
 
 Pour toute question concernant ces Conditions :
 
-- **Développeur** : Yuki Konishi
 - **Contact** : webzero.net@gmail.com

@@ -57,5 +57,4 @@ Diese Bedingungen unterliegen dem Recht Japans. Streitigkeiten zur App unterlieg
 
 Für Anfragen zu diesen Bedingungen wenden Sie sich bitte an:
 
-- **Entwickler**: Yuki Konishi
 - **Kontakt**: webzero.net@gmail.com

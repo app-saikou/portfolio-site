@@ -6,7 +6,7 @@
 
 ### 1. Introduction
 
-IdeaHatch ("the App") is committed to protecting your privacy. This Privacy Policy explains what information we collect, how we use it, and when we share it with third parties.
+IdeaHatch ("the App") is provided by Moedora ("we"). We are committed to protecting your privacy. This Privacy Policy explains what information we collect, how we use it, and when we share it with third parties.
 
 ---
 
@@ -93,7 +93,13 @@ We may update this Privacy Policy from time to time. We will notify you of signi
 
 ---
 
-### 9. Contact Us
+### 9. Business Operator Disclosure
+
+We operate this App as an individual developer. If disclosure of business operator information (such as name or address) is legally required, we will disclose it promptly upon request sent to the contact address below.
+
+---
+
+### 10. Contact Us
 
 If you have any questions or requests regarding this Privacy Policy, please contact us at:
 

@@ -46,7 +46,6 @@ Esta política puede actualizarse sin previo aviso. Para cambios importantes se 
 
 ## 8. Operador y contacto
 
-- **Desarrollador**: Yuki Konishi
 - **Contacto**: webzero.net@gmail.com
 
 ## 9. Servicios externos

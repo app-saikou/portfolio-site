@@ -105,7 +105,6 @@ Diese Datenschutzrichtlinie kann ohne Vorankündigung aktualisiert werden. Bei w
 
 Bei Fragen zu dieser Datenschutzrichtlinie:
 
-- **Entwickler**: Yuki Konishi
 - **Kontakt**: webzero.net@gmail.com
 
 ## 9. Datenschutzrichtlinien externer Dienste

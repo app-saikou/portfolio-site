@@ -105,7 +105,6 @@ Cette politique peut être mise à jour sans préavis. En cas de changement impo
 
 Pour toute question concernant cette politique :
 
-- **Développeur** : Yuki Konishi
 - **Contact** : webzero.net@gmail.com
 
 ## 9. Politiques des services tiers

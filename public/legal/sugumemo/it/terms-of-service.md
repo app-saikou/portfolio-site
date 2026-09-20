@@ -57,5 +57,4 @@ I presenti Termini sono regolati dalla legge giapponese. Qualsiasi controversia 
 
 Per richieste relative ai presenti Termini:
 
-- **Sviluppatore**: Yuki Konishi
 - **Contatto**: webzero.net@gmail.com

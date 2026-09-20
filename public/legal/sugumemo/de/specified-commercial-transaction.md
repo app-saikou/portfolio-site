@@ -10,9 +10,9 @@ Diese Angaben betreffen In-App-Abonnements (Pro-Plan) für „SuguMemo“ (す�
 
 | Angabe | Inhalt |
 |--------|--------|
-| Verkäufer | Yuki Konishi (小西 祐貴) |
-| Vertreter | Yuki Konishi |
-| Anschrift | 3-1-43 Aomicho, Takahama-shi, Aichi 444-1324, Japan |
+| Verkäufer | Wird auf Anfrage unverzüglich offengelegt. Bitte kontaktieren Sie webzero.net@gmail.com. |
+| Vertreter | Wird auf Anfrage unverzüglich offengelegt. Bitte kontaktieren Sie webzero.net@gmail.com. |
+| Anschrift | Wird auf Anfrage unverzüglich offengelegt. Bitte kontaktieren Sie webzero.net@gmail.com. |
 | Kontakt | E-Mail: webzero.net@gmail.com (Anfragen nur per E-Mail) |
 
 ---

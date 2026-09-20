@@ -57,5 +57,4 @@ Estes Termos são regidos pelas leis do Japão. Qualquer disputa relativa ao apl
 
 Para perguntas sobre estes Termos:
 
-- **Desenvolvedor**: Yuki Konishi
 - **Contato**: webzero.net@gmail.com

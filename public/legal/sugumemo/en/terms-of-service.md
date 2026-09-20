@@ -51,11 +51,12 @@ The developer may change, suspend, or discontinue the App at any time without no
 
 ## Article 7 (Governing Law and Jurisdiction)
 
-These Terms are governed by the laws of Japan. Any dispute relating to the App shall be subject to the exclusive jurisdiction of the courts with jurisdiction over the developer's principal place of business.
+These Terms are governed by the laws of Japan. Any dispute relating to the App shall be subject to the exclusive jurisdiction of the Tokyo District Court.
 
 ## Article 8 (Operator and Contact)
 
+This App is provided by Moedora, an individual developer. If disclosure of business operator information (such as name or address) is legally required, we will disclose it promptly upon request sent to the contact address below.
+
 For inquiries regarding these Terms, please contact:
 
-- **Developer name**: Yuki Konishi
 - **Contact**: webzero.net@gmail.com

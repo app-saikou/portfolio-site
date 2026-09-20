@@ -10,9 +10,9 @@ Estas informações referem-se às assinaturas dentro do app (plano Pro) do «Su
 
 | Item | Conteúdo |
 |------|----------|
-| Nome do vendedor | Yuki Konishi (小西 祐貴) |
-| Representante | Yuki Konishi |
-| Endereço | 3-1-43 Aomicho, Takahama-shi, Aichi 444-1324, Japão |
+| Nome do vendedor | Divulgado prontamente mediante solicitação. Contacte webzero.net@gmail.com. |
+| Representante | Divulgado prontamente mediante solicitação. Contacte webzero.net@gmail.com. |
+| Endereço | Divulgado prontamente mediante solicitação. Contacte webzero.net@gmail.com. |
 | Contacto | E-mail: webzero.net@gmail.com (pedidos apenas por e-mail) |
 
 ---
